@@ -29,7 +29,7 @@ const T = {
         'Sets the company’s direction and shapes how our products meet real market needs, with an eye for the human side of what technology solves. From Austria, with a degree in psychology.',
       ],
       [
-        'Technical architecture and delivery',
+        'CTO',
         'Leads the technical architecture and full-stack delivery, turning complex requirements into clean, reliable systems. From England, a self-taught engineer with a background in business.',
       ],
       [
@@ -72,7 +72,7 @@ const T = {
         'Gibt die Richtung des Unternehmens vor und gestaltet, wie unsere Produkte auf reale Marktbedürfnisse treffen, mit einem Blick für die menschliche Seite dessen, was Technologie löst. Aus Österreich, mit einem Abschluss in Psychologie.',
       ],
       [
-        'Technische Architektur und Umsetzung',
+        'CTO',
         'Verantwortet die technische Architektur und die Full-Stack-Umsetzung und übersetzt komplexe Anforderungen in saubere, zuverlässige Systeme. Aus England, autodidaktischer Entwickler mit betriebswirtschaftlichem Hintergrund.',
       ],
       [
