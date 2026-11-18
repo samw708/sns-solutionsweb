@@ -1,17 +1,14 @@
 import type { Metadata } from 'next'
-import Nav from '@/components/Nav'
-import Footer from '@/components/Footer'
-import Services from '@/components/Services'
-import CustomBuilds from '@/components/CustomBuilds'
+import Consulting from '@/components/silver/pages/Consulting'
 import JsonLd from '@/components/JsonLd'
 import { servicesGraph } from '@/lib/schema'
 import { snsPage } from '@/lib/share'
 
 export const metadata: Metadata = snsPage({
   locale: 'de',
-  title: 'Leistungen',
+  title: 'Beratung',
   description:
-    'Was SNS Solutions macht, klar erklärt: individuelle Software, KI-Automatisierung und KI- & IT-Beratung. Die Probleme, die wir lösen, und was Sie bekommen.',
+    'Wo lohnt sich KI in Ihrem Unternehmen? SNS Solutions sieht sich an, wie Ihr Team arbeitet, sagt Ihnen, was sich zu automatisieren lohnt, und baut individuelle Software und KI-Automatisierung, wenn es sich rechnet. Kostenloses 30-Minuten-Gespräch.',
   path: '/de/services',
   languages: { en: '/services', de: '/de/services', 'x-default': '/services' },
 })
@@ -20,14 +17,7 @@ export default function ServicesPageDe() {
   return (
     <>
       <JsonLd data={servicesGraph('de')} />
-      <Nav locale="de" />
-      <main id="services" className="relative px-5 pb-24 pt-32 md:px-10 md:pt-36">
-        <div className="mx-auto w-full max-w-6xl 2xl:max-w-7xl">
-          <Services locale="de" />
-        </div>
-        <CustomBuilds locale="de" />
-      </main>
-      <Footer showCta={false} locale="de" />
+      <Consulting locale="de" />
     </>
   )
 }

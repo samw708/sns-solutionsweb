@@ -73,7 +73,7 @@ export const de: Dictionary = {
   productsPage: {
     title: 'Unsere Produkte',
     description:
-      'Immvela, der persönliche KI-Assistent für Immobilien, und QFUtool, automatisches Nachfassen von Angeboten. Zwei Produkte von SNS Solutions aus Wien.',
+      'Pack CAD für Hersteller von Kälteverbundanlagen, Immvela, der persönliche KI-Assistent für Immobilien, und QFUtool, automatisches Nachfassen von Angeboten. Drei Produkte, selbst entwickelt von SNS Solutions in Wien.',
     heading: 'Unsere Produkte',
     line: 'Zwei Werkzeuge, jedes für eine Aufgabe.',
     immvelaTagline: 'Ihr persönlicher KI-Assistent für Immobilien.',
@@ -144,7 +144,7 @@ export const de: Dictionary = {
       heading: 'Buchen Sie ein kostenloses Online-Meeting.',
       sub: 'Dreißig Minuten, online, kostenlos und unverbindlich. Sagen Sie uns, wie Ihr Team heute arbeitet, und wir sagen Ihnen, wo sich KI und bessere Systeme wirklich lohnen, und wo nicht.',
       points: [
-        '30 Minuten online, über Google Meet, Teams oder Zoom',
+        '30 Minuten online, über Google Meet',
         'Eine konkrete Empfehlung in klarer Sprache, die Sie umsetzen können',
         'Keine Verpflichtung, etwas mit uns zu bauen',
       ],
@@ -213,6 +213,16 @@ export const de: Dictionary = {
     eyebrow: 'Das Team',
     heading: 'Die Menschen hinter SNS.',
     intro: 'Drei Gründer, ein Anspruch: Wenn es kompliziert zu bedienen ist, ist es nicht fertig.',
+    facts: [
+      { k: 'Sitz', v: 'Wien, Österreich' },
+      { k: 'Gegründet', v: '2026' },
+      { k: 'Wir arbeiten auf', v: 'Deutsch und Englisch' },
+      { k: 'Wir bauen', v: 'Immvela, QFUtool und Software für HLK-Hersteller' },
+    ],
+    ctaHeading: 'Sprechen Sie mit den Menschen, die es bauen.',
+    ctaEm: 'die es bauen.',
+    ctaSub: 'Wir lesen jede Nachricht und antworten selbst.',
+    cta: 'Kontakt aufnehmen',
     // Reihenfolge wie die Gründerliste in components/Founders.tsx
     // (Samuel Winch, Nicholas Pellechi, Samson Belachew).
     bios: [
@@ -238,6 +248,7 @@ export const de: Dictionary = {
     services: [
       'Immvela · Immobilien',
       'QFUtool',
+      'HLK & Kältetechnik',
       'Individuelle Software',
       'KI & Automatisierung',
       'KI- & IT-Beratung',

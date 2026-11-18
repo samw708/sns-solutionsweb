@@ -11,11 +11,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '', changeFrequency: 'monthly' as const, priority: 1 },
     { path: '/services', changeFrequency: 'monthly' as const, priority: 0.9 },
     { path: '/products', changeFrequency: 'monthly' as const, priority: 0.9 },
-    // The /solutions section is gone — the HVAC/SHK line is discontinued and
-    // real estate is Immvela, which has its own domain and its own sitemap.
-    // Those URLs 301 to it (middleware.ts) and a sitemap must only list URLs
-    // that answer 200, so listing a redirect here would be a crawl error.
-    // Immvela itself isn't advertised here for the same reason.
+    // HVAC & refrigeration manufacturers (lib/hvac.ts). The old /solutions/hvac
+    // URLs 301 here (middleware.ts); a sitemap lists only URLs that answer 200,
+    // so the redirects themselves stay out. Immvela isn't advertised here
+    // either: it has its own domain and its own sitemap.
+    { path: '/hvac', changeFrequency: 'monthly' as const, priority: 0.9 },
+    { path: '/hvac/selection-software', changeFrequency: 'monthly' as const, priority: 0.9 },
+    { path: '/hvac/document-management', changeFrequency: 'monthly' as const, priority: 0.9 },
+    { path: '/hvac/refrigeration-pack-design', changeFrequency: 'monthly' as const, priority: 0.9 },
     { path: '/team', changeFrequency: 'monthly' as const, priority: 0.7 },
     { path: '/contact', changeFrequency: 'yearly' as const, priority: 0.8 },
   ]
@@ -32,23 +35,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   )
 
-  // English only, no `de` alternate — the blog doesn't have a German
-  // translation yet (see lib/blog.ts), so there's no second language to point
-  // at. `lastModified` uses each post's own date rather than `now`, the same
-  // way a real blog's sitemap would.
+  // The blog in both languages: each post's English and German pages name each other as alternates
+  // (lib/blog.ts + lib/blog-de.ts). `lastModified` uses the post's own date rather than `now`, the way a
+  // real blog's sitemap would.
+  const pair = (path: string) => ({ en: `${SITE_URL}${path}`, de: `${SITE_URL}/de${path}` })
+  const index = pair('/blog')
   const blog: MetadataRoute.Sitemap = [
-    {
-      url: `${SITE_URL}/blog`,
+    ...(['en', 'de'] as const).map((l) => ({
+      url: index[l],
       lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
-    },
-    ...BLOG_POSTS.map((post) => ({
-      url: `${SITE_URL}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
+      alternates: { languages: index },
     })),
+    ...BLOG_POSTS.flatMap((post) => {
+      const p = pair(`/blog/${post.slug}`)
+      return (['en', 'de'] as const).map((l) => ({
+        url: p[l],
+        lastModified: new Date(post.date),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+        alternates: { languages: p },
+      }))
+    }),
   ]
 
   const legal: MetadataRoute.Sitemap = ['/legal/imprint', '/legal/privacy', '/legal/terms'].flatMap(

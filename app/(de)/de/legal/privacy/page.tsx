@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { snsPage } from '@/lib/share'
+import LegalShell from '@/components/silver/pages/LegalShell'
 
 export const metadata: Metadata = snsPage({
   locale: 'de',
@@ -14,539 +15,575 @@ export const metadata: Metadata = snsPage({
   },
 })
 
-const UPDATED = '17. Oktober 2026'
+const UPDATED = '18. November 2026'
 
 export default function PrivacyPageDe() {
   return (
-    <article>
-      <header className="mb-10 border-b border-sns-border pb-8">
-        <p className="eyebrow mb-3">Rechtliches</p>
-        <h1 className="section-title text-sns-text">Datenschutzerklärung</h1>
-        <p className="mt-3 text-base leading-relaxed text-sns-muted">
-          Wie wir Ihre personenbezogenen Daten gemäß der EU-Datenschutz- Grundverordnung (DSGVO)
-          verarbeiten.
-        </p>
-        <p className="mt-2 text-sm text-sns-muted">Zuletzt aktualisiert: {UPDATED}</p>
-      </header>
+    <LegalShell locale="de" doc="privacy">
+      <article>
+        <header className="mb-10 border-b border-sns-border pb-8">
+          <p className="eyebrow mb-3">Rechtliches</p>
+          <h1 className="section-title text-sns-text">Datenschutzerklärung</h1>
+          <p className="mt-3 text-base leading-relaxed text-sns-muted">
+            Wie wir Ihre personenbezogenen Daten gemäß der EU-Datenschutz- Grundverordnung (DSGVO)
+            verarbeiten.
+          </p>
+          <p className="mt-2 text-sm text-sns-muted">Zuletzt aktualisiert: {UPDATED}</p>
+        </header>
 
-      <div className="legal-prose">
-        <h2>1. Verantwortlicher</h2>
-        <p>Verantwortlicher für die Datenverarbeitung auf dieser Website ist:</p>
-        <p>
-          <strong>SNS Software Solutions GmbH</strong>
-          <br />
-          Schrötlgasse 8a, 1220 Wien, Österreich
-          <br />
-          E-Mail: <a href="mailto:office@sns-austria.com">office@sns-austria.com</a>
-        </p>
+        <div className="legal-prose">
+          <h2>1. Verantwortlicher</h2>
+          <p>Verantwortlicher für die Datenverarbeitung auf dieser Website ist:</p>
+          <p>
+            <strong>SNS Software Solutions GmbH</strong>
+            <br />
+            Schrötlgasse 8a, 1220 Wien, Österreich
+            <br />
+            E-Mail: <a href="mailto:office@sns-austria.com">office@sns-austria.com</a>
+          </p>
 
-        <h2>2. Überblick</h2>
-        <p>
-          Wir nehmen den Schutz Ihrer personenbezogenen Daten ernst und verarbeiten diese nur im
-          Einklang mit den gesetzlichen Datenschutzvorschriften (DSGVO, österreichisches
-          Datenschutzgesetz / DSG) und dieser Datenschutzerklärung.
-        </p>
-        <p>
-          Diese Erklärung betrifft zwei verschiedene Dinge, und die Unterscheidung ist für Ihre
-          Rechte wesentlich. <strong>Unsere Websites</strong> (sns-austria.com und immvela.com) sind
-          Informationsseiten; dort erheben wir so wenige personenbezogene Daten wie möglich — es
-          gelten die Abschnitte 3 sowie 5 bis 12. <strong>Immvela</strong>, die Plattform, in der
-          sich unsere Kunden anmelden, ist etwas anderes: dort verarbeiten wir Daten überwiegend im
-          Auftrag eines Kunden und nicht für eigene Zwecke, was ändert, an wen Sie ein Anliegen
-          richten. Das regelt Abschnitt 4.
-        </p>
+          <h2>2. Überblick</h2>
+          <p>
+            Wir nehmen den Schutz Ihrer personenbezogenen Daten ernst und verarbeiten diese nur im
+            Einklang mit den gesetzlichen Datenschutzvorschriften (DSGVO, österreichisches
+            Datenschutzgesetz / DSG) und dieser Datenschutzerklärung.
+          </p>
+          <p>
+            Diese Erklärung betrifft zwei verschiedene Dinge, und die Unterscheidung ist für Ihre
+            Rechte wesentlich. <strong>Unsere Websites</strong> (sns-austria.com und immvela.com)
+            sind Informationsseiten; dort erheben wir so wenige personenbezogene Daten wie möglich —
+            es gelten die Abschnitte 3 sowie 5 bis 12. <strong>Immvela</strong>, die Plattform, in
+            der sich unsere Kunden anmelden, ist etwas anderes: dort verarbeiten wir Daten
+            überwiegend im Auftrag eines Kunden und nicht für eigene Zwecke, was ändert, an wen Sie
+            ein Anliegen richten. Das regelt Abschnitt 4.
+          </p>
 
-        <h2>3. Hosting</h2>
-        <p>
-          Diese Website wird von <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133, Walnut, CA
-          91789, USA, gehostet. Beim Besuch der Website verarbeitet Vercel automatisch technische
-          Verbindungsdaten (siehe „Server-Logfiles“ unten), um die Website sicher und zuverlässig
-          bereitzustellen. Dies beruht auf unserem berechtigten Interesse an einer stabilen und
-          sicheren Online-Präsenz (Art. 6 Abs. 1 lit. f DSGVO). Wir haben mit Vercel einen
-          Auftragsverarbeitungsvertrag (AVV) geschlossen, und Übermittlungen in die USA sind durch
-          die EU-Standardvertragsklauseln abgesichert.
-        </p>
+          <h2>3. Hosting</h2>
+          <p>
+            Diese Website wird von <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133, Walnut, CA
+            91789, USA, gehostet. Beim Besuch der Website verarbeitet Vercel automatisch technische
+            Verbindungsdaten (siehe „Server-Logfiles“ unten), um die Website sicher und zuverlässig
+            bereitzustellen. Dies beruht auf unserem berechtigten Interesse an einer stabilen und
+            sicheren Online-Präsenz (Art. 6 Abs. 1 lit. f DSGVO). Wir haben mit Vercel einen
+            Auftragsverarbeitungsvertrag (AVV) geschlossen, und Übermittlungen in die USA sind durch
+            die EU-Standardvertragsklauseln abgesichert.
+          </p>
 
-        <h2>4. Immvela (unsere Immobilien-Plattform)</h2>
-        <p>
-          Zusätzlich zu dieser Website betreibt SNS <strong>Immvela</strong> (
-          <a href="https://www.immvela.com" target="_blank" rel="noopener noreferrer">
-            immvela.com
-          </a>
-          , Anwendung unter app.immvela.com), eine modulare Plattform für Immobilienmakler und
-          Maklerbüros in Österreich, Deutschland und der Schweiz. Immvela ist ein Produkt der SNS
-          Software Solutions GmbH und keine eigene Rechtsperson; diese Datenschutzerklärung gilt für
-          beide Domains. Module werden einzeln freigeschaltet, daher richtet sich die im Folgenden
-          beschriebene Verarbeitung danach, welche Module ein Maklerbüro tatsächlich nutzt.
-        </p>
+          <h2>4. Immvela (unsere Immobilien-Plattform)</h2>
+          <p>
+            Zusätzlich zu dieser Website betreibt SNS <strong>Immvela</strong> (
+            <a href="https://www.immvela.com" target="_blank" rel="noopener noreferrer">
+              immvela.com
+            </a>
+            , Anwendung unter app.immvela.com), eine modulare Plattform für Immobilienmakler und
+            Maklerbüros in Österreich, Deutschland und der Schweiz. Immvela ist ein Produkt der SNS
+            Software Solutions GmbH und keine eigene Rechtsperson; diese Datenschutzerklärung gilt
+            für beide Domains. Module werden einzeln freigeschaltet, daher richtet sich die im
+            Folgenden beschriebene Verarbeitung danach, welche Module ein Maklerbüro tatsächlich
+            nutzt.
+          </p>
 
-        <h3>4.1 Verantwortlicher und Auftragsverarbeiter</h3>
-        <p>
-          Für die Daten, die ein Maklerbüro in Immvela über seine eigenen Objekte, Kunden und
-          Interessenten einbringt, ist das <strong>Maklerbüro der Verantwortliche</strong> und{' '}
-          <strong>SNS handelt als Auftragsverarbeiter</strong> nach dessen Weisung (Art. 28 DSGVO),
-          auf Grundlage einer gesonderten schriftlichen Vereinbarung samt
-          Auftragsverarbeitungsvertrag (AVV). Für die Konto- und Vertragsdaten des Maklerbüros
-          selbst ist SNS Verantwortlicher.
-        </p>
-        <p>
-          Jedes Maklerbüro ist ein eigener Mandant und eigener Verantwortlicher. Gehört ein
-          Maklerbüro zu einem Franchise, haben die Franchise-Standorte <strong>keinen</strong>{' '}
-          Zugriff auf die operativen Daten der jeweils anderen; ein Franchise kann
-          Nachschlagematerial ausschließlich durch bewusste Freigabe nach unten teilen, niemals
-          operative Datensätze zu Objekten oder Personen.
-        </p>
+          <h3>4.1 Verantwortlicher und Auftragsverarbeiter</h3>
+          <p>
+            Für die Daten, die ein Maklerbüro in Immvela über seine eigenen Objekte, Kunden und
+            Interessenten einbringt, ist das <strong>Maklerbüro der Verantwortliche</strong> und{' '}
+            <strong>SNS handelt als Auftragsverarbeiter</strong> nach dessen Weisung (Art. 28
+            DSGVO), auf Grundlage einer gesonderten schriftlichen Vereinbarung samt
+            Auftragsverarbeitungsvertrag (AVV). Für die Konto- und Vertragsdaten des Maklerbüros
+            selbst ist SNS Verantwortlicher.
+          </p>
+          <p>
+            Jedes Maklerbüro ist ein eigener Mandant und eigener Verantwortlicher. Gehört ein
+            Maklerbüro zu einem Franchise, haben die Franchise-Standorte <strong>keinen</strong>{' '}
+            Zugriff auf die operativen Daten der jeweils anderen; ein Franchise kann
+            Nachschlagematerial ausschließlich durch bewusste Freigabe nach unten teilen, niemals
+            operative Datensätze zu Objekten oder Personen.
+          </p>
 
-        <h3>4.2 Daten, die wir im Auftrag von Kunden verarbeiten</h3>
-        <ul>
-          <li>
-            Kontodaten der Nutzer des Maklerbüros: Name, E-Mail-Adresse, Rolle in der Organisation
-            und bevorzugte Oberflächensprache.
-          </li>
-          <li>
-            Objekt- und Inseratsdaten, einschließlich beschreibender und technischer Angaben wie
-            Wohnfläche, Baujahr und Werte des Energieausweises.
-          </li>
-          <li>
-            Kontakte, Leads und Abschlüsse, also personenbezogene Daten über Kauf-, Verkaufs- oder
-            Mietinteressenten, die das Maklerbüro erfasst oder erhält.
-          </li>
-          <li>
-            Dokumente, die das Maklerbüro hochlädt (zum Beispiel Energieausweise), und die daraus
-            ausgelesenen Werte. Ausgelesene Werte werden dem Maklerbüro stets zur Bestätigung
-            vorgelegt, bevor die Plattform sich darauf stützt.
-          </li>
-          <li>
-            Medien, die das Maklerbüro hochlädt oder erzeugen lässt: Fotos, gestagte Bilder und
-            Rundgangsaufnahmen.
-          </li>
-          <li>
-            Texte, die die Plattform auf Weisung des Maklerbüros entwirft (Inseratstexte, Captions,
-            Exposés), sowie die Überarbeitungen des Maklerbüros daran.
-          </li>
-          <li>
-            Wenn das Maklerbüro das Chat-Verständnis nutzt: die Anfragen, die eine Nutzerin oder ein
-            Nutzer im Chat zu einem Objekt eintippt (siehe Abschnitt 4.4).
-          </li>
-          <li>
-            Zugangstoken der verbundenen Veröffentlichungsplattformen, die ausschließlich dazu
-            dienen, im Auftrag des Maklerbüros zu veröffentlichen und die dazugehörigen
-            Interaktionsdaten abzurufen, sowie die Kennung und der angezeigte Name des verbundenen
-            Kontos (bei LinkedIn, falls kein Name übermittelt wird, die E-Mail-Adresse des
-            Kontos).
-          </li>
-          <li>
-            Interaktionsdaten, die diese Plattformen zurückliefern (zum Beispiel Aufrufe, Reaktionen
-            und Beitragsstatistiken).
-          </li>
-          <li>
-            Aufzeichnungen über Aktivitäten in der Plattform, die festhalten, welches Modul welchen
-            Datensatz erzeugt oder genutzt hat. Sie dienen dem Betrieb des Dienstes und dazu, die
-            eigenen Daten des Maklerbüros modulübergreifend nutzbar zu machen. Im Verlauf eines
-            Objekts sehen die Mitglieder des Maklerbüros die Einträge, die das ganze Büro
-            betreffen, mit der Angabe, wer gehandelt hat.
-          </li>
-          <li>
-            Nutzungszähler je Person, Maklerbüro und Woche für Funktionen mit einem wöchentlichen
-            Kontingent (nur die Anzahl, keine Inhalte) sowie das Enddatum des Testzeitraums, wenn
-            der Zugang des Maklerbüros als Testzugang eingerichtet ist.
-          </li>
-        </ul>
+          <h3>4.2 Daten, die wir im Auftrag von Kunden verarbeiten</h3>
+          <ul>
+            <li>
+              Kontodaten der Nutzer des Maklerbüros: Name, E-Mail-Adresse, Rolle in der Organisation
+              und bevorzugte Oberflächensprache.
+            </li>
+            <li>
+              Objekt- und Inseratsdaten, einschließlich beschreibender und technischer Angaben wie
+              Wohnfläche, Baujahr und Werte des Energieausweises.
+            </li>
+            <li>
+              Kontakte, Leads und Abschlüsse, also personenbezogene Daten über Kauf-, Verkaufs- oder
+              Mietinteressenten, die das Maklerbüro erfasst oder erhält.
+            </li>
+            <li>
+              Dokumente, die das Maklerbüro hochlädt (zum Beispiel Energieausweise), und die daraus
+              ausgelesenen Werte. Ausgelesene Werte werden dem Maklerbüro stets zur Bestätigung
+              vorgelegt, bevor die Plattform sich darauf stützt.
+            </li>
+            <li>
+              Medien, die das Maklerbüro hochlädt oder erzeugen lässt: Fotos, gestagte Bilder und
+              Rundgangsaufnahmen.
+            </li>
+            <li>
+              Texte, die die Plattform auf Weisung des Maklerbüros entwirft (Inseratstexte,
+              Captions, Exposés), sowie die Überarbeitungen des Maklerbüros daran.
+            </li>
+            <li>
+              Wenn das Maklerbüro das Chat-Verständnis nutzt: die Anfragen, die eine Nutzerin oder
+              ein Nutzer im Chat zu einem Objekt eintippt (siehe Abschnitt 4.4).
+            </li>
+            <li>
+              Zugangstoken der verbundenen Veröffentlichungsplattformen, die ausschließlich dazu
+              dienen, im Auftrag des Maklerbüros zu veröffentlichen und die dazugehörigen
+              Interaktionsdaten abzurufen, sowie die Kennung und der angezeigte Name des verbundenen
+              Kontos (bei LinkedIn, falls kein Name übermittelt wird, die E-Mail-Adresse des
+              Kontos).
+            </li>
+            <li>
+              Interaktionsdaten, die diese Plattformen zurückliefern (zum Beispiel Aufrufe,
+              Reaktionen und Beitragsstatistiken).
+            </li>
+            <li>
+              Aufzeichnungen über Aktivitäten in der Plattform, die festhalten, welches Modul
+              welchen Datensatz erzeugt oder genutzt hat. Sie dienen dem Betrieb des Dienstes und
+              dazu, die eigenen Daten des Maklerbüros modulübergreifend nutzbar zu machen. Im
+              Verlauf eines Objekts sehen die Mitglieder des Maklerbüros die Einträge, die das ganze
+              Büro betreffen, mit der Angabe, wer gehandelt hat.
+            </li>
+            <li>
+              Nutzungszähler je Person, Maklerbüro und Woche für Funktionen mit einem wöchentlichen
+              Kontingent (nur die Anzahl, keine Inhalte) sowie das Enddatum des Testzeitraums, wenn
+              der Zugang des Maklerbüros als Testzugang eingerichtet ist.
+            </li>
+          </ul>
 
-        <h3>4.3 Zweck und Rechtsgrundlage</h3>
-        <p>
-          Diese Daten werden ausschließlich verarbeitet, um die vom Maklerbüro freigeschalteten
-          Funktionen bereitzustellen. Rechtsgrundlage ist die Erfüllung des Vertrags mit dem
-          Maklerbüro (Art. 6 Abs. 1 lit. b DSGVO) sowie unser berechtigtes Interesse an der
-          Erbringung der vereinbarten Leistung (Art. 6 Abs. 1 lit. f DSGVO). Verarbeitet ein
-          Maklerbüro Daten über Dritte, etwa über Kaufinteressenten, ist das Maklerbüro für die
-          Rechtsgrundlage dieser Verarbeitung verantwortlich.
-        </p>
+          <h3>4.3 Zweck und Rechtsgrundlage</h3>
+          <p>
+            Diese Daten werden ausschließlich verarbeitet, um die vom Maklerbüro freigeschalteten
+            Funktionen bereitzustellen. Rechtsgrundlage ist die Erfüllung des Vertrags mit dem
+            Maklerbüro (Art. 6 Abs. 1 lit. b DSGVO) sowie unser berechtigtes Interesse an der
+            Erbringung der vereinbarten Leistung (Art. 6 Abs. 1 lit. f DSGVO). Verarbeitet ein
+            Maklerbüro Daten über Dritte, etwa über Kaufinteressenten, ist das Maklerbüro für die
+            Rechtsgrundlage dieser Verarbeitung verantwortlich.
+          </p>
 
-        <h3>4.4 KI-Verarbeitung, und worüber sie nicht entscheidet</h3>
-        <p>
-          Mehrere Immvela-Module erzeugen Texte oder Bilder mit KI. Für die Texterzeugung werden die
-          betreffenden Inserats- und Objektdaten an <strong>Anthropic PBC</strong> (Claude-Modelle)
-          als Unterauftragsverarbeiter übermittelt, ausschließlich zur Erstellung des vom Maklerbüro
-          angeforderten Ergebnisses. Anthropic gibt in seinen kommerziellen Bedingungen an, dass
-          über die API übermittelte Daten nicht zum Training seiner Modelle verwendet werden. Wir
-          verkaufen Kundendaten nicht, nutzen sie nicht für Werbung und verwenden sie nicht zum
-          Training eigener KI-Modelle.
-        </p>
-        <p>
-          Zum Schreiben übermitteln wir die Objektadresse, die bestätigten Objektangaben, die frei
-          formulierten Verkaufsargumente und Stilangaben der Nutzerin oder des Nutzers sowie bis zu
-          drei ihrer oder seiner zuvor behaltenen Texte als Stilbeispiele; nicht übermittelt werden
-          der Name des Büros, die Nutzerkennung, die E-Mail-Adresse und die Telefonnummer. Beim
-          Auslesen von Unterlagen geht die vollständige Datei (PDF oder Foto) an Anthropic; derzeit
-          lesen wir nur Energieausweise aus, andere Unterlagen wie einen Grundbuchauszug erst nach
-          vorheriger Ankündigung, und Unterlagen, die nur gespeichert werden, gehen nicht an
-          Anthropic.
-        </p>
-        <p>
-          Für die virtuelle Möblierung übermitteln wir, wenn eine Nutzerin oder ein Nutzer ein Foto
-          virtuell möblieren lässt, an <strong>fal.ai (Features &amp; Labels, Inc., USA)</strong>{' '}
-          als Unterauftragsverarbeiter einen eine Stunde gültigen Link auf das Originalfoto, über
-          den fal.ai die Datei abruft. Der Link enthält interne Kennungen des Maklerbüros und des
-          Nutzerkontos. Außerdem übermitteln wir den Anweisungstext, einschließlich einer optionalen
-          Notiz, die die Nutzerin oder der Nutzer dazu eingibt. fal.ai gibt das möblierte Bild
-          zurück; wir speichern es bei uns. Zweck ist ausschließlich die Erstellung der
-          angeforderten möblierten Variante. fal.ai verarbeitet die Daten in den USA und nach
-          eigener Angabe auch in weiteren Ländern; eine Verarbeitung in der EU ist derzeit nicht
-          eingerichtet. Nach den Nutzungsbedingungen von fal.ai darf fal.ai anonymisierte oder
-          zusammengefasste Nutzungsdaten zur Entwicklung eigener Produkte und KI-Modelle verwenden.
-          Eine Kopie, die fal.ai bereits erhalten hat, können wir nicht zurückholen; für sie gelten
-          die Aufbewahrungsregeln von fal.ai.
-        </p>
-        <p>
-          Wenn ein Maklerbüro das Chat-Verständnis nutzt, übermitteln wir eine Anfrage, die eine
-          Nutzerin oder ein Nutzer im Chat zu einem Objekt eintippt (höchstens 500 Zeichen), an{' '}
-          <strong>Anthropic PBC</strong> (Modell Claude Haiku). Anthropic ordnet sie den Auswahlmöglichkeiten des Plans
-          zu, etwa welche Schritte ausgeführt werden und welches Layout und welcher Stil gelten
-          sollen. Übermittelt werden der Text und die Liste dieser Auswahlmöglichkeiten,
-          einschließlich der Bezeichnungen der Hervorhebungen zum Objekt; aus dem Text werden keine
-          Angaben zum Objekt erstellt. Den Text speichern wir, um das Chat-Verständnis zu
-          verbessern. Lesen kann ihn nur, wer ihn geschrieben hat; die übrigen Mitglieder des
-          Maklerbüros sehen ihn nicht. Er wird gelöscht, wenn das Konto dieser Person oder das
-          betreffende Inserat gelöscht wird, und unsere Aktivitätsaufzeichnungen halten nur die
-          erkannten Auswahlen fest, nicht den Text.
-        </p>
-        <p>
-          Zwei Grenzen sind in der Plattform selbst verankert und nicht bloß in dieser Erklärung.
-          Sachangaben in erzeugten Texten stammen ausschließlich aus Daten, die das Maklerbüro
-          bestätigt hat; die Plattform erfindet daher keine Objektangaben. Und KI-gestagte Bilder
-          tragen den Hinweis „virtuell möbliert“ fest ins Bild gerendert, sodass ein gestagtes Foto
-          überall dort als gestagt erkennbar bleibt, wo es veröffentlicht wird.
-        </p>
-        <p>
-          <strong>Keine automatisierte Entscheidungsfindung.</strong> Immvela trifft keine
-          Entscheidungen über Personen mit rechtlicher oder ähnlich erheblicher Wirkung im Sinne des
-          Art. 22 DSGVO. Qualifiziert oder leitet ein Modul eine Anfrage weiter, sammelt und
-          bereitet es Informationen für einen Menschen auf; es vereinbart keine Preise, Termine oder
-          Vertragsbedingungen, und Verbindliches bestätigt stets ein Mensch.
-        </p>
+          <h3>4.4 KI-Verarbeitung, und worüber sie nicht entscheidet</h3>
+          <p>
+            Mehrere Immvela-Module erzeugen Texte oder Bilder mit KI. Für die Texterzeugung werden
+            die betreffenden Inserats- und Objektdaten an <strong>Anthropic PBC</strong>{' '}
+            (Claude-Modelle) als Unterauftragsverarbeiter übermittelt, ausschließlich zur Erstellung
+            des vom Maklerbüro angeforderten Ergebnisses. Anthropic gibt in seinen kommerziellen
+            Bedingungen an, dass über die API übermittelte Daten nicht zum Training seiner Modelle
+            verwendet werden. Wir verkaufen Kundendaten nicht, nutzen sie nicht für Werbung und
+            verwenden sie nicht zum Training eigener KI-Modelle.
+          </p>
+          <p>
+            Zum Schreiben übermitteln wir die Objektadresse, die bestätigten Objektangaben, die frei
+            formulierten Verkaufsargumente und Stilangaben der Nutzerin oder des Nutzers sowie bis
+            zu drei ihrer oder seiner zuvor behaltenen Texte als Stilbeispiele; nicht übermittelt
+            werden der Name des Büros, die Nutzerkennung, die E-Mail-Adresse und die Telefonnummer.
+            Beim Auslesen von Unterlagen geht die vollständige Datei (PDF oder Foto) an Anthropic;
+            derzeit lesen wir nur Energieausweise aus, andere Unterlagen wie einen Grundbuchauszug
+            erst nach vorheriger Ankündigung, und Unterlagen, die nur gespeichert werden, gehen
+            nicht an Anthropic.
+          </p>
+          <p>
+            Für die virtuelle Möblierung übermitteln wir, wenn eine Nutzerin oder ein Nutzer ein
+            Foto virtuell möblieren lässt, an{' '}
+            <strong>fal.ai (Features &amp; Labels, Inc., USA)</strong> als Unterauftragsverarbeiter
+            einen eine Stunde gültigen Link auf das Originalfoto, über den fal.ai die Datei abruft.
+            Der Link enthält interne Kennungen des Maklerbüros und des Nutzerkontos. Außerdem
+            übermitteln wir den Anweisungstext, einschließlich einer optionalen Notiz, die die
+            Nutzerin oder der Nutzer dazu eingibt. fal.ai gibt das möblierte Bild zurück; wir
+            speichern es bei uns. Zweck ist ausschließlich die Erstellung der angeforderten
+            möblierten Variante. fal.ai verarbeitet die Daten in den USA und nach eigener Angabe
+            auch in weiteren Ländern; eine Verarbeitung in der EU ist derzeit nicht eingerichtet.
+            Nach den Nutzungsbedingungen von fal.ai darf fal.ai anonymisierte oder zusammengefasste
+            Nutzungsdaten zur Entwicklung eigener Produkte und KI-Modelle verwenden. Eine Kopie, die
+            fal.ai bereits erhalten hat, können wir nicht zurückholen; für sie gelten die
+            Aufbewahrungsregeln von fal.ai.
+          </p>
+          <p>
+            Wenn ein Maklerbüro das Chat-Verständnis nutzt, übermitteln wir eine Anfrage, die eine
+            Nutzerin oder ein Nutzer im Chat zu einem Objekt eintippt (höchstens 500 Zeichen), an{' '}
+            <strong>Anthropic PBC</strong> (Modell Claude Haiku). Anthropic ordnet sie den
+            Auswahlmöglichkeiten des Plans zu, etwa welche Schritte ausgeführt werden und welches
+            Layout und welcher Stil gelten sollen. Übermittelt werden der Text und die Liste dieser
+            Auswahlmöglichkeiten, einschließlich der Bezeichnungen der Hervorhebungen zum Objekt;
+            aus dem Text werden keine Angaben zum Objekt erstellt. Den Text speichern wir, um das
+            Chat-Verständnis zu verbessern. Lesen kann ihn nur, wer ihn geschrieben hat; die übrigen
+            Mitglieder des Maklerbüros sehen ihn nicht. Er wird gelöscht, wenn das Konto dieser
+            Person oder das betreffende Inserat gelöscht wird, und unsere Aktivitätsaufzeichnungen
+            halten nur die erkannten Auswahlen fest, nicht den Text.
+          </p>
+          <p>
+            Zwei Grenzen sind in der Plattform selbst verankert und nicht bloß in dieser Erklärung.
+            Sachangaben in erzeugten Texten stammen ausschließlich aus Daten, die das Maklerbüro
+            bestätigt hat; die Plattform erfindet daher keine Objektangaben. Und KI-gestagte Bilder
+            tragen den Hinweis „virtuell möbliert“ fest ins Bild gerendert, sodass ein gestagtes
+            Foto überall dort als gestagt erkennbar bleibt, wo es veröffentlicht wird.
+          </p>
+          <p>
+            <strong>Keine automatisierte Entscheidungsfindung.</strong> Immvela trifft keine
+            Entscheidungen über Personen mit rechtlicher oder ähnlich erheblicher Wirkung im Sinne
+            des Art. 22 DSGVO. Qualifiziert oder leitet ein Modul eine Anfrage weiter, sammelt und
+            bereitet es Informationen für einen Menschen auf; es vereinbart keine Preise, Termine
+            oder Vertragsbedingungen, und Verbindliches bestätigt stets ein Mensch.
+          </p>
 
-        <h3>4.5 Speicherung und Unterauftragsverarbeiter</h3>
-        <p>
-          Datenbank und gespeicherte Dateien von Immvela liegen in der Europäischen Union. Einzelne
-          Unterauftragsverarbeiter verarbeiten Daten jedoch außerhalb der EU, wie unten beschrieben.
-        </p>
-        <ul>
-          <li>
-            Datenbank, Authentifizierung und Dateispeicher: <strong>Supabase</strong>, gehostet in
-            der EU (eu-central-1, Frankfurt, Deutschland)
-          </li>
-          <li>
-            Anwendungs-Hosting: <strong>Vercel Inc.</strong>, USA (zur Datenverarbeitung durch
-            Vercel siehe Abschnitt 3)
-          </li>
-          <li>
-            Verarbeitung von Hintergrundjobs: <strong>Trigger.dev</strong>
-          </li>
-          <li>
-            KI-Texterzeugung, Auslesen hochgeladener Dokumente und, falls das Maklerbüro es nutzt,
-            Chat-Verständnis: <strong>Anthropic PBC</strong>, USA (siehe Abschnitt 4.4)
-          </li>
-          <li>
-            Virtuelle Möblierung mit KI: <strong>fal.ai (Features &amp; Labels, Inc.)</strong>, USA
-            (siehe Abschnitt 4.4)
-          </li>
-          <li>
-            Fehlerüberwachung: <strong>Sentry (Functional Software, Inc.)</strong>, EU-Region
-            (Frankfurt); technische Angaben zu Fehlern (Fehlerart, ein Fehlercode, die
-            Programmstelle, die aufgerufene Seite als Muster ohne Kennungen sowie Umgebung,
-            Programmversion und Art von Browser und Betriebssystem). Sentry ist so eingestellt,
-            dass keine Nutzerangaben, Cookies und Anfrageinhalte übermittelt werden, und der Text
-            einer Fehlermeldung wird vor dem Versand entfernt. Technisch bedingt sieht Sentry dabei
-            die IP-Adresse des sendenden Geräts und kann daraus den ungefähren Ort (Stadt)
-            ableiten
-          </li>
-        </ul>
-        <p>
-          <strong>Verarbeitung außerhalb der EU.</strong> Anthropic (Texterzeugung, Auslesen von
-          Dokumenten und Chat-Verständnis; für diese Schnittstelle haben wir keine Verarbeitung
-          nur in der EU eingestellt) und fal.ai (virtuelle Möblierung) verarbeiten Daten in den
-          USA. Vercel Inc. hat seinen Sitz in den USA; auch bei Vercel, Supabase und Trigger.dev
-          kann ein Zugriff außerhalb der EU nicht ausgeschlossen werden.
-        </p>
-        <p>
-          Soweit ein Unterauftragsverarbeiter eine Übermittlung außerhalb der EU/des EWR umfasst,
-          ist diese durch einen Auftragsverarbeitungsvertrag und die EU-Standardvertragsklauseln
-          abgesichert.
-        </p>
+          <h3>4.5 Speicherung und Unterauftragsverarbeiter</h3>
+          <p>
+            Datenbank und gespeicherte Dateien von Immvela liegen in der Europäischen Union.
+            Einzelne Unterauftragsverarbeiter verarbeiten Daten jedoch außerhalb der EU, wie unten
+            beschrieben.
+          </p>
+          <ul>
+            <li>
+              Datenbank, Authentifizierung und Dateispeicher: <strong>Supabase</strong>, gehostet in
+              der EU (eu-central-1, Frankfurt, Deutschland)
+            </li>
+            <li>
+              Anwendungs-Hosting: <strong>Vercel Inc.</strong>, USA (zur Datenverarbeitung durch
+              Vercel siehe Abschnitt 3)
+            </li>
+            <li>
+              Verarbeitung von Hintergrundjobs: <strong>Trigger.dev</strong>
+            </li>
+            <li>
+              KI-Texterzeugung, Auslesen hochgeladener Dokumente und, falls das Maklerbüro es nutzt,
+              Chat-Verständnis: <strong>Anthropic PBC</strong>, USA (siehe Abschnitt 4.4)
+            </li>
+            <li>
+              Virtuelle Möblierung mit KI: <strong>fal.ai (Features &amp; Labels, Inc.)</strong>,
+              USA (siehe Abschnitt 4.4)
+            </li>
+            <li>
+              Fehlerüberwachung: <strong>Sentry (Functional Software, Inc.)</strong>, EU-Region
+              (Frankfurt); technische Angaben zu Fehlern (Fehlerart, ein Fehlercode, die
+              Programmstelle, die aufgerufene Seite als Muster ohne Kennungen sowie Umgebung,
+              Programmversion und Art von Browser und Betriebssystem). Sentry ist so eingestellt,
+              dass keine Nutzerangaben, Cookies und Anfrageinhalte übermittelt werden, und der Text
+              einer Fehlermeldung wird vor dem Versand entfernt. Technisch bedingt sieht Sentry
+              dabei die IP-Adresse des sendenden Geräts und kann daraus den ungefähren Ort (Stadt)
+              ableiten
+            </li>
+          </ul>
+          <p>
+            <strong>Verarbeitung außerhalb der EU.</strong> Anthropic (Texterzeugung, Auslesen von
+            Dokumenten und Chat-Verständnis; für diese Schnittstelle haben wir keine Verarbeitung
+            nur in der EU eingestellt) und fal.ai (virtuelle Möblierung) verarbeiten Daten in den
+            USA. Vercel Inc. hat seinen Sitz in den USA; auch bei Vercel, Supabase und Trigger.dev
+            kann ein Zugriff außerhalb der EU nicht ausgeschlossen werden.
+          </p>
+          <p>
+            Soweit ein Unterauftragsverarbeiter eine Übermittlung außerhalb der EU/des EWR umfasst,
+            ist diese durch einen Auftragsverarbeitungsvertrag und die EU-Standardvertragsklauseln
+            abgesichert.
+          </p>
 
-        <h3>4.6 Verbundene Veröffentlichungsplattformen</h3>
-        <p>
-          Jede verbundene Plattform (Meta/Facebook/Instagram, LinkedIn, Google/YouTube, TikTok)
-          verarbeitet Daten nach ihrer eigenen Datenschutzerklärung und ihren Entwicklerbedingungen.
-          Unsere Nutzung der über diese Plattformen erlangten Daten entspricht den jeweiligen
-          Entwicklerrichtlinien und Nutzungsbedingungen.
-        </p>
+          <h3>4.6 Verbundene Veröffentlichungsplattformen</h3>
+          <p>
+            Jede verbundene Plattform (Meta/Facebook/Instagram, LinkedIn, Google/YouTube, TikTok)
+            verarbeitet Daten nach ihrer eigenen Datenschutzerklärung und ihren
+            Entwicklerbedingungen. Unsere Nutzung der über diese Plattformen erlangten Daten
+            entspricht den jeweiligen Entwicklerrichtlinien und Nutzungsbedingungen.
+          </p>
 
-        <h3>4.7 Aufbewahrung, Löschung von Medien und Löschanträge</h3>
-        <p>
-          Kunden- und Kontodaten werden für die Dauer der Vereinbarung gespeichert und innerhalb von
-          30 Tagen nach Trennung des Kontos oder Beendigung gelöscht, sofern keine gesetzliche
-          Aufbewahrungspflicht besteht.
-        </p>
-        <p>
-          Medien, die ein Maklerbüro hochlädt oder erzeugen lässt, bleiben gespeichert, bis das
-          Maklerbüro sie löscht oder sein Konto gelöscht wird.{' '}
-          <strong>Eine automatische Löschung von Mediendateien findet derzeit nicht statt.</strong>{' '}
-          Das Löschen unserer Kopie entfernt nichts, was bereits auf einer Drittplattform
-          veröffentlicht wurde; dort gilt die Aufbewahrung der jeweiligen Plattform.
-        </p>
-        <p>
-          Sind Sie Kauf-, Verkaufs- oder Mietinteressent und hält ein Maklerbüro Ihre Daten in
-          Immvela, ist dieses Maklerbüro Ihr Verantwortlicher und die richtige erste Anlaufstelle
-          für einen Löschantrag. Leitet ein Maklerbüro einen solchen Antrag an uns weiter, löschen
-          wir die Datensätze dieser Person plattformweit, einschließlich abgeleiteter Datensätze,
-          aus Dokumenten ausgelesener Werte, erzeugter Dokumente und gespeicherter Dateien. Wir
-          führen dies innerhalb von 30 Tagen manuell durch; einen automatisierten Löschvorgang gibt
-          es in der Anwendung derzeit nicht. Wir können festhalten, dass ein Geschäftsvorfall
-          stattgefunden hat, sofern dieser die Person nicht mehr identifiziert und eine gesetzliche
-          Aufbewahrungspflicht besteht. Maklerbüros können jederzeit die Löschung oder Trennung
-          verlangen, indem sie sich an{' '}
-          <a href="mailto:office@sns-austria.com">office@sns-austria.com</a> wenden. Eine
-          Schritt-für-Schritt-Anleitung zur Löschung der über eine verbundene
-          Veröffentlichungsplattform erhaltenen Daten finden Sie unter{' '}
-          <a
-            href="https://www.immvela.com/legal/data-deletion"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            immvela.com/legal/data-deletion
-          </a>
-          .
-        </p>
+          <h3>4.7 Aufbewahrung, Löschung von Medien und Löschanträge</h3>
+          <p>
+            Kunden- und Kontodaten werden für die Dauer der Vereinbarung gespeichert und innerhalb
+            von 30 Tagen nach Trennung des Kontos oder Beendigung gelöscht, sofern keine gesetzliche
+            Aufbewahrungspflicht besteht.
+          </p>
+          <p>
+            Medien, die ein Maklerbüro hochlädt oder erzeugen lässt, bleiben gespeichert, bis das
+            Maklerbüro sie löscht oder sein Konto gelöscht wird.{' '}
+            <strong>
+              Eine automatische Löschung von Mediendateien findet derzeit nicht statt.
+            </strong>{' '}
+            Das Löschen unserer Kopie entfernt nichts, was bereits auf einer Drittplattform
+            veröffentlicht wurde; dort gilt die Aufbewahrung der jeweiligen Plattform.
+          </p>
+          <p>
+            Sind Sie Kauf-, Verkaufs- oder Mietinteressent und hält ein Maklerbüro Ihre Daten in
+            Immvela, ist dieses Maklerbüro Ihr Verantwortlicher und die richtige erste Anlaufstelle
+            für einen Löschantrag. Leitet ein Maklerbüro einen solchen Antrag an uns weiter, löschen
+            wir die Datensätze dieser Person plattformweit, einschließlich abgeleiteter Datensätze,
+            aus Dokumenten ausgelesener Werte, erzeugter Dokumente und gespeicherter Dateien. Wir
+            führen dies innerhalb von 30 Tagen manuell durch; einen automatisierten Löschvorgang
+            gibt es in der Anwendung derzeit nicht. Wir können festhalten, dass ein Geschäftsvorfall
+            stattgefunden hat, sofern dieser die Person nicht mehr identifiziert und eine
+            gesetzliche Aufbewahrungspflicht besteht. Maklerbüros können jederzeit die Löschung oder
+            Trennung verlangen, indem sie sich an{' '}
+            <a href="mailto:office@sns-austria.com">office@sns-austria.com</a> wenden. Eine
+            Schritt-für-Schritt-Anleitung zur Löschung der über eine verbundene
+            Veröffentlichungsplattform erhaltenen Daten finden Sie unter{' '}
+            <a
+              href="https://www.immvela.com/legal/data-deletion"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              immvela.com/legal/data-deletion
+            </a>
+            .
+          </p>
 
-        <h3>4.8 Datensicherheit</h3>
-        <p>
-          Wir treffen geeignete technische und organisatorische Maßnahmen, um die Vertraulichkeit
-          und Integrität der in Immvela verarbeiteten Daten zu schützen. Diese gelten gleichermaßen
-          für alle Daten, die wir von verbundenen Veröffentlichungsplattformen, einschließlich
-          Google und YouTube, erhalten.
-        </p>
-        <ul>
-          <li>
-            <strong>Übertragung.</strong> Der gesamte Datenverkehr zwischen dem Browser des Nutzers
-            und Immvela sowie zwischen Immvela und den APIs der Plattformen erfolgt ausschließlich
-            verschlüsselt über TLS (HTTPS).
-          </li>
-          <li>
-            <strong>Zugangstoken der verbundenen Konten.</strong> Zugangs- und Refresh-Token
-            verbundener Konten, einschließlich der von Google und YouTube ausgestellten, sind die
-            sicherheitskritischsten Daten, die wir speichern. Sie werden vor dem Speichern mit
-            AES-256-GCM verschlüsselt. Der Schlüssel liegt ausschließlich in der Laufzeitumgebung
-            und niemals in der Datenbank; ein Datenbankauszug allein genügt daher nicht, um Zugriff
-            auf ein verbundenes Konto zu erlangen. Fehlt der Schlüssel, verweigert das System im
-            Produktivbetrieb die Speicherung der Token, statt sie im Klartext abzulegen.
-          </li>
-          <li>
-            <strong>Speicherung.</strong> Datenbank und Dateispeicher werden von Supabase in der
-            Europäischen Union (eu-central-1, Frankfurt, Deutschland) betrieben und dort
-            verschlüsselt gespeichert.
-          </li>
-          <li>
-            <strong>Trennung der Mandanten.</strong> Jeder Datensatz ist genau einer Organisation
-            zugeordnet, und die Anwendung prüft diese Trennung bei jedem Zugriff. Läuft eine Anfrage
-            unter der eigenen Anmeldung des Nutzers, setzt die Datenbank sie zusätzlich auf
-            Zeilenebene durch (Row-Level-Security). Hintergrundaufgaben und serverseitige Vorgänge,
-            die ein Plattform-Token speichern, nutzen erweiterte Datenbankrechte; dort ist die
-            Prüfung der Anwendung die Grenze, ebenso wie bei Dateien im Medienspeicher.
-          </li>
-          <li>
-            <strong>Mediendateien.</strong> Fotos und Videos liegen in nicht öffentlichem Speicher
-            und sind ausschließlich über kurzzeitig gültige, signierte Links erreichbar; keine
-            dieser Dateien ist öffentlich adressierbar.
-          </li>
-          <li>
-            <strong>Weitergabe.</strong> Wir verkaufen keine Daten und nutzen sie nicht für Werbung.
-            Eine Weitergabe erfolgt ausschließlich an die in Abschnitt 4.5 genannten
-            Unterauftragsverarbeiter und an die verbundenen Veröffentlichungsplattformen (Abschnitt
-            4.6). Von Google und YouTube erhaltene Daten werden nicht an unseren KI-Dienstleister
-            übermittelt und nicht zum Training von KI-Modellen verwendet.
-          </li>
-        </ul>
-        <p>
-          Die Nutzung der von Google-APIs erhaltenen Daten durch Immvela sowie deren Weitergabe an
-          andere Apps entsprechen der{' '}
-          <a
-            href="https://developers.google.com/terms/api-services-user-data-policy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Google API Services User Data Policy
-          </a>{' '}
-          einschließlich der Limited-Use-Anforderungen.
-        </p>
+          <h3>4.8 Datensicherheit</h3>
+          <p>
+            Wir treffen geeignete technische und organisatorische Maßnahmen, um die Vertraulichkeit
+            und Integrität der in Immvela verarbeiteten Daten zu schützen. Diese gelten
+            gleichermaßen für alle Daten, die wir von verbundenen Veröffentlichungsplattformen,
+            einschließlich Google und YouTube, erhalten.
+          </p>
+          <ul>
+            <li>
+              <strong>Übertragung.</strong> Der gesamte Datenverkehr zwischen dem Browser des
+              Nutzers und Immvela sowie zwischen Immvela und den APIs der Plattformen erfolgt
+              ausschließlich verschlüsselt über TLS (HTTPS).
+            </li>
+            <li>
+              <strong>Zugangstoken der verbundenen Konten.</strong> Zugangs- und Refresh-Token
+              verbundener Konten, einschließlich der von Google und YouTube ausgestellten, sind die
+              sicherheitskritischsten Daten, die wir speichern. Sie werden vor dem Speichern mit
+              AES-256-GCM verschlüsselt. Der Schlüssel liegt ausschließlich in der Laufzeitumgebung
+              und niemals in der Datenbank; ein Datenbankauszug allein genügt daher nicht, um
+              Zugriff auf ein verbundenes Konto zu erlangen. Fehlt der Schlüssel, verweigert das
+              System im Produktivbetrieb die Speicherung der Token, statt sie im Klartext abzulegen.
+            </li>
+            <li>
+              <strong>Speicherung.</strong> Datenbank und Dateispeicher werden von Supabase in der
+              Europäischen Union (eu-central-1, Frankfurt, Deutschland) betrieben und dort
+              verschlüsselt gespeichert.
+            </li>
+            <li>
+              <strong>Trennung der Mandanten.</strong> Jeder Datensatz ist genau einer Organisation
+              zugeordnet, und die Anwendung prüft diese Trennung bei jedem Zugriff. Läuft eine
+              Anfrage unter der eigenen Anmeldung des Nutzers, setzt die Datenbank sie zusätzlich
+              auf Zeilenebene durch (Row-Level-Security). Hintergrundaufgaben und serverseitige
+              Vorgänge, die ein Plattform-Token speichern, nutzen erweiterte Datenbankrechte; dort
+              ist die Prüfung der Anwendung die Grenze, ebenso wie bei Dateien im Medienspeicher.
+            </li>
+            <li>
+              <strong>Mediendateien.</strong> Fotos und Videos liegen in nicht öffentlichem Speicher
+              und sind ausschließlich über kurzzeitig gültige, signierte Links erreichbar; keine
+              dieser Dateien ist öffentlich adressierbar.
+            </li>
+            <li>
+              <strong>Weitergabe.</strong> Wir verkaufen keine Daten und nutzen sie nicht für
+              Werbung. Eine Weitergabe erfolgt ausschließlich an die in Abschnitt 4.5 genannten
+              Unterauftragsverarbeiter und an die verbundenen Veröffentlichungsplattformen
+              (Abschnitt 4.6). Von Google und YouTube erhaltene Daten werden nicht an unseren
+              KI-Dienstleister übermittelt und nicht zum Training von KI-Modellen verwendet.
+            </li>
+          </ul>
+          <p>
+            Die Nutzung der von Google-APIs erhaltenen Daten durch Immvela sowie deren Weitergabe an
+            andere Apps entsprechen der{' '}
+            <a
+              href="https://developers.google.com/terms/api-services-user-data-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google API Services User Data Policy
+            </a>{' '}
+            einschließlich der Limited-Use-Anforderungen.
+          </p>
 
-        <h3>4.9 Nutzung der YouTube API Services</h3>
-        <p>
-          Für die Veröffentlichung auf YouTube nutzt Immvela die{' '}
-          <strong>YouTube API Services</strong>. Mit der Nutzung dieser Funktionen erklären Sie sich
-          damit einverstanden, an die{' '}
-          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
-            YouTube Terms of Service
-          </a>{' '}
-          gebunden zu sein. Ergänzend gilt die{' '}
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-            Google-Datenschutzerklärung
-          </a>
-          .
-        </p>
-        <p>
-          <strong>Die angeforderten Berechtigungen.</strong> Beim Verbinden eines YouTube-Kontos
-          fordern wir bei Google genau zwei Berechtigungen an, also nicht mehr, als die Funktionen
-          benötigen:
-        </p>
-        <ul>
-          <li>
-            <strong>youtube.upload</strong>, um in Immvela ausgewählte Videos auf Ihren Kanal
-            hochzuladen;
-          </li>
-          <li>
-            <strong>youtube.readonly</strong>, um Name und Kennung Ihres Kanals anzuzeigen und die
-            Gesamtzahlen der Aufrufe, Likes und Kommentare zu den über Immvela veröffentlichten
-            Videos abzurufen.
-          </li>
-        </ul>
-        <p>
-          <strong>Welche YouTube-Daten wir speichern.</strong> Zugangs- und Refresh-Token
-          (verschlüsselt), Kennung und Name Ihres Kanals, die Kennungen der über Immvela
-          veröffentlichten Videos, die genannten Gesamtzahlen samt Abrufzeitpunkt sowie den
-          Ablaufzeitpunkt des Tokens und die Liste der erteilten Berechtigungen. Nichts darüber
-          hinaus: keine Kommentartexte, keine Namen von Kommentierenden, keine Auswertungen nach
-          Zielgruppenmerkmalen, kein Wiedergabeverlauf, keine Abonnentenlisten.
-        </p>
-        <p>
-          <strong>Wer diese Daten verarbeitet.</strong> YouTube-Daten werden in unserem Auftrag von
-          den in Abschnitt 4.5 genannten Unterauftragsverarbeitern verarbeitet und darüber hinaus an
-          niemanden weitergegeben.
-        </p>
-        <p>
-          <strong>Was wir damit nie tun.</strong> YouTube-Daten werden nicht für Werbung verwendet,
-          nicht verkauft oder an Dritte weitergegeben, nicht an unseren KI-Dienstleister übermittelt
-          und nicht zum Training von KI-Modellen verwendet.
-        </p>
-        <p>
-          <strong>Zugriff widerrufen.</strong> Sie können den Zugriff von Immvela auf Ihr
-          Google-Konto jederzeit und unabhängig von Immvela über die{' '}
-          <a
-            href="https://security.google.com/settings/security/permissions"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Google-Sicherheitseinstellungen
-          </a>{' '}
-          entziehen. Zusätzlich löscht das Trennen eines verbundenen Kontos in Immvela die dort
-          gespeicherten Token.
-        </p>
+          <h3>4.9 Nutzung der YouTube API Services</h3>
+          <p>
+            Für die Veröffentlichung auf YouTube nutzt Immvela die{' '}
+            <strong>YouTube API Services</strong>. Mit der Nutzung dieser Funktionen erklären Sie
+            sich damit einverstanden, an die{' '}
+            <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+              YouTube Terms of Service
+            </a>{' '}
+            gebunden zu sein. Ergänzend gilt die{' '}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+              Google-Datenschutzerklärung
+            </a>
+            .
+          </p>
+          <p>
+            <strong>Die angeforderten Berechtigungen.</strong> Beim Verbinden eines YouTube-Kontos
+            fordern wir bei Google genau zwei Berechtigungen an, also nicht mehr, als die Funktionen
+            benötigen:
+          </p>
+          <ul>
+            <li>
+              <strong>youtube.upload</strong>, um in Immvela ausgewählte Videos auf Ihren Kanal
+              hochzuladen;
+            </li>
+            <li>
+              <strong>youtube.readonly</strong>, um Name und Kennung Ihres Kanals anzuzeigen und die
+              Gesamtzahlen der Aufrufe, Likes und Kommentare zu den über Immvela veröffentlichten
+              Videos abzurufen.
+            </li>
+          </ul>
+          <p>
+            <strong>Welche YouTube-Daten wir speichern.</strong> Zugangs- und Refresh-Token
+            (verschlüsselt), Kennung und Name Ihres Kanals, die Kennungen der über Immvela
+            veröffentlichten Videos, die genannten Gesamtzahlen samt Abrufzeitpunkt sowie den
+            Ablaufzeitpunkt des Tokens und die Liste der erteilten Berechtigungen. Nichts darüber
+            hinaus: keine Kommentartexte, keine Namen von Kommentierenden, keine Auswertungen nach
+            Zielgruppenmerkmalen, kein Wiedergabeverlauf, keine Abonnentenlisten.
+          </p>
+          <p>
+            <strong>Wer diese Daten verarbeitet.</strong> YouTube-Daten werden in unserem Auftrag
+            von den in Abschnitt 4.5 genannten Unterauftragsverarbeitern verarbeitet und darüber
+            hinaus an niemanden weitergegeben.
+          </p>
+          <p>
+            <strong>Was wir damit nie tun.</strong> YouTube-Daten werden nicht für Werbung
+            verwendet, nicht verkauft oder an Dritte weitergegeben, nicht an unseren
+            KI-Dienstleister übermittelt und nicht zum Training von KI-Modellen verwendet.
+          </p>
+          <p>
+            <strong>Zugriff widerrufen.</strong> Sie können den Zugriff von Immvela auf Ihr
+            Google-Konto jederzeit und unabhängig von Immvela über die{' '}
+            <a
+              href="https://security.google.com/settings/security/permissions"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google-Sicherheitseinstellungen
+            </a>{' '}
+            entziehen. Zusätzlich löscht das Trennen eines verbundenen Kontos in Immvela die dort
+            gespeicherten Token.
+          </p>
 
-        <h2>5. Server-Logfiles</h2>
-        <p>
-          Unser Hosting-Anbieter erhebt und speichert automatisch Informationen in Server-Logfiles,
-          die Ihr Browser an uns übermittelt. Diese können umfassen:
-        </p>
-        <ul>
-          <li>Anonymisierte / gekürzte IP-Adresse</li>
-          <li>Datum und Uhrzeit der Anfrage</li>
-          <li>Browsertyp und -version</li>
-          <li>Betriebssystem</li>
-          <li>Referrer-URL</li>
-        </ul>
-        <p>
-          Diese Daten werden nicht mit anderen Datenquellen zusammengeführt und dienen
-          ausschließlich der Gewährleistung des Betriebs, der Sicherheit und der Fehlerbehebung.
-          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
-        </p>
+          <h2>5. Server-Logfiles</h2>
+          <p>
+            Unser Hosting-Anbieter erhebt und speichert automatisch Informationen in
+            Server-Logfiles, die Ihr Browser an uns übermittelt. Diese können umfassen:
+          </p>
+          <ul>
+            <li>Anonymisierte / gekürzte IP-Adresse</li>
+            <li>Datum und Uhrzeit der Anfrage</li>
+            <li>Browsertyp und -version</li>
+            <li>Betriebssystem</li>
+            <li>Referrer-URL</li>
+          </ul>
+          <p>
+            Diese Daten werden nicht mit anderen Datenquellen zusammengeführt und dienen
+            ausschließlich der Gewährleistung des Betriebs, der Sicherheit und der Fehlerbehebung.
+            Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+          </p>
 
-        <h2>6. Analyse</h2>
-        <p>
-          Wir verwenden <strong>Vercel Analytics</strong>, einen datenschutzfreundlichen,
-          cookielosen Analysedienst von Vercel Inc. Er misst aggregierte, anonyme
-          Nutzungsstatistiken (wie Seitenaufrufe) ohne Cookies und ohne einzelne Besucher zu
-          verfolgen oder zu identifizieren. Es werden keine seitenübergreifenden Profile erstellt.
-          Rechtsgrundlage ist unser berechtigtes Interesse am Verständnis und der Verbesserung der
-          Nutzung unserer Website (Art. 6 Abs. 1 lit. f DSGVO).
-        </p>
+          <h2>6. Analyse</h2>
+          <p>
+            Wir verwenden <strong>Vercel Analytics</strong>, einen datenschutzfreundlichen,
+            cookielosen Analysedienst von Vercel Inc. Er misst aggregierte, anonyme
+            Nutzungsstatistiken (wie Seitenaufrufe) ohne Cookies und ohne einzelne Besucher zu
+            verfolgen oder zu identifizieren. Es werden keine seitenübergreifenden Profile erstellt.
+            Rechtsgrundlage ist unser berechtigtes Interesse am Verständnis und der Verbesserung der
+            Nutzung unserer Website (Art. 6 Abs. 1 lit. f DSGVO).
+          </p>
 
-        <h2>7. Cookies</h2>
-        <p>
-          Diese Website setzt keine Tracking- oder Werbe-Cookies. Es wird nur die technisch
-          notwendige Speicherung verwendet, die zur Darstellung der Seite erforderlich ist. Da wir
-          keine nicht-essenziellen Cookies verwenden, ist kein Cookie-Consent-Banner erforderlich.
-        </p>
+          <h2>7. Cookies</h2>
+          <p>
+            Diese Website setzt keine Tracking- oder Werbe-Cookies. Es wird nur die technisch
+            notwendige Speicherung verwendet, die zur Darstellung der Seite erforderlich ist. Da wir
+            keine nicht-essenziellen Cookies verwenden, ist kein Cookie-Consent-Banner erforderlich.
+          </p>
 
-        <h2>8. Kontakt (E-Mail & Kontaktformular)</h2>
-        <p>
-          Wenn Sie uns per E-Mail kontaktieren, werden die von Ihnen angegebenen Daten (Ihre
-          E-Mail-Adresse und der Inhalt Ihrer Nachricht) ausschließlich zur Bearbeitung Ihrer
-          Anfrage verarbeitet.
-        </p>
-        <p>
-          Unsere Website bietet außerdem ein Kontaktformular. Wenn Sie es absenden, verarbeiten wir
-          die von Ihnen eingegebenen Angaben, nämlich Ihren Namen, Ihre E-Mail-Adresse, optional
-          Ihre Telefonnummer, die von Ihnen gewählte Art der Leistung und Ihre Nachricht, um Ihre
-          Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Maßnahmen vor
-          Vertragsabschluss) oder Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an der
-          Beantwortung von Anfragen).
-        </p>
-        <p>
-          Kontaktformular-Übermittlungen werden in unserem Auftrag von <strong>EmailJS</strong> (
-          <a href="https://www.emailjs.com" target="_blank" rel="noopener noreferrer">
-            emailjs.com
-          </a>
-          ) als Auftragsverarbeiter an unser Postfach zugestellt. Soweit damit eine
-          Datenübermittlung außerhalb der EU/des EWR verbunden ist, wird sie durch geeignete
-          Maßnahmen wie die EU-Standardvertragsklauseln abgesichert.
-        </p>
-        <p>
-          Diese Daten werden gelöscht, sobald sie nicht mehr benötigt werden und keine gesetzlichen
-          Aufbewahrungspflichten der Löschung entgegenstehen.
-        </p>
+          <h2>8. Kontakt (E-Mail, Kontaktformular und Terminbuchung)</h2>
+          <p>
+            Wenn Sie uns per E-Mail kontaktieren, werden die von Ihnen angegebenen Daten (Ihre
+            E-Mail-Adresse und der Inhalt Ihrer Nachricht) ausschließlich zur Bearbeitung Ihrer
+            Anfrage verarbeitet.
+          </p>
+          <p>
+            Unsere Website bietet außerdem ein Kontaktformular. Wenn Sie es absenden, verarbeiten
+            wir die von Ihnen eingegebenen Angaben, nämlich Ihren Namen, Ihre E-Mail-Adresse,
+            optional Ihren Firmennamen, das von Ihnen gewählte Thema und Ihre Nachricht, um Ihre
+            Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Maßnahmen vor
+            Vertragsabschluss) oder Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an der
+            Beantwortung von Anfragen).
+          </p>
+          <p>
+            Kontaktformular-Übermittlungen werden in unserem Auftrag von <strong>EmailJS</strong> (
+            <a href="https://www.emailjs.com" target="_blank" rel="noopener noreferrer">
+              emailjs.com
+            </a>
+            ) als Auftragsverarbeiter an unser Postfach zugestellt. Soweit damit eine
+            Datenübermittlung außerhalb der EU/des EWR verbunden ist, wird sie durch geeignete
+            Maßnahmen wie die EU-Standardvertragsklauseln abgesichert.
+          </p>
+          <p>
+            Diese Daten werden gelöscht, sobald sie nicht mehr benötigt werden und keine
+            gesetzlichen Aufbewahrungspflichten der Löschung entgegenstehen.
+          </p>
 
-        <h2>9. Speicherdauer</h2>
-        <p>
-          Wir speichern personenbezogene Daten nur so lange, wie es für die oben genannten Zwecke
-          erforderlich ist oder gesetzliche Aufbewahrungsfristen (z. B. nach Steuer- und
-          Handelsrecht) es verlangen. Danach werden die Daten gelöscht.
-        </p>
+          <h3>Buchung eines Beratungsgesprächs</h3>
+          <p>
+            Auf unserer Website können Sie ein kostenloses, 30-minütiges Beratungsgespräch buchen.
+            Bei der Buchung verarbeiten wir den gewählten Termin, Ihren Namen, Ihre E-Mail-Adresse
+            und, sofern Sie diese angeben, Ihr Unternehmen und Ihr Gesprächsthema, um das Gespräch
+            zu vereinbaren und durchzuführen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO
+            (Maßnahmen vor Vertragsabschluss, die auf Ihre Anfrage erfolgen) oder Art. 6 Abs. 1 lit.
+            f DSGVO (unser berechtigtes Interesse an der Vereinbarung der von Ihnen gewünschten
+            Termine).
+          </p>
+          <p>
+            Die Buchung wird als Termin mit einem Google-Meet-Link in unserem Kalender angelegt, und
+            die Einladung wird an Ihre E-Mail-Adresse gesendet. Kalender und Videobesprechungen
+            stellt <strong>Google</strong> (Google Kalender und Google Meet, Teil von Google
+            Workspace) als unser Auftragsverarbeiter bereit. Um freie Zeiten anzuzeigen, liest die
+            Website nur aus, ob unsere Kalender belegt sind, nicht deren Inhalt. Soweit damit eine
+            Datenübermittlung außerhalb der EU/des EWR verbunden ist, wird sie durch geeignete
+            Maßnahmen wie die EU-Standardvertragsklauseln abgesichert. Zum Schutz des
+            Buchungsformulars vor Missbrauch wird Ihre IP-Adresse kurzzeitig im Arbeitsspeicher des
+            Servers gehalten, um wiederholte Buchungen zu begrenzen; sie wird nicht gespeichert.
+          </p>
+          <p>
+            Der Kalendereintrag wird so lange aufbewahrt, wie er zur Vereinbarung und Durchführung
+            des Gesprächs benötigt wird, und gelöscht, sobald er nicht mehr erforderlich ist und
+            keine gesetzlichen Aufbewahrungspflichten der Löschung entgegenstehen. Um eine Buchung
+            zu stornieren oder Ihre Daten löschen zu lassen, schreiben Sie uns an{' '}
+            <a href="mailto:office@sns-austria.com">office@sns-austria.com</a>.
+          </p>
 
-        <h2>10. Ihre Rechte</h2>
-        <p>Nach der DSGVO haben Sie das Recht auf:</p>
-        <ul>
-          <li>Auskunft über Ihre personenbezogenen Daten (Art. 15)</li>
-          <li>Berichtigung unrichtiger Daten (Art. 16)</li>
-          <li>Löschung (Art. 17)</li>
-          <li>Einschränkung der Verarbeitung (Art. 18)</li>
-          <li>Datenübertragbarkeit (Art. 20)</li>
-          <li>
-            Widerspruch gegen die Verarbeitung auf Grundlage berechtigter Interessen (Art. 21)
-          </li>
-        </ul>
-        <p>
-          Zur Ausübung dieser Rechte kontaktieren Sie uns unter{' '}
-          <a href="mailto:office@sns-austria.com">office@sns-austria.com</a>.
-        </p>
+          <h2>9. Speicherdauer</h2>
+          <p>
+            Wir speichern personenbezogene Daten nur so lange, wie es für die oben genannten Zwecke
+            erforderlich ist oder gesetzliche Aufbewahrungsfristen (z. B. nach Steuer- und
+            Handelsrecht) es verlangen. Danach werden die Daten gelöscht.
+          </p>
 
-        <h2>11. Beschwerderecht</h2>
-        <p>
-          Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren. In Österreich ist dies
-          die Datenschutzbehörde, Barichgasse 40–42, 1030 Wien,{' '}
-          <a href="https://www.dsb.gv.at" target="_blank" rel="noopener noreferrer">
-            dsb.gv.at
-          </a>
-          .
-        </p>
+          <h2>10. Ihre Rechte</h2>
+          <p>Nach der DSGVO haben Sie das Recht auf:</p>
+          <ul>
+            <li>Auskunft über Ihre personenbezogenen Daten (Art. 15)</li>
+            <li>Berichtigung unrichtiger Daten (Art. 16)</li>
+            <li>Löschung (Art. 17)</li>
+            <li>Einschränkung der Verarbeitung (Art. 18)</li>
+            <li>Datenübertragbarkeit (Art. 20)</li>
+            <li>
+              Widerspruch gegen die Verarbeitung auf Grundlage berechtigter Interessen (Art. 21)
+            </li>
+          </ul>
+          <p>
+            Zur Ausübung dieser Rechte kontaktieren Sie uns unter{' '}
+            <a href="mailto:office@sns-austria.com">office@sns-austria.com</a>.
+          </p>
 
-        <h2>12. Änderungen dieser Erklärung</h2>
-        <p>
-          Wir können diese Datenschutzerklärung aktualisieren, um Änderungen unserer Praktiken
-          abzubilden oder aus rechtlichen Gründen. Die jeweils aktuelle Fassung ist stets auf dieser
-          Seite verfügbar.
-        </p>
-      </div>
-    </article>
+          <h2>11. Beschwerderecht</h2>
+          <p>
+            Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren. In Österreich ist
+            dies die Datenschutzbehörde, Barichgasse 40–42, 1030 Wien,{' '}
+            <a href="https://www.dsb.gv.at" target="_blank" rel="noopener noreferrer">
+              dsb.gv.at
+            </a>
+            .
+          </p>
+
+          <h2>12. Änderungen dieser Erklärung</h2>
+          <p>
+            Wir können diese Datenschutzerklärung aktualisieren, um Änderungen unserer Praktiken
+            abzubilden oder aus rechtlichen Gründen. Die jeweils aktuelle Fassung ist stets auf
+            dieser Seite verfügbar.
+          </p>
+        </div>
+      </article>
+    </LegalShell>
   )
 }

@@ -1,0 +1,48 @@
+/* /products (components/silver/home/Products.tsx). Builds on .pano from silver.css. */
+
+/* the triptych: side panels turn toward the middle; the one under the pointer turns flat */
+.sv .prod-pano{margin-top:clamp(40px,6vh,64px)}
+.sv .prod-pano a{aspect-ratio:4/5;padding:24px}
+.sv .prod-pano a:hover,.sv .prod-pano a:focus-visible{transform:none;box-shadow:0 60px 120px -50px var(--shadow);outline:none}
+.sv .prod-pano a:focus-visible{box-shadow:0 0 0 3px var(--plain),0 0 0 5px var(--tx)}
+.sv .prod-pano .vid{opacity:.92}
+.sv .pn-name{display:block;font-size:clamp(22px,2vw,28px);font-weight:600;letter-spacing:-0.03em}
+.sv .pn-line{font-size:14.5px;line-height:1.4;opacity:.78}
+
+/* QFUtool has no film: its mark, the thermostat dial, revs in QFUtool's own steel blue (DialMark.tsx) */
+.sv .qpanel,.sv .chap-frame.qframe{--accent:#E65D3F;color:#F3F6F8;background:radial-gradient(70% 60% at 75% 15%,#5F8599 0%,transparent 60%),linear-gradient(165deg,#3C6378,#203845 75%)}
+.sv .qscene{position:absolute!important;inset:0;z-index:0!important;display:grid;place-items:center;padding-bottom:70px}
+.sv .chap-frame.qframe{display:grid;place-items:center}
+
+/* one chapter per product */
+.sv .chap-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.sv .chap-name{font-size:clamp(52px,6.4vw,104px);line-height:.92;letter-spacing:-0.055em}
+.sv .chap-for{margin:0;font-size:clamp(18px,1.6vw,22px);line-height:1.35;color:var(--mut);max-width:20em;letter-spacing:-0.01em}
+.sv .chap-body{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(32px,5vw,80px);align-items:center;padding-top:clamp(36px,5vh,56px)}
+.sv .chap.flip .chap-media{order:-1}
+.sv .chap-how{font-size:15px;font-weight:600;letter-spacing:0;color:var(--tx)}
+.sv .chap-steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.sv .chap-steps li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.sv .chap-steps li>span{font:500 13px var(--font-geist-mono),ui-monospace,monospace;color:var(--acc);padding-top:3px}
+.sv .chap-steps strong{display:block;font-size:17px;font-weight:600;letter-spacing:-0.015em}
+.sv .chap-steps p{margin:4px 0 0;font-size:15.5px;line-height:1.55}
+.sv .chap-frame{position:relative;aspect-ratio:5/4;border-radius:28px;overflow:hidden;background:var(--media);box-shadow:0 0 0 1px var(--line),0 60px 100px -70px var(--shadow)}
+.sv .chap-frame>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sv .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:clamp(36px,5vh,56px) 0 0}
+.sv .facts>div{padding:4px clamp(14px,2vw,28px) 0;border-left:1px solid var(--line)}
+.sv .facts>div:first-child{border-left:0;padding-left:0}
+.sv .facts dt{font-size:13.5px;color:var(--mut)}
+.sv .facts dd{margin:6px 0 0;font-size:16.5px;font-weight:500;line-height:1.4;letter-spacing:-0.01em}
+
+@media (max-width:900px){
+  .sv .prod-pano a{aspect-ratio:4/3}
+  .sv .qscene{padding-bottom:90px}
+  .sv .chap-body{grid-template-columns:1fr}
+  .sv .chap.flip .chap-media{order:0}
+  .sv .facts{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}
+  .sv .facts>div:nth-child(odd){border-left:0;padding-left:0}
+}
+@media (max-width:480px){
+  .sv .facts{grid-template-columns:1fr}
+  .sv .facts>div{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:14px}
+}

@@ -138,14 +138,22 @@ const RETIRED_TO_IMMVELA: Record<string, string> = {
   '/immvela/demo': '/modules',
   '/de/immvela/demo': '/de/modules',
   '/solutions': '/',
-  '/solutions/hvac': '/',
-  '/solutions/hvac/waitlist': '/',
   // The nearest live equivalent of the old inbound-agent demo is the Modules page.
   '/solutions/demo': '/modules',
   '/de/solutions': '/de',
-  '/de/solutions/hvac': '/de',
-  '/de/solutions/hvac/waitlist': '/de',
   '/de/solutions/demo': '/de/modules',
+}
+
+/**
+ * The old HVAC/SHK URLs, as `old SNS path → path on the SNS domain`. The HVAC line is back
+ * (/hvac, lib/hvac.ts), so these no longer go to Immvela: whatever authority and links the old
+ * pages earned now land on the page that replaced them. Permanent, same as the map above.
+ */
+const RETIRED_TO_SNS: Record<string, string> = {
+  '/solutions/hvac': '/hvac',
+  '/solutions/hvac/waitlist': '/hvac/refrigeration-pack-design',
+  '/de/solutions/hvac': '/de/hvac',
+  '/de/solutions/hvac/waitlist': '/de/hvac/refrigeration-pack-design',
 }
 
 export function middleware(req: NextRequest) {
@@ -155,6 +163,14 @@ export function middleware(req: NextRequest) {
   // Ahead of the host branches: these routes no longer exist on any host, so
   // they'd 404 everywhere — including on localhost and preview deployments,
   // where the rest of this file deliberately stays out of the way.
+  const toSns = RETIRED_TO_SNS[pathname]
+  if (toSns) {
+    // Relative to the request on localhost and previews; the canonical domain everywhere else.
+    const url = req.nextUrl.clone()
+    url.pathname = toSns
+    return NextResponse.redirect(SNS_HOSTS.has(host) || IMMVELA_HOSTS.has(host) ? `${SITE_URL}${toSns}` : url, 301)
+  }
+
   const retired = RETIRED_TO_IMMVELA[pathname]
   if (retired) {
     return NextResponse.redirect(`${IMMVELA_URL}${retired === '/' ? '' : retired}`, 301)

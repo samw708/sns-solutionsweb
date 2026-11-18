@@ -1,3 +1,5 @@
+import type { Locale } from '@/i18n/config'
+import { BLOG_DE } from '@/lib/blog-de'
 import { IMMVELA_URL } from '@/lib/site'
 
 /**
@@ -12,7 +14,9 @@ import { IMMVELA_URL } from '@/lib/site'
  * would mean either stubbing out a German half nobody asked for, or padding
  * the Dictionary type with an optional section every other page has to ignore.
  *
- * English only, deliberately: see app/(en)/blog/page.tsx.
+ * German versions live in lib/blog-de.ts, keyed by slug: same slug, date, product and related posts, so /blog/<slug>
+ * and /de/blog/<slug> are one article in two languages. Use the locale-aware helpers below (getPost, sortedPosts,
+ * getRelatedPosts with a locale) rather than BLOG_POSTS directly when rendering.
  */
 
 export type BlogAccent = 'indigo' | 'blue' | 'cyan' | 'violet'
@@ -569,15 +573,23 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ]
 
-export function getPost(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((p) => p.slug === slug)
+/** A post in the given language: the English original with its German text laid over it (lib/blog-de.ts). */
+export function localize(post: BlogPost, locale: Locale = 'en'): BlogPost {
+  if (locale === 'en') return post
+  const t = BLOG_DE[post.slug]
+  return t ? { ...post, ...t } : post
 }
 
-export function getRelatedPosts(post: BlogPost): BlogPost[] {
-  return post.related.map((slug) => getPost(slug)).filter((p): p is BlogPost => Boolean(p))
+export function getPost(slug: string, locale: Locale = 'en'): BlogPost | undefined {
+  const post = BLOG_POSTS.find((p) => p.slug === slug)
+  return post && localize(post, locale)
+}
+
+export function getRelatedPosts(post: BlogPost, locale: Locale = 'en'): BlogPost[] {
+  return post.related.map((slug) => getPost(slug, locale)).filter((p): p is BlogPost => Boolean(p))
 }
 
 /** Newest first — same order the index and /llms-full.txt render in. */
-export function sortedPosts(): BlogPost[] {
-  return [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1))
+export function sortedPosts(locale: Locale = 'en'): BlogPost[] {
+  return [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1)).map((p) => localize(p, locale))
 }

@@ -83,7 +83,7 @@ export const en = {
   productsPage: {
     title: 'Our products',
     description:
-      'Immvela, the personal real estate AI assistant, and QFUtool, automated quote follow-up. Two products by SNS Solutions in Vienna.',
+      'Pack CAD for refrigeration pack manufacturers, Immvela, the personal real estate AI assistant, and QFUtool, automated quote follow-up. Three products built in-house by SNS Solutions in Vienna.',
     heading: 'Our products',
     line: 'Two tools, each built for one job.',
     immvelaTagline: 'Your personal real estate AI assistant.',
@@ -166,7 +166,7 @@ export const en = {
       heading: 'Book a free online meeting.',
       sub: 'Thirty minutes, online, no cost and no obligation. Tell us how your team works today and we’ll tell you where AI and better systems would genuinely pay off, and where they wouldn’t.',
       points: [
-        '30 minutes online, on Google Meet, Teams or Zoom',
+        '30 minutes online, on Google Meet',
         'A concrete recommendation you can act on, in plain language',
         'No obligation to build anything with us',
       ],
@@ -235,6 +235,17 @@ export const en = {
     eyebrow: 'The team',
     heading: 'The people behind SNS.',
     intro: 'Three founders, one standard: if it’s complicated to use, it’s not finished.',
+    // The facts panel and the closing ask under the founders.
+    facts: [
+      { k: 'Based in', v: 'Vienna, Austria' },
+      { k: 'Founded', v: '2026' },
+      { k: 'We work in', v: 'English and German' },
+      { k: 'We build', v: 'Immvela, QFUtool and software for HVAC manufacturers' },
+    ],
+    ctaHeading: 'Talk to the people who build it.',
+    ctaEm: 'who build it.',
+    ctaSub: 'We read every message and reply ourselves.',
+    cta: 'Get in touch',
     // Bios are ordered to match the founders list in components/Founders.tsx
     // (Samuel Winch, Nicholas Pellechi, Samson Belachew).
     bios: [
@@ -260,6 +271,7 @@ export const en = {
     services: [
       'Immvela · Real Estate',
       'QFUtool',
+      'HVAC & Refrigeration',
       'Custom Software',
       'AI & Automation',
       'AI & IT Consulting',

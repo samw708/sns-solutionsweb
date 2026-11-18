@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
-import Nav from '@/components/Nav'
-import Footer from '@/components/Footer'
-import ContactContent from '@/components/ContactContent'
+import Contact from '@/components/silver/pages/Contact'
 import JsonLd from '@/components/JsonLd'
 import { contactGraph } from '@/lib/schema'
 import { snsPage } from '@/lib/share'
@@ -19,13 +17,7 @@ export default function ContactPageDe() {
   return (
     <>
       <JsonLd data={contactGraph('de')} />
-      <Nav locale="de" />
-      <main className="relative px-5 pb-24 pt-32 md:px-10 md:pt-36">
-        <div className="mx-auto w-full max-w-6xl 2xl:max-w-7xl">
-          <ContactContent locale="de" />
-        </div>
-      </main>
-      <Footer showCta={false} locale="de" />
+      <Contact locale="de" />
     </>
   )
 }
