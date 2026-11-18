@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { type Locale, localePath } from '@/i18n/config'
 import { QFUTOOL_URL, href, immvelaHref } from '@/lib/silver/links'
+import IndustriesMenu from './IndustriesMenu'
 import '@/app/silver.css'
 
 /**
@@ -12,8 +13,12 @@ const T = {
   en: {
     main: 'Main',
     menu: 'Menu',
+    industries: {
+      label: 'Industries',
+      hvac: ['HVAC & Refrigeration', 'Pack CAD and software for manufacturers'],
+      realEstate: ['Real estate', 'Immvela, the AI assistant for estate agents'],
+    },
     links: [
-      ['Industries', 'hvac'],
       ['Products', 'products'],
       ['Consulting', 'consulting'],
       ['Insights', 'insights'],
@@ -42,8 +47,12 @@ const T = {
   de: {
     main: 'Hauptmenü',
     menu: 'Menü',
+    industries: {
+      label: 'Branchen',
+      hvac: ['HLK & Kältetechnik', 'Pack CAD und Software für Hersteller'],
+      realEstate: ['Immobilien', 'Immvela, die KI-Assistenz für Makler'],
+    },
     links: [
-      ['Branchen', 'hvac'],
       ['Produkte', 'products'],
       ['Beratung', 'consulting'],
       ['Insights', 'insights'],
@@ -78,6 +87,10 @@ function otherPath(locale: Locale, alt: string) {
 export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
   const t = T[locale]
   const other = otherPath(locale, alt)
+  const ind = [
+    { label: t.industries.hvac[0], line: t.industries.hvac[1], href: href(locale, 'hvac') },
+    { label: t.industries.realEstate[0], line: t.industries.realEstate[1], href: immvelaHref(locale), external: true },
+  ]
   return (
     <div style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--nav)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderBottom: '1px solid var(--line)' }}>
       <nav
@@ -93,7 +106,8 @@ export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
           SNS Solutions
         </Link>
         <span style={{ flexGrow: 1 }} />
-        <span className="navlinks" style={{ display: 'flex', gap: 24 }}>
+        <span className="navlinks" style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+          <IndustriesMenu label={t.industries.label} items={ind} />
           {t.links.map(([label, key]) => (
             <Link key={key} className="navl" href={href(locale, key)}>
               {label}
@@ -112,6 +126,18 @@ export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
             <span />
           </summary>
           <div className="mpanel">
+            <span className="mgroup">{t.industries.label}</span>
+            {ind.map((it) =>
+              it.external ? (
+                <a key={it.label} className="msub" href={it.href} target="_blank" rel="noopener">
+                  {it.label} ↗
+                </a>
+              ) : (
+                <Link key={it.label} className="msub" href={it.href}>
+                  {it.label}
+                </Link>
+              ),
+            )}
             {t.links.map(([label, key]) => (
               <Link key={key} href={href(locale, key)}>
                 {label}

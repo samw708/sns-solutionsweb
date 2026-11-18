@@ -73,7 +73,7 @@ export const de: Dictionary = {
   productsPage: {
     title: 'Unsere Produkte',
     description:
-      'Immvela, der persönliche KI-Assistent für Immobilien, und QFUtool, automatisches Nachfassen von Angeboten. Zwei Produkte von SNS Solutions aus Wien.',
+      'Pack CAD für Hersteller von Kälteverbundanlagen, Immvela, der persönliche KI-Assistent für Immobilien, und QFUtool, automatisches Nachfassen von Angeboten. Drei Produkte, selbst entwickelt von SNS Solutions in Wien.',
     heading: 'Unsere Produkte',
     line: 'Zwei Werkzeuge, jedes für eine Aufgabe.',
     immvelaTagline: 'Ihr persönlicher KI-Assistent für Immobilien.',

@@ -1,38 +1,413 @@
+import Link from 'next/link'
 import type { Locale } from '@/i18n/config'
-import { contactHref, href } from '@/lib/silver/links'
+import { QFUTOOL_URL, contactHref, href, immvelaHref } from '@/lib/silver/links'
 import SilverPage from '../Shell'
-import { Closing } from '../ui'
-import Showcase from './Showcase'
+import Video from '../Video'
+import { Closing, Lights } from '../ui'
+import '@/app/silver-products.css'
 
-/** /products: the three products as the tabbed showcase, then one way to talk to us. No canvas board; built from the
- *  home showcase (gen_silver.showcase) so the nav's Products link has a real page. */
+/**
+ * /products: the three products SNS builds itself, as equals.
+ * Opening: a triptych of the three, which doubles as the index (each panel jumps to its chapter).
+ * Then one chapter per product: who it is for, what it does in three steps (a real sequence), its film, the facts, and
+ * where to go next. Every fact here is already stated elsewhere on the site or on the product's own site; nothing new.
+ */
+
+type Chapter = {
+  id: string
+  name: string
+  dot: string
+  ink: string
+  pill: string
+  for: string
+  statement: string
+  steps: string[][]
+  facts: string[][]
+}
 
 const T = {
   en: {
+    h1: 'Three products, built in-house.',
+    line: 'One for refrigeration pack manufacturers, one for estate agents, one for any team that sends quotes.',
+    index: 'Jump to a product',
+    panels: {
+      pack: 'For refrigeration pack manufacturers',
+      immvela: 'For estate agents',
+      qfu: 'For teams that send quotes',
+    },
+    films: {
+      packLoop: 'A refrigeration pack drawn as a wireframe, filling in as solid metal.',
+      evening: 'From Evening, our film for Immvela: the helix turning in late sun.',
+      pack: 'A CO₂ booster pack rendered from the Pack CAD model, turning slowly.',
+      helix: 'Immvela’s helix in green metal, turning slowly.',
+    },
+    howHeading: 'How it works',
+    example: 'Example',
+    timeline: [
+      ['Mon', 'Quote sent'],
+      ['Wed', 'Follow-up 1'],
+      ['Thu', 'Follow-up 2'],
+      ['Fri', 'Reply. Follow-ups stop.'],
+    ] as [string, string][],
+    pack: {
+      pill: 'Current speciality: CO₂ booster packs',
+      for: 'For refrigeration pack manufacturers.',
+      statement:
+        'Pack CAD takes the selection from your manufacturer’s tool and produces the pack in 3D and 2D, inside your engineering rules. It flags what isn’t possible, and says why.',
+      steps: [
+        ['Upload the printout', 'The PDF your selection software already produces. Pack CAD reads the compressors, refrigerant, temperatures and duties from it.'],
+        ['Your rules applied', 'Headers, valves, vessels and the oil system, chosen and placed from your catalogue and your house rules.'],
+        ['Design and detail', 'The pack in 3D on your frame family, with its 2D drawings and parts list. STEP and DXF for exchanging files.'],
+      ],
+      facts: [
+        ['For', 'Refrigeration pack manufacturers'],
+        ['Built', 'For each manufacturer, on its own rules. It stays yours.'],
+        ['Out', '3D model, 2D drawings, parts list, STEP and DXF'],
+        ['Speciality now', 'CO₂ transcritical booster packs'],
+      ],
+      cta: 'See Pack CAD',
+      past: 'Send us a past job',
+    },
+    immvela: {
+      pill: 'Closed beta',
+      for: 'For estate agents in Austria, Germany and Switzerland.',
+      statement:
+        'Your personal real estate AI assistant. It reads the documents for a property, drafts the listing texts and social posts from the values the agent has confirmed, and asks before anything is published.',
+      steps: [
+        ['The documents go in', 'Immvela reads the documents you have for the property.'],
+        ['Drafts from confirmed values', 'Listing texts and social posts, written from the values you have checked.'],
+        ['You decide', 'Nothing is published until you say so.'],
+      ],
+      facts: [
+        ['For', 'Estate agents in Austria, Germany and Switzerland'],
+        ['Status', 'Closed beta'],
+        ['Language', 'German first, English available'],
+        ['Lives at', 'immvela.com'],
+      ],
+      cta: 'Visit immvela.com ↗',
+    },
+    qfu: {
+      pill: '14 days free',
+      for: 'For sales teams in any industry.',
+      statement:
+        'You sent the quote. Now somebody has to chase it. QFUtool follows up with each customer in your name, during business hours, and hands you the ones who reply.',
+      steps: [
+        ['Upload your quotes', 'The spreadsheet of quotes that went out. There is no CRM to set up.'],
+        ['Follow-ups in your name', 'Sent to each customer during business hours.'],
+        ['Replies come to you', 'The moment a customer replies, the follow-ups stop and the conversation is yours.'],
+      ],
+      facts: [
+        ['For', 'Sales teams in any industry'],
+        ['Price', '14 days free, then from €19 a month'],
+        ['Setup', 'A spreadsheet of your quotes, no CRM'],
+        ['Lives at', 'qfutool.com'],
+      ],
+      cta: 'Visit qfutool.com ↗',
+      sent: 'Sent: Thursday 10:00',
+      step: 'Follow-up 2',
+      hello: 'Hello Mr Huber,',
+      mail: 'just checking in on the €1,250 quote we sent on Monday. Happy to call if anything is unclear.',
+      reply: 'Sounds good. Can we talk on Friday?',
+      stopped: 'Reply received, follow-ups stopped',
+    },
     close: 'Need something none of them does?',
     sub: 'We also build custom software and automation around how your team works. Tell us what takes too long.',
     book: 'Book a free 30-minute call',
-    past: 'Send us a past job (HVAC)',
+    contact: 'Write to us',
   },
   de: {
+    h1: 'Drei Produkte, selbst entwickelt.',
+    line: 'Eines für Hersteller von Kälteverbundanlagen, eines für Immobilienmakler, eines für jedes Team, das Angebote verschickt.',
+    index: 'Zu einem Produkt springen',
+    panels: {
+      pack: 'Für Hersteller von Kälteverbundanlagen',
+      immvela: 'Für Immobilienmakler',
+      qfu: 'Für Teams, die Angebote verschicken',
+    },
+    films: {
+      packLoop: 'Eine Kälteverbundanlage als Drahtmodell, die sich zu massivem Metall füllt.',
+      evening: 'Aus „Evening“, unserem Film für Immvela: die Helix im späten Sonnenlicht.',
+      pack: 'Eine CO₂-Booster-Verbundanlage aus dem Pack-CAD-Modell, langsam drehend.',
+      helix: 'Die Helix von Immvela in grünem Metall, langsam drehend.',
+    },
+    howHeading: 'So funktioniert es',
+    example: 'Beispiel',
+    timeline: [
+      ['Mo', 'Angebot verschickt'],
+      ['Mi', 'Erinnerung 1'],
+      ['Do', 'Erinnerung 2'],
+      ['Fr', 'Antwort. Nachfassen stoppt.'],
+    ] as [string, string][],
+    pack: {
+      pill: 'Aktueller Schwerpunkt: CO₂-Booster-Anlagen',
+      for: 'Für Hersteller von Kälteverbundanlagen.',
+      statement:
+        'Pack CAD nimmt die Auslegung aus dem Tool Ihres Herstellers und erstellt daraus die Anlage in 3D und 2D, innerhalb Ihrer Konstruktionsregeln. Was nicht möglich ist, wird markiert, mit Begründung.',
+      steps: [
+        ['Ausdruck hochladen', 'Das PDF, das Ihre Auslegungssoftware ohnehin erzeugt. Pack CAD liest daraus Verdichter, Kältemittel, Temperaturen und Leistungen.'],
+        ['Ihre Regeln angewendet', 'Sammelrohre, Ventile, Behälter und Ölsystem, gewählt und platziert nach Ihrem Katalog und Ihren Hausregeln.'],
+        ['Konstruieren und detaillieren', 'Die Anlage in 3D auf Ihrer Rahmenfamilie, mit 2D-Zeichnungen und Stückliste. STEP und DXF für den Datenaustausch.'],
+      ],
+      facts: [
+        ['Für', 'Hersteller von Kälteverbundanlagen'],
+        ['Gebaut', 'Für jeden Hersteller, nach seinen Regeln. Es bleibt Ihres.'],
+        ['Ergebnis', '3D-Modell, 2D-Zeichnungen, Stückliste, STEP und DXF'],
+        ['Schwerpunkt', 'Transkritische CO₂-Booster-Anlagen'],
+      ],
+      cta: 'Pack CAD ansehen',
+      past: 'Früheres Projekt schicken',
+    },
+    immvela: {
+      pill: 'Geschlossene Beta',
+      for: 'Für Immobilienmakler in Österreich, Deutschland und der Schweiz.',
+      statement:
+        'Ihre persönliche KI-Assistenz für Immobilien. Sie liest die Unterlagen zu einer Immobilie, entwirft Inseratstexte und Social-Media-Beiträge aus den Werten, die der Makler bestätigt hat, und fragt nach, bevor etwas veröffentlicht wird.',
+      steps: [
+        ['Die Unterlagen hinein', 'Immvela liest die Unterlagen, die Sie zur Immobilie haben.'],
+        ['Entwürfe aus bestätigten Werten', 'Inseratstexte und Beiträge, geschrieben aus den Werten, die Sie geprüft haben.'],
+        ['Sie entscheiden', 'Veröffentlicht wird erst, wenn Sie es freigeben.'],
+      ],
+      facts: [
+        ['Für', 'Makler in Österreich, Deutschland und der Schweiz'],
+        ['Status', 'Geschlossene Beta'],
+        ['Sprache', 'Deutsch zuerst, Englisch verfügbar'],
+        ['Zu finden auf', 'immvela.com'],
+      ],
+      cta: 'immvela.com besuchen ↗',
+    },
+    qfu: {
+      pill: '14 Tage kostenlos',
+      for: 'Für Vertriebsteams jeder Branche.',
+      statement:
+        'Das Angebot ist verschickt. Jetzt muss jemand nachfassen. QFUtool schreibt jedem Kunden in Ihrem Namen, während der Geschäftszeiten, und übergibt Ihnen die, die antworten.',
+      steps: [
+        ['Angebote hochladen', 'Die Tabelle der verschickten Angebote. Kein CRM einzurichten.'],
+        ['Nachfassen in Ihrem Namen', 'An jeden Kunden, während der Geschäftszeiten.'],
+        ['Antworten gehen an Sie', 'Sobald ein Kunde antwortet, stoppt das Nachfassen und das Gespräch gehört Ihnen.'],
+      ],
+      facts: [
+        ['Für', 'Vertriebsteams jeder Branche'],
+        ['Preis', '14 Tage kostenlos, danach ab 19 € im Monat'],
+        ['Einrichtung', 'Eine Tabelle Ihrer Angebote, kein CRM'],
+        ['Zu finden auf', 'qfutool.com'],
+      ],
+      cta: 'qfutool.com besuchen ↗',
+      sent: 'Gesendet: Donnerstag 10:00',
+      step: 'Erinnerung 2',
+      hello: 'Guten Tag Herr Huber,',
+      mail: 'ich wollte kurz wegen des Angebots über 1.250 € von Montag nachfragen. Gerne rufe ich an, falls etwas unklar ist.',
+      reply: 'Klingt gut. Können wir am Freitag sprechen?',
+      stopped: 'Antwort erhalten, Nachfassen gestoppt',
+    },
     close: 'Sie brauchen etwas, das keines davon kann?',
     sub: 'Wir bauen auch individuelle Software und Automatisierung, abgestimmt darauf, wie Ihr Team arbeitet. Sagen Sie uns, was zu lange dauert.',
     book: 'Kostenloses Erstgespräch buchen',
-    past: 'Früheres Projekt schicken (HLK)',
+    contact: 'Schreiben Sie uns',
   },
+}
+
+function ChapterSection({
+  c,
+  how,
+  media,
+  ctas,
+  flip,
+  band,
+}: {
+  c: Chapter
+  how: string
+  media: React.ReactNode
+  ctas: React.ReactNode
+  flip?: boolean
+  band?: boolean
+}) {
+  return (
+    <section id={c.id} className={`chap${flip ? ' flip' : ''}`} style={{ background: band ? 'var(--band)' : 'var(--plain)', '--acc': c.ink, '--dot': c.dot }} aria-labelledby={`${c.id}-h`}>
+      <div className="w" style={{ paddingTop: 'min(13vh,120px)', paddingBottom: 'min(13vh,120px)' }}>
+        <div className="chap-head">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <span className="pill">{c.pill}</span>
+            <h2 id={`${c.id}-h`} className="chap-name">
+              <i aria-hidden="true" />
+              {c.name}
+            </h2>
+          </div>
+          <p className="chap-for">{c.for}</p>
+        </div>
+        <div className="chap-body">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+            <p className="lead" style={{ color: 'var(--tx)' }}>
+              {c.statement}
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <h3 className="chap-how">{how}</h3>
+              <ol className="chap-steps">
+                {c.steps.map(([a, b], i) => (
+                  <li key={a}>
+                    <span aria-hidden="true">{i + 1}</span>
+                    <div>
+                      <strong>{a}</strong>
+                      <p className="mut">{b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>{ctas}</div>
+          </div>
+          <div className="chap-media">{media}</div>
+        </div>
+        <dl className="facts">
+          {c.facts.map(([k, v]) => (
+            <div key={k}>
+              <dt>{k}</dt>
+              <dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )
 }
 
 export default function Products({ locale }: { locale: Locale }) {
   const t = T[locale]
+  const pack: Chapter = { id: 'pack-cad', name: 'Pack CAD', dot: '#121619', ink: '#121619', ...t.pack }
+  const immvela: Chapter = { id: 'immvela', name: 'Immvela', dot: '#2FA67A', ink: '#1F7A5A', ...t.immvela }
+  const qfu: Chapter = { id: 'qfutool', name: 'QFUtool', dot: '#E65D3F', ink: '#B5452C', ...t.qfu }
+
   return (
     <SilverPage locale={locale} alt="/products">
-      <Showcase locale={locale} level="h1" />
+      {/* Opening: the three as a triptych and an index */}
+      <section className="pearl" style={{ background: 'var(--base)' }}>
+        <Lights />
+        <div className="w" style={{ paddingTop: 'clamp(56px,9vh,100px)', paddingBottom: 'min(12vh,108px)', position: 'relative', zIndex: 2 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, textAlign: 'center' }}>
+            <h1 className="k1" style={{ fontSize: 'clamp(44px,5.6vw,88px)', maxWidth: '12em' }}>
+              {t.h1}
+            </h1>
+            <p className="mut lead" style={{ textAlign: 'center' }}>
+              {t.line}
+            </p>
+          </div>
+          <nav className="pano prod-pano" aria-label={t.index}>
+            <a href="#pack-cad" style={{ background: '#000' }}>
+              <Video src="/sns/site/pack-loop.mp4" poster="/sns/site/pack-loop-poster.jpg" label={t.films.packLoop} />
+              <span className="pn-name">
+                <i style={{ background: '#ECEEF1' }} />
+                Pack CAD
+              </span>
+              <span className="pn-line">{t.panels.pack}</span>
+            </a>
+            <a href="#immvela" style={{ background: '#1B1612' }}>
+              <Video src="/sns/site/evening-reel.mp4" poster="/sns/site/evening-reel-poster.jpg" label={t.films.evening} />
+              <span className="pn-name">
+                <i style={{ background: '#2FA67A' }} />
+                Immvela
+              </span>
+              <span className="pn-line">{t.panels.immvela}</span>
+            </a>
+            <a href="#qfutool" className="qpanel">
+              <span className="qscene" aria-hidden="true">
+                <span className="qex">{t.example}</span>
+                <span className="qline">
+                  {t.timeline.map(([d, x], i) => (
+                    <span key={d} className={i === t.timeline.length - 1 ? 'last' : undefined}>
+                      <b>{d}</b>
+                      {x}
+                    </span>
+                  ))}
+                </span>
+              </span>
+              <span className="pn-name">
+                <i style={{ background: '#E65D3F' }} />
+                QFUtool
+              </span>
+              <span className="pn-line">{t.panels.qfu}</span>
+            </a>
+          </nav>
+        </div>
+      </section>
+
+      <ChapterSection
+        c={pack}
+        how={t.howHeading}
+        media={
+          <div className="chap-frame">
+            <Video src="/sns/site/pack-porcelain.mp4" poster="/sns/site/pack-porcelain-poster.jpg" label={t.films.pack} className="" />
+          </div>
+        }
+        ctas={
+          <>
+            <Link className="btn dark" href={href(locale, 'pack')}>
+              {t.pack.cta}
+            </Link>
+            <Link className="btn glass" href={contactHref(locale, 'pastjob')}>
+              {t.pack.past}
+            </Link>
+          </>
+        }
+      />
+
+      <ChapterSection
+        c={immvela}
+        how={t.howHeading}
+        flip
+        band
+        media={
+          <div className="chap-frame">
+            <Video src="/sns/site/helix-porcelain.mp4" poster="/sns/site/helix-porcelain-poster.jpg" label={t.films.helix} className="" style={{ transform: 'scale(1.18)' }} />
+          </div>
+        }
+        ctas={
+          <a className="btn" href={immvelaHref(locale)} target="_blank" rel="noopener" style={{ background: '#1F7A5A', color: '#FFFFFF' }}>
+            {t.immvela.cta}
+          </a>
+        }
+      />
+
+      <ChapterSection
+        c={qfu}
+        how={t.howHeading}
+        media={
+          <div className="chap-frame" style={{ display: 'grid', placeItems: 'center', padding: 'clamp(18px,3vw,40px)', background: 'radial-gradient(70% 80% at 80% 10%,#FFFFFF 0%,transparent 60%),linear-gradient(160deg,#F6E9E5,#E7EAEE)' }}>
+            <div className="edge" style={{ borderRadius: 24, padding: 24, display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 440, width: '100%' }}>
+              <div className="mut" style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13 }}>
+                <span>{t.qfu.sent}</span>
+                <span style={{ display: 'inline-flex', gap: 10 }}>
+                  <span style={{ color: '#B5452C', fontWeight: 600 }}>{t.qfu.step}</span>
+                  <span className="mono" style={{ color: 'var(--mut2)' }}>
+                    {t.example}
+                  </span>
+                </span>
+              </div>
+              <div style={{ fontSize: 15, lineHeight: 1.55 }}>
+                <strong>{t.qfu.hello}</strong>
+                <br />
+                {t.qfu.mail}
+              </div>
+              <span className="bubble" style={{ alignSelf: 'flex-start', background: 'var(--qchip)' }}>
+                {t.qfu.reply}
+              </span>
+              <span className="mono" style={{ color: 'var(--mut2)' }}>
+                {t.qfu.stopped}
+              </span>
+            </div>
+          </div>
+        }
+        ctas={
+          <a className="btn" href={QFUTOOL_URL} target="_blank" rel="noopener" style={{ background: '#E65D3F', color: '#140806' }}>
+            {t.qfu.cta}
+          </a>
+        }
+      />
+
       <Closing
         heading={t.close}
         sub={t.sub}
         ctas={[
           { label: t.book, href: href(locale, 'consulting', '#book') },
-          { label: t.past, href: contactHref(locale, 'pastjob'), kind: 'glass' },
+          { label: t.contact, href: href(locale, 'contact'), kind: 'glass' },
         ]}
       />
     </SilverPage>
