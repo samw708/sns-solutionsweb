@@ -30,7 +30,7 @@ const T = {
       ],
       [
         'CTO',
-        'Leads the technical architecture and full-stack delivery, turning complex requirements into clean, reliable systems. From England, a self-taught engineer with a background in business.',
+        'Leads the technical architecture and full-stack delivery, turning complex requirements into clean, reliable systems. From England, a self-taught engineer with a background in business, now pursuing a master’s in computer science.',
       ],
       [
         'CFO',
@@ -73,7 +73,7 @@ const T = {
       ],
       [
         'CTO',
-        'Verantwortet die technische Architektur und die Full-Stack-Umsetzung und übersetzt komplexe Anforderungen in saubere, zuverlässige Systeme. Aus England, autodidaktischer Entwickler mit betriebswirtschaftlichem Hintergrund.',
+        'Verantwortet die technische Architektur und die Full-Stack-Umsetzung und übersetzt komplexe Anforderungen in saubere, zuverlässige Systeme. Aus England, autodidaktischer Entwickler mit betriebswirtschaftlichem Hintergrund, derzeit im Masterstudium Informatik.',
       ],
       [
         'CFO',
