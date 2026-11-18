@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import Nav from '@/components/Nav'
-import Footer from '@/components/Footer'
+import InnerShell from '@/components/inner/InnerShell'
 import Founders from '@/components/Founders'
 import JsonLd from '@/components/JsonLd'
 import { teamGraph } from '@/lib/schema'
@@ -19,13 +18,9 @@ export default function TeamPage() {
   return (
     <>
       <JsonLd data={teamGraph('en')} />
-      <Nav />
-      <main id="team" className="relative px-5 pb-24 pt-32 md:px-10 md:pt-36">
-        <div className="mx-auto w-full max-w-6xl 2xl:max-w-7xl">
-          <Founders />
-        </div>
-      </main>
-      <Footer showCta={false} />
+      <InnerShell locale="en" id="team">
+        <Founders />
+      </InnerShell>
     </>
   )
 }

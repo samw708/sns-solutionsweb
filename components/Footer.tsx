@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { HVAC_LABEL, HVAC_PATH } from '@/lib/hvac-links'
 import { useState } from 'react'
 import { getDict } from '@/i18n'
 import { type Locale, defaultLocale, localePath, immvelaHref } from '@/i18n/config'
@@ -68,6 +69,7 @@ export default function Footer({
             label: 'QFUtool',
             external: true,
           },
+          { href: localePath(locale, HVAC_PATH), label: HVAC_LABEL[locale].hub },
         ],
       },
       {

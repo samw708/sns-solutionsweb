@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { getDict } from '@/i18n'
 import { type Locale, defaultLocale, localePath, immvelaHref } from '@/i18n/config'
 import LanguageToggle from './LanguageToggle'
+import { HVAC_LABEL, HVAC_PATH } from '@/lib/hvac-links'
 
 /**
  * `tone="dark"`: the bar sits over a dark first screen (the home billboard), so until the page scrolls or the
@@ -25,8 +26,8 @@ export default function Nav({
   // Flat nav, company-site order: the two products first, then consulting,
   // then the company. No "Products" dropdown — two items do not need one.
   // QFUtool lives on its own domain, so its link opens there and says so with
-  // a small out-arrow. The HVAC/SHK tab went with the discontinued product
-  // line, and its URLs 301 to Immvela (see middleware.ts).
+  // a small out-arrow. HVAC is the section for HVAC and refrigeration
+  // manufacturers (lib/hvac.ts); its pack page lights the same item.
   //
   // No status dots on product names: a pulsing dot reads as live telemetry,
   // and nothing here polls anything.
@@ -38,6 +39,7 @@ export default function Nav({
       label: t.qfutool,
       external: true,
     },
+    { href: localePath(locale, HVAC_PATH), id: 'hvac', label: HVAC_LABEL[locale].nav },
     { href: localePath(locale, '/services'), id: 'services', label: t.services },
     // English only, for now: the blog doesn't have a German translation yet
     // (see lib/blog.ts), and a nav link into a 404 would be worse than no link.
@@ -51,7 +53,9 @@ export default function Nav({
   // Exact match for every current link except Blog, which also has post pages
   // under it (/blog/<slug>) that should still light up the same nav item.
   const isActive = (href: string) =>
-    pathname === href || (href === '/blog' && pathname?.startsWith('/blog/'))
+    pathname === href ||
+    (href === '/blog' && pathname?.startsWith('/blog/')) ||
+    (href.endsWith(HVAC_PATH) && !!pathname?.startsWith(`${href}/`))
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)

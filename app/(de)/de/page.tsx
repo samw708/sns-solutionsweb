@@ -3,6 +3,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import SnsWebSiteSchema from '@/components/SnsWebSiteSchema'
 import LogoHero from '@/components/home/LogoHero'
+import ConsultingFilm from '@/components/home/ConsultingFilm'
 import LightGround from '@/components/home/LightGround'
 import Integrations from '@/components/home/Integrations'
 import LatestNews from '@/components/home/LatestNews'
@@ -28,6 +29,7 @@ export default function HomeDe() {
       <Nav locale="de" tone="dark" />
       <main className={`hm ${immvelaFonts}`}>
         <LogoHero locale="de" />
+        <ConsultingFilm locale="de" />
         <LightGround lift>
           <Integrations locale="de" />
           <LatestNews locale="de" />

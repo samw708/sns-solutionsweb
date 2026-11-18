@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import Nav from '@/components/Nav'
-import Footer from '@/components/Footer'
+import InnerShell from '@/components/inner/InnerShell'
 import Services from '@/components/Services'
-import CustomBuilds from '@/components/CustomBuilds'
 import JsonLd from '@/components/JsonLd'
 import { servicesGraph } from '@/lib/schema'
 import { snsPage } from '@/lib/share'
@@ -20,14 +18,9 @@ export default function ServicesPageDe() {
   return (
     <>
       <JsonLd data={servicesGraph('de')} />
-      <Nav locale="de" />
-      <main id="services" className="relative px-5 pb-24 pt-32 md:px-10 md:pt-36">
-        <div className="mx-auto w-full max-w-6xl 2xl:max-w-7xl">
-          <Services locale="de" />
-        </div>
-        <CustomBuilds locale="de" />
-      </main>
-      <Footer showCta={false} locale="de" />
+      <InnerShell locale="de" id="services">
+        <Services locale="de" />
+      </InnerShell>
     </>
   )
 }

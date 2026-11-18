@@ -1,203 +1,97 @@
-'use client'
-
-import Link from 'next/link'
-import type { ReactNode } from 'react'
 import { getDict } from '@/i18n'
 import { type Locale, defaultLocale, localePath } from '@/i18n/config'
-import { CTA_PRIMARY, CTA_SECONDARY } from '@/lib/cta'
+import CustomBuilds from './CustomBuilds'
+import { Btn, CheckList, ClosingCard, Em } from './inner/ui'
 
-const icons: ReactNode[] = [
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" key="0">
-    <path
-      d="M8.5 8.5 5 12l3.5 3.5M15.5 8.5 19 12l-3.5 3.5M13.5 6l-3 12"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>,
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" key="1">
-    <path
-      d="M13 3 5 13h5l-1 8 8-11h-5l1-7z"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>,
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" key="2">
-    <path
-      d="M20 11.5a8 8 0 0 1-11.5 7.2L4 20l1.3-4.2A8 8 0 1 1 20 11.5z"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path d="M9 10.5h6M9 13h4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-  </svg>,
-]
+/**
+ * /services (Consulting), in the homepage's light style: the promise and the free call side by side,
+ * the three services as glass cards, how a build runs, and one closing ask.
+ */
+
+// The italic closing phrase of each headline (see Em in components/inner/ui.tsx).
+const EM: Record<Locale, { h1: string; closing: string }> = {
+  en: { h1: 'eats your week.', closing: 'you need?' },
+  de: { h1: 'Ihre Woche frisst.', closing: 'welche Sie brauchen?' },
+}
 
 export default function Services({ locale = defaultLocale }: { locale?: Locale }) {
   const t = getDict(locale).servicesPage
-  // The contact form only pre-selects a ?service= value when it exactly matches
-  // one of its options. Pull the consulting label from the consulting card on
-  // this page (items[2]) — it's the same string as the matching contact-form
-  // option by design, and this stays correct no matter how the form reorders
-  // its list.
+  // The contact form pre-selects a ?service= value only when it exactly matches one of its options;
+  // the service names here are the same strings as those options by design.
+  const contact = (service?: string) =>
+    localePath(locale, service ? `/contact?service=${encodeURIComponent(service)}` : '/contact')
   const consultService = t.items[2].name
 
   return (
     <>
-      <div className="mb-14 max-w-2xl">
-        <p className="eyebrow mb-4">{t.eyebrow}</p>
-        <h1 className="page-title text-sns-text">{t.heading}</h1>
-        <p className="mt-6 text-lg leading-relaxed text-sns-muted">{t.intro}</p>
-      </div>
-
-      {/* Lead with the consultation — the page's primary action is a meeting,
-          not a build request. */}
-      <section className="sns-card mb-14 p-6 md:p-10">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.1fr_1fr] md:gap-12">
-          <div>
-            <p className="eyebrow">{t.consult.tag}</p>
-            <h2 className="section-title mt-2 text-sns-text">{t.consult.heading}</h2>
-            <p className="mt-3 leading-relaxed text-sns-muted">{t.consult.sub}</p>
-          </div>
-
-          <div className="flex flex-col justify-center">
-            <ul className="flex flex-col gap-3">
-              {t.consult.points.map((point) => (
-                <li key={point} className="flex items-start gap-3 text-sns-text">
-                  <span className="mt-1 shrink-0 text-sns-muted" aria-hidden="true">
-                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-                      <path
-                        d="M3.5 8.5 6.5 11.5 12.5 4.5"
-                        stroke="currentColor"
-                        strokeWidth="1.7"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <span className="leading-snug">{point}</span>
-                </li>
-              ))}
-            </ul>
-
-            <Link
-              href={localePath(locale, `/contact?service=${encodeURIComponent(consultService)}`)}
-              className={`${CTA_PRIMARY} mt-6 w-full justify-center sm:w-auto`}
-            >
-              {t.consult.cta}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path
-                  d="M3 7h8M7.5 3.5 11 7l-3.5 3.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-            <p className="mt-3 text-xs leading-relaxed text-sns-faint">{t.consult.aside}</p>
-          </div>
+      <header className="grid grid-cols-1 items-end gap-12 lg:grid-cols-[1.25fr_1fr]">
+        <div>
+          <p className="in-eyebrow">{t.eyebrow}</p>
+          <h1 className="in-h1">
+            <Em text={t.heading} em={EM[locale].h1} />
+          </h1>
+          <p className="in-lead">{t.intro}</p>
         </div>
-      </section>
 
-      <div className="flex flex-col gap-6">
-        {t.items.map((service, index) => (
-          <article
-            key={service.name}
-            id={`svc-${index + 1}`}
-            className="sns-card scroll-mt-24 p-6 md:p-10"
-          >
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_1.1fr] md:gap-12">
-              <div>
-                <div className="flex items-center gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sns border border-sns-border bg-sns-bg text-sns-text">
-                    {icons[index]}
-                  </span>
-                </div>
-                <h2 className="section-title mt-5 text-sns-text">{service.name}</h2>
-                <p className="mt-3 text-lg leading-relaxed text-sns-muted">{service.tagline}</p>
+        {/* Lead with the consultation: the page's primary action is a meeting, not a build. */}
+        <aside className="hm-glass in-panel" aria-labelledby="consult-h">
+          <p className="in-eyebrow mb-2">{t.consult.tag}</p>
+          <h2 id="consult-h" className="in-h3">
+            {t.consult.heading}
+          </h2>
+          <ol className="mt-5 flex flex-col gap-3 p-0" style={{ listStyle: 'none' }}>
+            {t.consult.points.map((point, i) => (
+              <li key={point} className="flex gap-3 text-[15px] leading-snug text-[color:var(--hm-ink)]">
+                <span className="in-mono pt-0.5">0{i + 1}</span>
+                {point}
+              </li>
+            ))}
+          </ol>
+          <Btn href={contact(consultService)} className="mt-7">
+            {t.consult.cta}
+          </Btn>
+          <p className="in-body mt-3 text-[13px]">{t.consult.aside}</p>
+        </aside>
+      </header>
 
-                <Link
-                  href={localePath(locale, `/contact?service=${encodeURIComponent(service.name)}`)}
-                  className={`${CTA_SECONDARY} mt-7`}
-                >
-                  {service.cta}
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path
-                      d="M3 7h8M7.5 3.5 11 7l-3.5 3.5"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </Link>
-              </div>
-
-              <div className="flex flex-col gap-6">
-                <div>
-                  <p className="mb-2 text-sm font-medium text-sns-text">{t.problemLabel}</p>
-                  <p className="leading-relaxed text-sns-muted">{service.problem}</p>
-                </div>
-
-                <div>
-                  <p className="mb-2 text-sm font-medium text-sns-text">{t.whatWeDoLabel}</p>
-                  <p className="leading-relaxed text-sns-muted">{service.whatWeDo}</p>
-                </div>
-
-                <div>
-                  <p className="mb-3 text-sm font-medium text-sns-text">{t.outcomesLabel}</p>
-                  <ul className="flex flex-col gap-2">
-                    {service.outcomes.map((outcome) => (
-                      <li key={outcome} className="flex items-start gap-3 text-sns-text">
-                        <span className="mt-1 text-sns-muted" aria-hidden="true">
-                          <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-                            <path
-                              d="M3.5 8.5 6.5 11.5 12.5 4.5"
-                              stroke="currentColor"
-                              strokeWidth="1.7"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </span>
-                        <span className="leading-snug">{outcome}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <p className="border-t border-sns-border pt-4 text-sm leading-relaxed text-sns-muted">
-                  {service.example}
-                </p>
-              </div>
+      <section aria-label={t.eyebrow} className="in-section grid grid-cols-1 gap-5 lg:grid-cols-3">
+        {t.items.map((s, i) => (
+          <article key={s.name} id={`svc-${i + 1}`} className="hm-glass in-panel flex scroll-mt-24 flex-col gap-5">
+            <p className="in-mono m-0">
+              0{i + 1} · {s.name}
+            </p>
+            <h2 className="in-h3">
+              <Em text={s.tagline} />
+            </h2>
+            <div>
+              <p className="mb-1 text-sm font-semibold text-[color:var(--hm-ink)]">{t.problemLabel}</p>
+              <p className="in-body m-0">{s.problem}</p>
             </div>
+            <div>
+              <p className="mb-1 text-sm font-semibold text-[color:var(--hm-ink)]">{t.whatWeDoLabel}</p>
+              <p className="in-body m-0">{s.whatWeDo}</p>
+            </div>
+            <div className="in-rule pt-4">
+              <p className="mb-3 text-sm font-semibold text-[color:var(--hm-ink)]">{t.outcomesLabel}</p>
+              <CheckList items={s.outcomes} />
+            </div>
+            <p className="in-body m-0 text-[14px]">{s.example}</p>
+            <Btn href={contact(s.name)} secondary className="mt-auto self-start">
+              {s.cta}
+            </Btn>
           </article>
         ))}
-      </div>
+      </section>
 
-      <div className="sns-card mt-12 flex flex-col items-start justify-between gap-6 p-6 md:flex-row md:items-center md:p-10">
-        <div>
-          <h2 className="section-title text-sns-text">{t.closingHeading}</h2>
-          <p className="mt-2 text-sns-muted">{t.closingSub}</p>
-        </div>
-        <Link href={localePath(locale, '/contact')} className={`${CTA_PRIMARY} shrink-0`}>
-          {t.closingCta}
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path
-              d="M3 7h8M7.5 3.5 11 7l-3.5 3.5"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
-      </div>
+      <CustomBuilds locale={locale} />
+
+      <ClosingCard
+        heading={t.closingHeading}
+        em={EM[locale].closing}
+        sub={t.closingSub}
+        cta={t.closingCta}
+        href={contact()}
+      />
     </>
   )
 }

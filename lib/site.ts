@@ -54,7 +54,12 @@ export const SITE = {
     country: 'AT',
   },
   founders: ['Samuel Winch', 'Nicholas Pellechi', 'Samson Adefris Belachew'],
-  services: ['Custom Software', 'AI Automation', 'AI & IT Consulting'],
+  services: [
+    'Custom Software',
+    'AI Automation',
+    'AI & IT Consulting',
+    'Software for HVAC & refrigeration manufacturers',
+  ],
   url: SITE_URL,
 } as const
 
@@ -83,6 +88,8 @@ export const SITE_COPY = {
       'Austria',
       'SNS Solutions',
       'Immvela',
+      'HVAC manufacturer software',
+      'refrigeration pack design software',
     ],
   },
   de: {
@@ -106,6 +113,8 @@ export const SITE_COPY = {
       'Österreich',
       'SNS Solutions',
       'Immvela',
+      'Software für Kältetechnik-Hersteller',
+      'Konstruktion Kälteverbundanlagen',
     ],
   },
 } as const

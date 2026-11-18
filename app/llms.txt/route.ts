@@ -1,6 +1,8 @@
 import { getDict } from '@/i18n'
 import { IMMVELA_DESCRIPTION, IMMVELA_URL, SITE, SITE_URL } from '@/lib/site'
 import { sortedPosts } from '@/lib/blog'
+import { HVAC_PATH, PACK_PATH, PACK_PRODUCT_NAME, getHvac } from '@/lib/hvac'
+import { TOOL_KEYS, getTool } from '@/lib/hvac-tools'
 
 /**
  * /llms.txt — the concise index an answer engine reads to find its way around
@@ -26,6 +28,8 @@ export function GET() {
     .map((s) => `${s.name} (${s.tagline.replace(/\.$/, '')})`)
     .join('; ')
 
+  const hvac = getHvac('en')
+
   const posts = sortedPosts()
   const blogList = posts
     .map((p) => `  - [${p.title}](${url(`/blog/${p.slug}`)}): ${p.description}`)
@@ -42,6 +46,8 @@ SNS Solutions is the parent company of two separate products, each on its own do
 - Immvela, ${IMMVELA_URL}/: ${t.productsPage.immvelaTagline} ${IMMVELA_DESCRIPTION}
 - QFUtool: automated follow-up on sent quotes for salespeople, sending from their own domain during working hours. https://www.qfutool.com/
 
+For HVAC and refrigeration manufacturers, SNS builds the business software they run on: ${hvac.hub.tools.map((t) => t.name.toLowerCase()).join(', ')}, connected on one record from enquiry to service call and measured against manufacturing metrics such as quote turnaround and engineering hours per order. The CAD tool is ${PACK_PRODUCT_NAME}, refrigeration pack design software. ${PACK_PRODUCT_NAME} status: ${hvac.pack.status}
+
 We also offer a free 30-minute consultation and custom software work.
 
 Services: ${services}.
@@ -52,6 +58,12 @@ Contact: ${SITE.email}, ${SITE.phone}. ${t.contactPage.details.response}: ${t.co
 
 - [Home](${url('/')}): what SNS Solutions is, its two products, news and updates, and the consultation offer. [Deutsch](${url('/de')}).
 - [Our products](${url('/products')}): Immvela and QFUtool side by side, each with a link to its own site. [Deutsch](${url('/de/products')}).
+- [HVAC & refrigeration manufacturers](${url(HVAC_PATH)}): ${hvac.hub.description} Covers six tools (selection, CAD and design automation, document management, quoting, ERP and parts lists, service), a table defining the metrics we measure, and an FAQ. [Deutsch](${url('/de' + HVAC_PATH)}).
+${TOOL_KEYS.map((k) => {
+  const t = getTool('en', k)
+  return `- [${t.title}](${url(t.path)}): ${t.description} [Deutsch](${url('/de' + t.path)}).`
+}).join('\n')}
+- [Refrigeration pack design software](${url(PACK_PATH)}): ${PACK_PRODUCT_NAME}. ${hvac.pack.description} Status: ${hvac.pack.status} [Deutsch](${url('/de' + PACK_PATH)}).
 - [Services](${url('/services')}): the three service lines in detail: the problem each solves, what we do, and what you get. Includes a free 30-minute consultation offer. [Deutsch](${url('/de/services')}).
 - [Immvela](${IMMVELA_URL}/): our product for estate agents, on its own domain, with its own ${IMMVELA_URL}/llms.txt.
 - [QFUtool](https://www.qfutool.com/): our quote follow-up product for salespeople, on its own domain.

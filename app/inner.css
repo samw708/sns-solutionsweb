@@ -1,0 +1,465 @@
+/* The inner pages (Consulting, Team, HVAC) in the homepage's light style: "Daylight Glass".
+   They sit on the same ground as the home page's lower half (LightGround: lavender cream, grain, four
+   drifting colour lights) and reuse its .hm tokens and .hm-glass panels from app/home.css. What is
+   here is only what those pages add: a type scale for long reading pages, the pill buttons, and a few
+   panel and list patterns. Classes are prefixed in- so they never collide with the home page's. */
+
+.in-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(104px, 15vh, 140px) var(--hm-gutter) clamp(72px, 10vh, 120px);
+}
+
+/* ── type ─────────────────────────────────────────────────────────────────── */
+.in-h1,
+.in-h2,
+.in-h3 {
+  font-family: var(--hm-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--hm-ink);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.in-h1 {
+  font-size: clamp(2.6rem, 6vw, 5.25rem);
+  line-height: 1.02;
+}
+.in-h2 {
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+  line-height: 1.05;
+}
+.in-h3 {
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  line-height: 1.12;
+}
+.in-h1 em,
+.in-h2 em,
+.in-h3 em {
+  font-style: italic;
+}
+/* Default spacing only where the element has no spacing utility of its own: same specificity as a
+   utility, so it beats Tailwind's base reset, and it steps aside whenever an mt-/mb- class is set. */
+.in-lead:where(:not([class*='mt-'])) {
+  margin-top: 24px;
+}
+.in-lead {
+  max-width: 40em;
+  font-size: clamp(17px, 1.35vw, 19px);
+  line-height: 1.62;
+  color: var(--hm-muted);
+}
+.in-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--hm-muted);
+}
+.in-mono {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--hm-blue);
+}
+.in-eyebrow:where(:not([class*='mb-'])) {
+  margin-bottom: 16px;
+}
+.in-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--hm-muted);
+}
+.in-eyebrow a {
+  color: inherit;
+  text-decoration: none;
+}
+.in-eyebrow a:hover {
+  color: var(--hm-ink);
+  text-decoration: underline;
+}
+
+/* ── rhythm ───────────────────────────────────────────────────────────────── */
+.in-section {
+  margin-top: clamp(72px, 10vw, 120px);
+}
+.in-head {
+  max-width: 44rem;
+  margin-bottom: 32px;
+}
+.in-panel {
+  padding: clamp(24px, 3vw, 40px);
+}
+.in-panel-sm {
+  padding: clamp(20px, 2.4vw, 28px);
+  border-radius: 22px;
+}
+/* The one dark panel a page may have, for the point it most wants remembered. */
+.in-ink {
+  background: rgba(11, 31, 68, 0.9);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f5f1e6;
+}
+.in-ink .in-h2,
+.in-ink .in-h3 {
+  color: #fff;
+}
+.in-ink .in-body,
+.in-ink .in-lead {
+  color: #dfe4f5;
+}
+.in-ink .in-eyebrow {
+  color: #c9d2f4;
+}
+.in-rule {
+  border-top: 1px solid var(--hm-rule);
+}
+.in-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 18px;
+  max-width: 34rem;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--hm-ink);
+  box-shadow: none;
+}
+.in-status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--hm-blue);
+}
+
+/* ── buttons: the homepage's pills ────────────────────────────────────────── */
+.in-btn,
+.in-btn2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-family: var(--hm-sans);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+.in-btn {
+  background: var(--hm-ink);
+  color: #f5f1e6;
+}
+.in-btn:hover {
+  background: var(--hm-blue);
+}
+.in-btn2 {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(11, 31, 68, 0.16);
+  color: var(--hm-ink);
+}
+.in-btn2:hover {
+  background: #fff;
+  border-color: rgba(11, 31, 68, 0.4);
+}
+.in-btn:active,
+.in-btn2:active {
+  transform: scale(0.98);
+}
+.in-btn:focus-visible,
+.in-btn2:focus-visible,
+.in-card-link:focus-visible {
+  outline: 3px solid var(--hm-blue);
+  outline-offset: 3px;
+}
+.in-btn .in-arrow,
+.in-btn2 .in-arrow {
+  transition: transform 0.2s ease;
+}
+.in-btn:hover .in-arrow,
+.in-btn2:hover .in-arrow {
+  transform: translateX(3px);
+}
+
+/* ── lists ────────────────────────────────────────────────────────────────── */
+.in-checks {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.in-checks li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--hm-ink);
+}
+.in-checks li::before {
+  content: '✓';
+  flex: none;
+  color: var(--hm-blue);
+  font-weight: 600;
+}
+.in-checks.is-plus li::before {
+  content: '+';
+  color: #b5532c;
+}
+.in-steps {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 28px;
+}
+.in-steps li {
+  border-top: 2px solid var(--hm-ink);
+  padding-top: 16px;
+}
+.in-steps .in-step-main {
+  margin: 10px 0 8px;
+  font-family: var(--hm-serif);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--hm-ink);
+}
+
+/* ── cards that are links ─────────────────────────────────────────────────── */
+.in-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.in-card-link:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 36px 70px -38px rgba(11, 31, 68, 0.45);
+}
+
+/* ── the metrics table ────────────────────────────────────────────────────── */
+.in-table-box {
+  overflow-x: auto;
+  padding: 0;
+}
+.in-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  text-align: left;
+}
+.in-table th,
+.in-table td {
+  padding: 18px 24px;
+  vertical-align: top;
+  font-size: 15px;
+  line-height: 1.55;
+  border-bottom: 1px solid var(--hm-rule);
+}
+.in-table tbody tr:last-child th,
+.in-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.in-table thead th {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--hm-faint);
+}
+.in-table tbody th {
+  font-weight: 600;
+  color: var(--hm-ink);
+}
+.in-table td {
+  color: var(--hm-muted);
+}
+
+/* ── portraits (Team) ─────────────────────────────────────────────────────── */
+.in-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 18px;
+}
+.in-portrait b {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-family: var(--hm-serif);
+  font-weight: 400;
+  font-size: clamp(88px, 9vw, 120px);
+  line-height: 0.8;
+  color: rgba(11, 31, 68, 0.2);
+}
+
+@media (max-width: 767px) {
+  .in-portrait {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .in-btn,
+  .in-btn2,
+  .in-card-link,
+  .in-btn .in-arrow,
+  .in-btn2 .in-arrow {
+    transition: none;
+  }
+  .in-card-link:hover {
+    transform: none;
+  }
+}
+
+/* ── product pictures (components/hvac/visuals.tsx) ──────────────────────────
+   Immvela's lesson: show the thing, don't list it. Each row of a page pairs a short headline with a
+   small, plain mock of what the tool produces, set on a glass stage. Sample values only, labelled
+   "Example"; never a real customer, model or result. */
+.in-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+.in-row-text {
+  max-width: 30rem;
+}
+.in-stage {
+  padding: clamp(20px, 3vw, 40px);
+}
+.in-mock {
+  background: #fff;
+  border: 1px solid rgba(11, 31, 68, 0.06);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px -28px rgba(11, 31, 68, 0.45);
+  padding: 18px 20px;
+  color: var(--hm-ink);
+}
+.in-mock-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(11, 31, 68, 0.08);
+  font-size: 14px;
+  font-weight: 600;
+}
+.in-mock-head span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--hm-faint);
+}
+.in-mock-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(11, 31, 68, 0.08);
+  font-size: 14px;
+}
+.in-mock-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.in-mock-row small {
+  display: block;
+  font-size: 12px;
+  color: var(--hm-faint);
+}
+.in-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: #e8eefb;
+  color: #034599;
+}
+.in-chip.is-ok {
+  background: #e3f3ec;
+  color: #0a6b47;
+}
+.in-chip.is-warn {
+  background: #fbeee4;
+  color: #9a4a12;
+}
+.in-chip.is-mute {
+  background: #f0f0f4;
+  color: #4f5b75;
+}
+.in-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--hm-ink);
+}
+/* "Good to know": questions visible, answers one click away (still in the HTML for crawlers). */
+.in-faq {
+  border-top: 1px solid var(--hm-rule);
+}
+.in-faq details {
+  border-bottom: 1px solid var(--hm-rule);
+}
+.in-faq summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  min-height: 56px;
+  padding: 14px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--hm-ink);
+}
+.in-faq summary::-webkit-details-marker {
+  display: none;
+}
+.in-faq summary::after {
+  content: '+';
+  flex: none;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--hm-blue);
+  transition: transform 0.2s ease;
+}
+.in-faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+.in-faq summary:focus-visible {
+  outline: 3px solid var(--hm-blue);
+  outline-offset: 2px;
+}
+.in-faq p {
+  margin: 0 0 18px;
+  max-width: 46rem;
+}

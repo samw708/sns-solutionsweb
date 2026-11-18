@@ -7,6 +7,7 @@ import LightGround from '@/components/home/LightGround'
 import Integrations from '@/components/home/Integrations'
 import LatestNews from '@/components/home/LatestNews'
 import ConsultPanel from '@/components/home/ConsultPanel'
+import ConsultingFilm from '@/components/home/ConsultingFilm'
 import { immvelaFonts } from '@/components/immvela/fonts'
 import '@/app/home.css'
 
@@ -24,6 +25,7 @@ export default function Home() {
       <Nav tone="dark" />
       <main className={`hm ${immvelaFonts}`}>
         <LogoHero />
+        <ConsultingFilm />
         <LightGround lift>
           <Integrations />
           <LatestNews />

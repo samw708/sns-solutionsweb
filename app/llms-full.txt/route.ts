@@ -1,6 +1,8 @@
 import { getDict } from '@/i18n'
 import { IMMVELA_DESCRIPTION, IMMVELA_URL, SITE, SITE_URL } from '@/lib/site'
 import { sortedPosts } from '@/lib/blog'
+import { HVAC_PATH, PACK_PATH, PACK_PRODUCT_NAME, getHvac } from '@/lib/hvac'
+import { TOOL_KEYS, getTool } from '@/lib/hvac-tools'
 
 /**
  * /llms-full.txt — the whole site as one Markdown document.
@@ -50,7 +52,8 @@ URL. German translations of every page live under ${url('/de')}.
 - Languages: English and German (Austrian German, formal Sie-form)
 - Area served: Austria and the DACH market
 - Founders: ${SITE.founders.join(', ')}
-- Real-estate platform: Immvela, on its own domain at ${IMMVELA_URL}/`)
+- Real-estate platform: Immvela, on its own domain at ${IMMVELA_URL}/
+- For HVAC and refrigeration manufacturers: selection software, CAD and design automation (refrigeration pack design software, in development), document management, quoting, ERP and service links, at ${url('/hvac')}`)
 
   // ── /services ────────────────────────────────────────────────────────────
   sections.push(`## Services: ${url('/services')}
@@ -77,6 +80,116 @@ ${s.tagline}
 ${t.servicesPage.consult.sub}
 
 ${t.servicesPage.consult.points.map((p) => `- ${p}`).join('\n')}`)
+
+  // ── /hvac and the pack design page ───────────────────────────────────────
+  const hv = getHvac('en')
+  const faq = (items: { q: string; a: string }[]) =>
+    items.map((f) => `**${f.q}**\n\n${f.a}`).join('\n\n')
+
+  sections.push(`## HVAC & refrigeration manufacturers: ${url(HVAC_PATH)}
+
+### ${hv.hub.h1}
+
+${hv.hub.intro}
+
+#### ${hv.hub.toolsHeading}
+
+${hv.hub.toolsSub}
+
+${hv.hub.tools
+  .map(
+    (p) => `- **${p.name}.** ${p.tagline} ${p.points.join('; ')}.${p.href ? ` ${url(p.href)}` : ''}`
+  )
+  .join('\n')}
+
+#### ${hv.hub.flow.heading}
+
+${hv.hub.flow.sub} ${hv.hub.flow.steps.join(' → ')}.
+
+#### ${hv.hub.ai.heading}
+
+${hv.hub.ai.body}
+
+#### ${hv.hub.metrics.heading}
+
+${hv.hub.metrics.sub}
+
+| ${hv.hub.metrics.cols.metric} | ${hv.hub.metrics.cols.definition} | ${hv.hub.metrics.cols.where} |
+|---|---|---|
+${hv.hub.metrics.rows.map((r) => `| ${r.metric} | ${r.definition} | ${r.where} |`).join('\n')}
+
+${hv.hub.metrics.methodHeading}: ${hv.hub.metrics.method.map((m) => `${m.k} ${m.name}: ${m.text}`).join(' ')}
+
+#### ${hv.hub.faqHeading}
+
+${faq(hv.hub.faq)}`)
+
+  for (const k of TOOL_KEYS) {
+    const t = getTool('en', k)
+    sections.push(`## ${t.title}: ${url(t.path)}
+
+### ${t.h1}
+
+${t.intro}
+
+${t.note}
+
+#### ${t.problems.heading}
+
+${t.problems.items.map((x) => `- ${x}`).join('\n')}
+
+#### ${t.builds.heading}
+
+${t.builds.items.map((b) => `- **${b.name}.** ${b.text}`).join('\n')}
+
+#### ${t.metrics.heading}
+
+${t.metrics.items.map((x) => `- ${x}`).join('\n')}
+
+#### ${t.faqHeading}
+
+${faq(t.faq)}`)
+  }
+
+  sections.push(`## Refrigeration pack design software (${PACK_PRODUCT_NAME}): ${url(PACK_PATH)}
+
+### ${hv.pack.h1}
+
+${hv.pack.intro}
+
+Status: ${hv.pack.status}
+
+#### ${hv.pack.gap.heading}
+
+${hv.pack.gap.sub}
+
+${hv.pack.gap.hasHeading}:
+${hv.pack.gap.has.map((x) => `- ${x}`).join('\n')}
+
+${hv.pack.gap.needsHeading}:
+${hv.pack.gap.needs.map((x) => `- ${x}`).join('\n')}
+
+#### ${hv.pack.stepsHeading}
+
+${hv.pack.steps.map((s) => `${s.k}. **${s.name}.** ${s.text}`).join('\n')}
+
+#### ${hv.pack.rules.heading}
+
+${hv.pack.rules.body}
+
+${hv.pack.rules.points.map((x) => `- ${x}`).join('\n')}
+
+#### ${hv.pack.scale.heading}
+
+${hv.pack.scale.body}
+
+#### ${hv.pack.outputs.heading}
+
+${hv.pack.outputs.items.map((o) => `- **${o.stage}: ${o.name}.** ${o.text}`).join('\n')}
+
+#### ${hv.pack.faqHeading}
+
+${faq(hv.pack.faq)}`)
 
   // ── Immvela ──────────────────────────────────────────────────────────────
   // Only the public line: what Immvela is and how to get in. Its own site and its own llms files are the

@@ -213,6 +213,16 @@ export const de: Dictionary = {
     eyebrow: 'Das Team',
     heading: 'Die Menschen hinter SNS.',
     intro: 'Drei Gründer, ein Anspruch: Wenn es kompliziert zu bedienen ist, ist es nicht fertig.',
+    facts: [
+      { k: 'Sitz', v: 'Wien, Österreich' },
+      { k: 'Gegründet', v: '2026' },
+      { k: 'Wir arbeiten auf', v: 'Deutsch und Englisch' },
+      { k: 'Wir bauen', v: 'Immvela, QFUtool und Software für HLK-Hersteller' },
+    ],
+    ctaHeading: 'Sprechen Sie mit den Menschen, die es bauen.',
+    ctaEm: 'die es bauen.',
+    ctaSub: 'Wir lesen jede Nachricht und antworten selbst.',
+    cta: 'Kontakt aufnehmen',
     // Reihenfolge wie die Gründerliste in components/Founders.tsx
     // (Samuel Winch, Nicholas Pellechi, Samson Belachew).
     bios: [
@@ -238,6 +248,7 @@ export const de: Dictionary = {
     services: [
       'Immvela · Immobilien',
       'QFUtool',
+      'HLK & Kältetechnik',
       'Individuelle Software',
       'KI & Automatisierung',
       'KI- & IT-Beratung',

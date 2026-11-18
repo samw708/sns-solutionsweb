@@ -2,6 +2,9 @@ import { getDict } from '@/i18n'
 import { localePath, type Locale } from '@/i18n/config'
 import { IMMVELA_URL, SITE, SITE_URL } from '@/lib/site'
 import { sortedPosts, type BlogPost } from '@/lib/blog'
+import { HVAC_PATH, PACK_PATH, PACK_PRODUCT_NAME, getHvac, type Faq } from '@/lib/hvac'
+import { DOCS_PATH, HVAC_LABEL, SELECTION_PATH } from '@/lib/hvac-links'
+import { type ToolKey, getTool } from '@/lib/hvac-tools'
 
 /**
  * Structured data for the SNS pages.
@@ -87,6 +90,14 @@ export function snsOrganizationNode() {
       'AI agents',
       'Data pipelines',
       'IT consulting',
+      'HVAC and refrigeration manufacturing software',
+      'HVAC selection software',
+      'Technical document management',
+      'Refrigeration pack design',
+      'CO2 transcritical booster refrigeration',
+      'Rules-based design automation',
+      'CAD, PDM and ERP integration',
+      'Manufacturing KPIs',
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -124,6 +135,10 @@ const CRUMB_LABELS: Record<Locale, Record<string, string>> = {
     '/contact': 'Contact',
     '/blog': 'Blog',
     '/products': 'Our products',
+    [HVAC_PATH]: getHvac('en').crumbHub,
+    [PACK_PATH]: getHvac('en').crumbPack,
+    [SELECTION_PATH]: HVAC_LABEL.en.selection,
+    [DOCS_PATH]: HVAC_LABEL.en.documents,
   },
   de: {
     '/': 'Start',
@@ -132,6 +147,10 @@ const CRUMB_LABELS: Record<Locale, Record<string, string>> = {
     '/contact': 'Kontakt',
     '/blog': 'Blog',
     '/products': 'Unsere Produkte',
+    [HVAC_PATH]: getHvac('de').crumbHub,
+    [PACK_PATH]: getHvac('de').crumbPack,
+    [SELECTION_PATH]: HVAC_LABEL.de.selection,
+    [DOCS_PATH]: HVAC_LABEL.de.documents,
   },
 }
 
@@ -539,5 +558,155 @@ export function productsGraph(locale: Locale) {
     },
     immvela,
     qfutool
+  )
+}
+
+// ── HVAC & refrigeration ───────────────────────────────────────────────────
+
+/**
+ * Where the HVAC pages say SNS works: "manufacturers across Europe" (lib/hvac.ts, hub FAQ). Wider
+ * than DACH on purpose and only here, because only these pages say so.
+ */
+const EUROPE = [{ '@type': 'Place', name: 'Europe' }]
+
+const HVAC_AUDIENCE = {
+  '@type': 'BusinessAudience',
+  name: 'HVAC and refrigeration equipment manufacturers',
+}
+
+export const PACK_SOFTWARE_ID = `${SITE_URL}${PACK_PATH}#software`
+
+function faqPage(url: string, items: Faq[]) {
+  return {
+    '@type': 'FAQPage',
+    '@id': `${url}#faq`,
+    mainEntity: items.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+}
+
+/** /hvac — the six tools as Service nodes, the metrics as a DefinedTermSet, and the FAQ. */
+export function hvacGraph(locale: Locale) {
+  const c = getHvac(locale)
+  const t = c.hub
+  const url = pageUrl(locale, HVAC_PATH)
+
+  // A tool with its own page points at that page's node instead of being described twice.
+  const ownPage: Record<string, string> = {
+    selection: `${pageUrl(locale, SELECTION_PATH)}#service`,
+    documents: `${pageUrl(locale, DOCS_PATH)}#service`,
+  }
+  const services = t.tools.map((p) => ({
+    '@type': 'Service',
+    '@id': ownPage[p.id] ?? `${url}#${p.id}`,
+    name: p.name,
+    serviceType: p.name,
+    description: `${p.tagline} ${p.points.join('. ')}.`,
+    provider: { '@id': SNS_ORG_ID },
+    areaServed: EUROPE,
+    audience: HVAC_AUDIENCE,
+    ...(p.href ? { url: pageUrl(locale, p.href) } : {}),
+    ...(p.id === 'cad' ? { isRelatedTo: { '@id': PACK_SOFTWARE_ID } } : {}),
+  }))
+
+  return graph(
+    locale,
+    HVAC_PATH,
+    { name: t.title, description: t.description },
+    {
+      '@type': 'ItemList',
+      '@id': `${url}#services`,
+      name: t.toolsHeading,
+      itemListElement: services.map((s, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: { '@id': s['@id'] },
+      })),
+    },
+    ...services,
+    // The metrics table, as defined terms: each is a definition an answer engine can quote.
+    {
+      '@type': 'DefinedTermSet',
+      '@id': `${url}#metrics`,
+      name: t.metrics.heading,
+      hasDefinedTerm: t.metrics.rows.map((r) => ({
+        '@type': 'DefinedTerm',
+        name: r.metric,
+        description: r.definition,
+      })),
+    },
+    faqPage(url, t.faq)
+  )
+}
+
+/**
+ * /hvac/refrigeration-pack-design — the software itself. No `offers`: it is not on sale, and
+ * `creativeWorkStatus` says so in the graph the same way the status line says so on the page.
+ */
+export function packDesignGraph(locale: Locale) {
+  const c = getHvac(locale)
+  const t = c.pack
+  const url = pageUrl(locale, PACK_PATH)
+
+  return graph(
+    locale,
+    PACK_PATH,
+    { name: t.title, description: t.description },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': PACK_SOFTWARE_ID,
+      name: PACK_PRODUCT_NAME,
+      alternateName: t.title,
+      url,
+      description: `${t.intro} ${t.status}`,
+      slogan: t.h1,
+      applicationCategory: 'DesignApplication',
+      applicationSubCategory: 'Refrigeration pack design automation',
+      operatingSystem: 'Web',
+      creativeWorkStatus: 'In development',
+      featureList: t.steps.map((s) => `${s.name}: ${s.text}`),
+      audience: HVAC_AUDIENCE,
+      areaServed: EUROPE,
+      inLanguage: ['en', 'de'],
+      creator: { '@id': SNS_ORG_ID },
+      publisher: { '@id': SNS_ORG_ID },
+    },
+    faqPage(url, t.faq)
+  )
+}
+
+/** /hvac/selection-software and /hvac/document-management — a Service SNS builds, plus the FAQ. */
+export function toolGraph(locale: Locale, key: ToolKey) {
+  const t = getTool(locale, key)
+  const url = pageUrl(locale, t.path)
+
+  return graph(
+    locale,
+    t.path,
+    { name: t.title, description: t.description },
+    {
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: t.title,
+      serviceType: t.eyebrow,
+      description: t.intro,
+      url,
+      provider: { '@id': SNS_ORG_ID },
+      areaServed: EUROPE,
+      audience: HVAC_AUDIENCE,
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: t.builds.heading,
+        itemListElement: t.builds.items.map((b) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: b.name, description: b.text },
+        })),
+      },
+      isPartOf: { '@id': `${pageUrl(locale, HVAC_PATH)}#services` },
+    },
+    faqPage(url, t.faq)
   )
 }
