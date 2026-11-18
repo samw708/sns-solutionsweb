@@ -34,7 +34,9 @@ export type ReelCopy = {
 const DUR = [14.5, 12, 9]
 
 export default function HeroReel({ t }: { t: ReelCopy }) {
-  const [go, setGo] = useState(false)
+  // 'go' is on from the server render, so the CSS opening plays as soon as the page paints (and the text appears
+  // even if the script is slow or fails); reduced motion is handled in CSS.
+  const [go, setGo] = useState(true)
   const [i, setI] = useState(0)
   const [tick, setTick] = useState(0)
   const [paused, setPaused] = useState(false)

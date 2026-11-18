@@ -103,7 +103,7 @@ const T = {
     closeH: 'Sprechen Sie mit den Menschen, die es bauen.',
     closeSub: 'Wir lesen jede Nachricht und antworten selbst.',
     touch: 'Kontakt aufnehmen',
-    book: 'Kostenloses 30-Minuten-Gespräch buchen',
+    book: 'Kostenloses Erstgespräch buchen',
   },
 }
 

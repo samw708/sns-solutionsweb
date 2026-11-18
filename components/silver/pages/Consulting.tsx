@@ -111,7 +111,7 @@ const T = {
     crumb: 'Beratung',
     h1: 'Wo lohnt sich KI für Sie?',
     lead: 'Nicht jede Aufgabe lohnt sich zu automatisieren. Wir sehen uns an, wie Ihr Team arbeitet, sagen Ihnen, welche Teile sich lohnen und welche nicht, und bauen nur, wenn es sich rechnet.',
-    book: 'Kostenloses 30-Minuten-Gespräch buchen',
+    book: 'Kostenloses Erstgespräch buchen',
     how: 'So läuft ein Projekt ab',
     chat: [
       ['them', 'Wir verschicken die ganze Woche Angebote und kommen nie dazu, nachzufassen.'],

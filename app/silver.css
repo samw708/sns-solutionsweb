@@ -451,3 +451,37 @@
 .sv .langsw a:focus-visible{outline:2px solid var(--tx);outline-offset:2px}
 @media (max-width:900px){.sv nav{gap:10px!important}.sv .langsw a{min-width:34px;min-height:34px;padding:0 8px}}
 @media (max-width:420px){.sv .navcta{display:none!important}}
+
+/* ---- phone polish (2026-11-18): found in an audit at 360/390/430 px in WebKit and Chromium ---- */
+/* taps: generous hit areas without changing the look */
+.sv nav > a:first-child{min-height:44px}
+.sv .langsw a{position:relative}
+.sv .langsw a::after{content:"";position:absolute;inset:-6px -1px}
+.sv .crumb2 a{padding:13px 0}
+
+@media (max-width:900px){
+  /* the home consulting row: heading and text first, the booking card under them */
+  .sv .bookcol{order:2!important}
+  /* step cards on the home page: no fixed height once they stack */
+  .sv .stepcard{min-height:0!important}
+  /* footer: two columns instead of one long list */
+  .sv footer .g4{grid-template-columns:repeat(2,minmax(0,1fr))!important;row-gap:32px!important}
+  /* buttons whose label wraps stay centred and roomy */
+  .sv .btn{text-align:center;padding-top:10px;padding-bottom:10px;line-height:1.25}
+  /* the selection printout: readable size, still scrolls sideways if a line is long */
+  .sv .paper{font-size:12px!important}
+}
+@media (max-width:420px){
+  /* long tool-page headlines (German especially) run to 7-8 lines at 40 px */
+  .sv section h1[style*="clamp(40px"]{font-size:34px!important}
+  .sv .lnk{padding:12px 0}
+}
+@media (max-width:900px){
+  /* desktop section rhythm (min(13vh,120px) top and bottom) leaves 110 px bands on a phone; tighten it */
+  .sv .w[style*="padding-top:min(13vh,120px)"]{padding-top:76px!important}
+  .sv .w[style*="padding-bottom:min(13vh,120px)"]{padding-bottom:76px!important}
+  .sv .w[style*="padding-top:min(12vh,108px)"]{padding-top:72px!important}
+  .sv .w[style*="padding-bottom:min(12vh,108px)"]{padding-bottom:72px!important}
+  .sv .w[style*="padding-top:min(15vh,132px)"]{padding-top:84px!important}
+  .sv .w[style*="padding-bottom:min(15vh,132px)"]{padding-bottom:84px!important}
+}
