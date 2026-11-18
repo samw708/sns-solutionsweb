@@ -38,7 +38,7 @@ const T = {
       insights: 'Insights',
       contact: 'Contact',
       language: 'Language',
-      rights: '© SNS Solutions, Vienna',
+      rights: '© SNS Software Solutions GmbH, Vienna',
       imprint: 'Imprint',
       privacy: 'Privacy',
       terms: 'Terms',
@@ -72,7 +72,7 @@ const T = {
       insights: 'Insights',
       contact: 'Kontakt',
       language: 'Sprache',
-      rights: '© SNS Solutions, Wien',
+      rights: '© SNS Software Solutions GmbH, Wien',
       imprint: 'Impressum',
       privacy: 'Datenschutz',
       terms: 'AGB',
@@ -103,7 +103,7 @@ export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/sns-logo.svg" alt="" width={32} height={32} style={{ height: 32, width: 32, display: 'block' }} />
-          SNS Solutions
+          SNS
         </Link>
         <span style={{ flexGrow: 1 }} />
         <span className="navlinks" style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
