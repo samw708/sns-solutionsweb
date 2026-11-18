@@ -1,0 +1,33 @@
+/*
+ * Home hero: the reel box is part of the opening, not a box that is simply there.
+ * 1. After the headline's sweep and the line under it (1.6 s + 0.9 s), the box rises in out of a soft blur.
+ * 2. As it lands, the same silver light that drew the headline passes once across the film.
+ * 3. While it scrolls up to the top of the screen it opens: the frame grows from 92 % to full size and the film
+ *    inside eases back from a slight zoom (--open goes 0 -> 1, set by HeroReel).
+ * Reduced motion: none of it; the box is simply shown.
+ */
+.sv .mh .rise{opacity:0;transform:translateY(80px) scale(.96);transform-origin:50% 0}
+.sv .intro.go + .mh .rise{animation:boxin 1.5s cubic-bezier(.16,1,.3,1) 2.05s both}
+@keyframes boxin{
+  0%{opacity:0;transform:translateY(80px) scale(.96);filter:blur(10px)}
+  55%{filter:blur(0)}
+  100%{opacity:1;transform:none;filter:none}
+}
+.sv .mh .grow{--open:0;transform:scale(calc(.92 + .08 * var(--open)));transform-origin:50% 0;will-change:transform}
+.sv .mh .grow .stack{transform:scale(calc(1.08 - .08 * var(--open)));transform-origin:50% 40%}
+.sv .mh .sheen{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;border-radius:inherit}
+.sv .mh .sheen::before{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:38%;
+  background:linear-gradient(100deg,transparent,#FFFFFF59 42%,#E6E9ED40 58%,transparent);filter:blur(24px);
+  transform:translateX(-140%) skewX(-12deg);mix-blend-mode:screen;opacity:0}
+.sv .intro.go + .mh .sheen::before{animation:boxsheen 1.9s cubic-bezier(.55,0,.25,1) 2.55s both}
+@keyframes boxsheen{
+  0%{transform:translateX(-140%) skewX(-12deg);opacity:0}
+  15%{opacity:1}
+  85%{opacity:1}
+  100%{transform:translateX(330%) skewX(-12deg);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .sv .mh .rise,.sv .intro.go + .mh .rise{opacity:1;transform:none;animation:none}
+  .sv .mh .grow,.sv .mh .grow .stack{transform:none}
+  .sv .mh .sheen{display:none}
+}
