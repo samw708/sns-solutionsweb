@@ -1,10 +1,12 @@
 import Link from 'next/link'
+import { Fragment } from 'react'
 import type { Locale } from '@/i18n/config'
 import { getHvac } from '@/lib/hvac'
 import { contactHref, href } from '@/lib/silver/links'
 import { localePath } from '@/i18n/config'
 import { Btns, Crumb, FilmPair, Lights } from '../ui'
 import Mock from './Mock'
+import ToolScroll from './ToolScroll'
 
 /**
  * /hvac — the HVAC & Refrigeration page (canvas board HVAC-B). The tool index switches panels with radio inputs
@@ -66,17 +68,13 @@ export default function Hub({ locale }: { locale: Locale }) {
             <input key={tool.id} className="vh" type="radio" name="tool" id={`t${i + 1}`} defaultChecked={i === 0} aria-label={tool.name} />
           ))}
           <div className="tools">
-            <div className="rows" role="presentation">
-              {t.tools.map((tool, i) => (
-                <label key={tool.id} htmlFor={`t${i + 1}`}>
+            {t.tools.map((tool, i) => (
+              <Fragment key={tool.id}>
+                <label htmlFor={`t${i + 1}`}>
                   <strong>{tool.name}</strong>
                   <span>{tool.headline}</span>
                 </label>
-              ))}
-            </div>
-            <div className="panel">
-              {t.tools.map((tool, i) => (
-                <div key={tool.id} className={`tp p${i + 1}`}>
+                <div className={`tp p${i + 1}`}>
                   {tool.film ? (
                     <div className="vis" style={{ aspectRatio: 'auto', display: 'block', padding: 0, background: tool.id === 'cad' ? '#F9F9FA' : '#F3F4F6' }}>
                       {/* 16:9 on desktop, the 4:5 cut on phones; German pages get the German renders (captions are in the film) */}
@@ -112,9 +110,10 @@ export default function Hub({ locale }: { locale: Locale }) {
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </Fragment>
+            ))}
           </div>
+          <ToolScroll />
         </div>
       </section>
 
@@ -124,7 +123,7 @@ export default function Hub({ locale }: { locale: Locale }) {
           className="w g2"
           style={{ paddingTop: W_PAD, paddingBottom: W_PAD, display: 'grid', gridTemplateColumns: 'minmax(0,.8fr) minmax(0,1.2fr)', gap: 'clamp(32px,6vw,96px)' }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 18, alignSelf: 'start', position: 'sticky', top: 110 }}>
+          <div className="stick" style={{ display: 'flex', flexDirection: 'column', gap: 18, alignSelf: 'start', position: 'sticky', top: 110 }}>
             <h2 style={{ fontSize: 'clamp(32px,3.4vw,50px)', lineHeight: 1.05, margin: 0 }}>{t.ai.heading}</h2>
             <p className="mut" style={{ fontSize: 18, lineHeight: 1.6, margin: 0 }}>
               {t.ai.body}

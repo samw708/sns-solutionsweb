@@ -238,14 +238,14 @@
 @keyframes lit{to{color:var(--tx)}}
 .sv .chain p{margin:26px 0 0;max-width:38em;font-size:16px;line-height:1.55}
 /* tools: an index on the left, one panel on the right */
-.sv .tools{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,64px);align-items:start}
-.sv .rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
-.sv .rows label{cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:20px 4px 20px 0;border-bottom:1px solid var(--line);position:relative;transition:padding .35s cubic-bezier(.22,1,.36,1)}
-.sv .rows label strong{font-size:clamp(20px,1.8vw,26px);letter-spacing:-0.03em;color:var(--mut2);transition:color .25s}
-.sv .rows label span{font-size:15px;color:var(--mut2);transition:color .25s}
-.sv .rows label:hover strong{color:var(--tx)}
-.sv .rows label::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--tx);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.22,1,.36,1)}
-.sv .panel{position:sticky;top:96px;border-radius:32px;overflow:hidden;background:var(--card);box-shadow:0 50px 90px -60px var(--shadow),0 0 0 1px var(--line)}
+.sv .tools{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-template-rows:repeat(6,auto) 1fr;column-gap:clamp(28px,4vw,64px);row-gap:0;align-items:start}
+.sv .tools>label{grid-column:1}.sv .tools>label:first-of-type{border-top:1px solid var(--line)}
+.sv .tools>label{cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:20px 4px 20px 0;border-bottom:1px solid var(--line);position:relative;transition:padding .35s cubic-bezier(.22,1,.36,1)}
+.sv .tools>label strong{font-size:clamp(20px,1.8vw,26px);letter-spacing:-0.03em;color:var(--mut2);transition:color .25s}
+.sv .tools>label span{font-size:15px;color:var(--mut2);transition:color .25s}
+.sv .tools>label:hover strong{color:var(--tx)}
+.sv .tools>label::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--tx);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.sv .tools>.tp{grid-column:2;grid-row:1 / -1;position:sticky;top:96px;border-radius:32px;overflow:hidden;background:var(--card);box-shadow:0 50px 90px -60px var(--shadow),0 0 0 1px var(--line)}
 .sv .tp{display:none}
 .sv .tp .vis{position:relative;aspect-ratio:16/10;background:radial-gradient(70% 90% at 80% 0%,#FFFFFF 0%,transparent 60%),linear-gradient(160deg,#E7EAEE,#D3D8DE);display:grid;place-items:center;padding:28px;overflow:hidden}
 .sv .tp .vis.dark{background:#000;padding:0}
@@ -308,7 +308,7 @@
 .sv details[open] summary::after{transform:rotate(45deg)}
 .sv details p{margin:0 0 22px;max-width:44em;color:var(--mut);font-size:17px;line-height:1.6}
 .sv summary:focus-visible{outline:2px solid var(--tx);outline-offset:4px;border-radius:6px}
-@media (max-width:900px){.sv .tools{grid-template-columns:1fr}.sv .panel{position:relative;top:0}.sv .chain ol{grid-template-columns:1fr 1fr;row-gap:22px}.sv .chain li::before{display:none}.sv .mt,.sv .method{grid-template-columns:1fr}}
+@media (max-width:900px){.sv .tools{grid-template-columns:1fr;grid-template-rows:none}.sv .tools>.tp{grid-column:auto;grid-row:auto;position:relative;top:0;margin:6px 0 22px}.sv .chain ol{grid-template-columns:1fr 1fr;row-gap:22px}.sv .chain li::before{display:none}.sv .mt,.sv .method{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.sv .chain .run{display:none}.sv .chain li{animation:none;color:var(--tx)}}
 
 /* placeholders: a brief for a photo or film, set in the page where it would go */
@@ -485,3 +485,8 @@
   .sv .w[style*="padding-top:min(15vh,132px)"]{padding-top:84px!important}
   .sv .w[style*="padding-bottom:min(15vh,132px)"]{padding-bottom:84px!important}
 }
+
+/* HVAC page: on phones a tool's panel opens right under the row you tapped (Hub.tsx puts each panel after its row);
+   the sticky column beside the metrics only sticks on wide screens */
+.sv .tools>label{scroll-margin-top:84px}
+@media (max-width:900px){.sv .stick{position:static!important}}
