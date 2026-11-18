@@ -1,0 +1,60 @@
+/* Silver pages: Consulting, Company, Contact, Insights, Article, Legal. Additions to app/silver.css only. */
+
+/* consulting: the example chat waits for no one when motion is reduced */
+@media (prefers-reduced-motion: reduce) {
+  .sv .c-chat span { animation: none !important; opacity: 1 !important; }
+}
+.sv #book, .sv #method, .sv #team { scroll-margin-top: 80px; }
+
+/* contact form: the canvas field boxes as real inputs */
+.sv .field .box { display: block; width: 100%; font: inherit; font-size: 15.5px; font-weight: 400; color: var(--tx); outline: none; }
+.sv .field textarea.box { min-height: 130px; resize: vertical; line-height: 1.5; }
+.sv .field .box::placeholder { color: var(--mut2); opacity: 1; }
+.sv .field .box:focus-visible { outline: 2px solid var(--tx); outline-offset: 2px; }
+.sv .field .box[aria-invalid='true'] { border-color: #b5452c; }
+.sv .ferr { color: #b5452c; font-size: 13.5px; font-weight: 400; line-height: 1.45; margin: 0; }
+.sv .chips2 label { position: relative; cursor: pointer; }
+.sv .chips2 input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.sv .chips2 label span { display: inline-block; }
+.sv .chips2 input:checked + span { background: var(--tx); color: var(--plain); border-color: var(--tx); }
+.sv .chips2 input:focus-visible + span { outline: 2px solid var(--tx); outline-offset: 2px; }
+.sv .ccheck input { flex: none; width: 20px; height: 20px; margin-top: 1px; accent-color: var(--tx); cursor: pointer; }
+.sv .ccheck a { color: var(--tx); text-underline-offset: 3px; }
+.sv button.btn { border: 0; cursor: pointer; font-family: inherit; }
+.sv button.btn:disabled { opacity: 0.55; cursor: default; }
+.sv .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+@media (max-width: 900px) { .sv .c-sticky { position: static !important; } }
+
+/* legal: the existing text in the silver type */
+.sv .lg-doc { overflow-wrap: break-word; }
+.sv .lg-doc article > header { display: flex; flex-direction: column; gap: 14px; margin: 0 0 8px; padding: 0 0 26px; border-bottom: 1px solid var(--line); }
+.sv .lg-doc article > header p { margin: 0 !important; }
+.sv .lg-doc article > header .eyebrow { display: none; }
+.sv .lg-doc article > header h1 { font-family: inherit; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.04; letter-spacing: -0.045em; margin: 0; font-weight: 600; color: var(--tx); }
+.sv .lg-doc article > header p { color: var(--mut); font-size: 17px; line-height: 1.6; margin: 0; }
+.sv .lg-doc .legal-prose { margin-top: 8px; }
+.sv .lg-doc .legal-prose h2 { font-size: clamp(21px, 1.9vw, 26px); line-height: 1.2; letter-spacing: -0.03em; margin: 40px 0 12px; font-weight: 600; }
+.sv .lg-doc .legal-prose h3 { font-size: 18px; line-height: 1.3; letter-spacing: -0.02em; margin: 28px 0 10px; font-weight: 600; }
+.sv .lg-doc .legal-prose p, .sv .lg-doc .legal-prose li { color: var(--mut); font-size: 16.5px; line-height: 1.65; }
+.sv .lg-doc .legal-prose p { margin: 0 0 14px; }
+.sv .lg-doc .legal-prose strong { color: var(--tx); font-weight: 600; }
+.sv .lg-doc .legal-prose a { color: var(--tx); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.sv .lg-doc .legal-prose ul, .sv .lg-doc .legal-prose ol { margin: 0 0 16px; padding-left: 22px; }
+.sv .lg-doc .legal-prose ul { list-style: disc; }
+.sv .lg-doc .legal-prose ol { list-style: decimal; }
+.sv .lg-doc .legal-prose li { margin: 4px 0; }
+.sv .lg-doc .legal-prose table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 0 0 16px; display: block; overflow-x: auto; }
+.sv .lg-doc .legal-prose th, .sv .lg-doc .legal-prose td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--mut); }
+.sv .lg-doc .legal-prose th { color: var(--tx); font-weight: 600; }
+.sv .lg-side a:focus-visible { outline: 2px solid var(--tx); outline-offset: 2px; }
+@media (max-width: 900px) { .sv .lg-grid { grid-template-columns: minmax(0, 1fr) !important; } .sv .lg-side { flex-wrap: wrap !important; position: static !important; flex-direction: row !important; gap: 20px !important; } .sv .lg-side a { border-bottom: 0 !important; padding: 4px 0 !important; } }
+
+/* article: the existing ordered lists and the CTA */
+.sv .read ol { margin: 0 0 18px; padding-left: 22px; }
+.sv .read ol li { font-size: 18px; line-height: 1.65; padding: 6px 0; }
+.sv .post:hover strong, .sv .post:hover h2 { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+.sv .post:focus-visible { outline: 2px solid var(--tx); outline-offset: 6px; border-radius: 12px; }
+.sv .filters button { all: unset; box-sizing: border-box; cursor: pointer; border-radius: 999px; padding: 9px 16px; font-size: 14.5px; font-weight: 600; color: var(--mut); border: 1px solid var(--line); }
+.sv .filters button[aria-pressed='true'] { background: var(--tx); color: var(--plain); border-color: var(--tx); }
+.sv .filters button:focus-visible { outline: 2px solid var(--tx); outline-offset: 2px; }
+.sv .lg-doc article > header p.text-sm { font-size: 14px; }

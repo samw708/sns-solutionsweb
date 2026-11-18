@@ -144,7 +144,7 @@ export const de: Dictionary = {
       heading: 'Buchen Sie ein kostenloses Online-Meeting.',
       sub: 'Dreißig Minuten, online, kostenlos und unverbindlich. Sagen Sie uns, wie Ihr Team heute arbeitet, und wir sagen Ihnen, wo sich KI und bessere Systeme wirklich lohnen, und wo nicht.',
       points: [
-        '30 Minuten online, über Google Meet, Teams oder Zoom',
+        '30 Minuten online, über Google Meet',
         'Eine konkrete Empfehlung in klarer Sprache, die Sie umsetzen können',
         'Keine Verpflichtung, etwas mit uns zu bauen',
       ],

@@ -6,6 +6,7 @@
   min-height: 540px; text-align: left; color: var(--tx); background: var(--card);
   box-shadow: 0 0 0 1px var(--line), 0 30px 60px -30px rgba(42, 48, 56, 0.35);
 }
+.bk.short { min-height: 0; }
 .bk button { font-family: inherit; cursor: pointer; }
 .bk button:focus-visible, .bk input:focus-visible, .bk textarea:focus-visible, .bk h3:focus-visible { outline: 2px solid var(--tx); outline-offset: 2px; }
 .bk a { color: inherit; text-underline-offset: 3px; }

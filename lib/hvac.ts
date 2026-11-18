@@ -5,375 +5,351 @@ export { DOCS_PATH, HVAC_PATH, PACK_PATH, SELECTION_PATH }
 
 /**
  * Copy for the HVAC & refrigeration section: /hvac and /hvac/refrigeration-pack-design (and /de/…).
+ * The English is the silver design canvas's copy (gen_hvac.py, gen_site.py pack_cad()).
  *
  * One source for the pages, their JSON-LD (lib/schema.ts) and /llms.txt + /llms-full.txt, so the
- * words a crawler, an answer engine and a visitor see can't drift apart. Same reasoning as
- * lib/blog.ts; kept out of i18n/dictionaries because it is a self-contained section.
- *
- * Written for answer engines as much as for search: every section opens with a sentence that
- * answers a question on its own (what it is, who it's for, what it does), uses the words buyers
- * search in (pack, rack, Verbundanlage, CO₂ booster, STEP, BOM, ERP), and the FAQ is rendered
+ * words a crawler, an answer engine and a visitor see can't drift apart. The FAQ is rendered
  * visibly on the page *and* as FAQPage schema from the same array.
  *
- * CLAIM GUARDRAILS (the product is in development; see the status lines):
- *  - No customer names. "A European refrigeration manufacturer" is as far as it goes.
+ * CLAIM GUARDRAILS:
+ *  - Pack CAD is built for each pack manufacturer, on its own rules, and what we build for a
+ *    manufacturer stays theirs. It is not sold off the shelf. CO₂ booster packs are our current
+ *    speciality; never say "in development" or offer "design partner" places.
+ *  - No customer names. No manufacturer is named, ever.
  *  - No numbers we haven't measured: no "x% faster", no hours saved. The metrics section defines
  *    what we measure; it never states results.
- *  - No compatibility claims for named selection tools or CAD systems beyond what is true by
- *    definition (a STEP file opens in any mainstream CAD system).
+ *  - No compatibility claims for named selection tools or CAD systems.
  *  - The engineer signs the design off. The software never claims compliance with a standard.
+ *  - Example UI (the mock cards) is labelled as an example.
  */
 
-/** Working product name. One place to change it. */
-export const PACK_PRODUCT_NAME = 'SNS Pack Designer'
+/** Product name. One place to change it. */
+export const PACK_PRODUCT_NAME = 'Pack CAD'
 
 export type Faq = { q: string; a: string }
+
+/** A line in an example UI card. `em` sits right-aligned and muted; `right` is a plain right column. */
+export type MockRow = { a: string; sub?: string; flag?: boolean; em?: string; right?: string; hi?: boolean }
+export type Mock = { title: string; rows: MockRow[] }
+
+export type HvacTool = {
+  id: 'selection' | 'cad' | 'documents' | 'quoting' | 'erp' | 'service'
+  name: string
+  /** The one-liner under the name in the index; also the panel heading. */
+  headline: string
+  line: string
+  points: string[]
+  /** A film in public/sns/site, or an example card. */
+  film?: { name: string; label: string }
+  mock?: Mock
+  status?: string
+  cta: string
+  /** The tool's own page; tools without one link to the contact page. */
+  href?: string
+  /** A second, text link (Pack CAD: "Send us a past job"). */
+  pastJob?: string
+}
 
 const en = {
   /** Breadcrumb names (from lib/hvac-links.ts). */
   crumbHub: HVAC_LABEL.en.hub,
   crumbPack: HVAC_LABEL.en.pack,
-  /** Must match an option in contactForm.services exactly so the form pre-selects it. */
-  contactService: 'HVAC & Refrigeration',
+  crumb: { sns: 'SNS Solutions', industries: 'Industries', hvac: 'HVAC & Refrigeration' },
+  example: 'Example',
+  bookCall: 'Book a free 30-minute call',
+  pastJob: 'Send us a past job',
 
   hub: {
     title: 'Software for HVAC & refrigeration manufacturers',
     description:
       'Selection software, CAD automation, document management and quoting built for HVAC and refrigeration manufacturers, and measured on quote turnaround and engineering hours.',
-    eyebrow: 'HVAC & refrigeration manufacturers',
-    h1: 'Business software built for HVAC and refrigeration manufacturers.',
+    h1: 'Software for HVAC and refrigeration manufacturers.',
     intro:
-      'SNS Solutions builds the software an HVAC or refrigeration manufacturer runs on: selection tools, CAD and design automation, document management, quoting, and the links into ERP and service. Each tool works from your own product data and rules, they share one record from enquiry to service call, and each is measured against the figures that decide whether an order makes money.',
-    heroLine:
       'Selection, design, documents and quoting, built on your own product data and connected from enquiry to service call.',
-    restHeading: 'And the rest of the chain',
+    seeTools: 'See the tools',
+    flow: {
+      label: 'One record from enquiry to service call',
+      steps: ['Enquiry', 'Selection', 'Quote', 'Design & CAD', 'Documents', 'ERP & workshop', 'Service'],
+      text: 'One record from enquiry to service call. In most manufacturers the same unit is typed into one system after another; connected, each step starts from what the last one already knows.',
+    },
     toolsHeading: 'The tools we build',
     toolsSub:
-      'General-purpose software treats a chiller, an air handler or a compressor pack like any other product. These are built around how HVAC equipment is actually selected, designed, documented and serviced.',
+      'Built around how HVAC equipment is actually selected, designed, documented and serviced. Each one works from your own product data and rules.',
     tools: [
       {
         id: 'selection',
         name: 'Selection software',
         headline: 'Enter the duty. Get the right unit.',
-        line: 'Your performance data and rules, on the web, for every sales engineer, rep and distributor.',
-        tagline: 'Enter the duty. Get the right unit from your range, with its datasheet and price.',
+        film: {
+          name: 'selection-film',
+          label:
+            'A distributor’s enquiry waits overnight in the factory’s queue; entered in the browser, it returns the unit, its datasheet and its price.',
+        },
+        line: 'Your performance data and selection rules, on the web, for every sales engineer, rep and distributor.',
         points: [
-          'Runs on your performance data and selection rules',
-          'On the web, for sales engineers, reps and distributors',
+          'Runs on your performance data and rules',
           'Datasheet and quote from the same selection',
+          'Access for your sales channel, each with their own rights',
         ],
+        cta: 'See selection software',
         href: SELECTION_PATH,
-        cta: 'Selection software',
       },
       {
         id: 'cad',
         name: 'CAD & design automation',
-        headline: 'Describe the pack. Get one your workshop can build.',
-        line: 'From the compressor selection printout to schematic, 3D model and parts list, by your own design rules.',
-        tagline: 'Describe the pack. Get one your workshop can build, designed to your rules.',
+        headline: 'From the selection to a pack your workshop can build.',
+        film: { name: 'pack-model-drawing', label: 'The 3D pack turns to the front and becomes its drawing, in register.' },
+        status: 'Current speciality: CO₂ booster packs',
+        line: 'Pack CAD takes the selection from your manufacturer’s tool and produces the pack in 3D and 2D, inside your engineering rules. It flags what isn’t possible, and says why.',
         points: [
-          'From the selection printout to schematic, 3D model and parts list',
-          'Your catalogue and your house rules',
-          'STEP export into the CAD system you already use',
+          'The 3D model and the 2D drawings from one selection',
+          'Changes in plain words, checked against your rules',
+          'Built for your packs, on your own rules',
         ],
+        cta: 'See Pack CAD',
         href: PACK_PATH,
-        cta: 'Pack design software',
+        pastJob: 'Send us a past job',
       },
       {
         id: 'documents',
         name: 'Document management',
         headline: 'Every document, under one serial number.',
+        film: {
+          name: 'documents-film',
+          label: 'A unit’s documents gather under its nameplate; a missing certificate is flagged and filed when it arrives.',
+        },
         line: 'Drawings, datasheets and certificates under revision control, with the handover dossier put together for you.',
-        tagline: 'Every drawing, datasheet and certificate for every unit, under one serial number.',
-        points: [
-          'Revision control from draft to released',
-          'Handover dossier assembled per unit, automatically',
-          'Found again in seconds when service needs it',
-        ],
+        points: ['Revision control from draft to released', 'Handover dossier assembled per unit', 'Found again when service needs it'],
+        cta: 'See document management',
         href: DOCS_PATH,
-        cta: 'Document management',
       },
       {
         id: 'quoting',
         name: 'Quoting & CPQ',
         headline: 'Quotes built from the selection.',
-        line: 'Prices and options from your own rules.',
-        tagline: 'Quotes built from the selection, not retyped from it.',
-        points: [
-          'Prices and options from your own rules',
-          'The same data the workshop builds from',
-          'Follow-up on quotes nobody has answered',
-        ],
-        cta: 'Talk about quoting',
+        mock: {
+          title: 'Quote Q-1182',
+          rows: [
+            { a: 'CX-140 condensing unit', em: 'From selection' },
+            { a: 'Options: sound hood, remote monitoring', em: 'Your price rules' },
+            { a: 'Commissioning', em: 'Your price rules' },
+            { a: 'Sent Monday. No reply yet', right: 'Follow up', hi: true },
+          ],
+        },
+        line: 'Quotes built from the selection, not retyped from it, with prices and options from your own rules.',
+        points: ['Prices and options from your own rules', 'The same data the workshop builds from', 'Follow-up on quotes nobody has answered'],
+        cta: 'Talk to us about quoting',
       },
       {
         id: 'erp',
         name: 'ERP & parts lists',
         headline: 'Parts lists that arrive complete.',
-        line: 'Synced from CAD and PDM into your ERP.',
-        tagline: 'A parts list leaves design once and arrives in purchasing complete.',
-        points: [
-          'CAD and PDM parts lists synced into your ERP',
-          'Your part numbers, not retyped descriptions',
-          'Changes after release flagged, not lost',
-        ],
-        cta: 'Talk about your ERP',
+        mock: {
+          title: 'Parts list, order 24-0318',
+          rows: [
+            { a: '40-1120 Compressor', sub: 'Synced to ERP', right: '3×' },
+            { a: '52-0410 Ball valve DN25', sub: 'Synced to ERP', right: '6×' },
+            { a: '61-0087 Liquid receiver', sub: 'Changed after release', flag: true, right: '1×' },
+          ],
+        },
+        line: 'A parts list leaves design once and arrives in purchasing complete, with your part numbers.',
+        points: ['CAD and PDM parts lists synced into your ERP', 'Your part numbers, not retyped descriptions', 'Changes after release flagged, not lost'],
+        cta: 'Talk to us about your ERP',
       },
       {
         id: 'service',
         name: 'Service & after-sales',
         headline: 'What was shipped, by serial number.',
-        line: 'Service history and spare parts for every unit.',
-        tagline: 'What was shipped, under the serial number the technician is standing in front of.',
-        points: [
-          'As-built configuration and documents per unit',
-          'Service history and spare parts by serial number',
-          'What the field learns, back to engineering',
-        ],
-        cta: 'Talk about service',
+        mock: {
+          title: 'Serial 0318-02',
+          rows: [
+            { a: 'As built', sub: 'CX-140, sound hood, remote monitoring', right: 'Docs', hi: true },
+            { a: 'Annual service', em: 'March' },
+            { a: 'Expansion valve replaced', em: 'January' },
+            { a: 'Spare parts for this unit', em: '12 parts' },
+          ],
+        },
+        line: 'The as-built unit, its documents, its service history and its spare parts, under the serial number the technician is standing in front of.',
+        points: ['As-built configuration and documents per unit', 'Service history and spare parts by serial number', 'What the field learns, back to engineering'],
+        cta: 'Talk to us about service',
       },
-    ],
-    flow: {
-      heading: 'One record from enquiry to service call',
-      sub: 'In most manufacturers the same unit is typed into five systems. Connected, each step starts from what the last one already knows.',
-      steps: ['Enquiry', 'Selection', 'Quote', 'Design & CAD', 'Documents', 'ERP & workshop', 'Service'],
-    },
+    ] as HvacTool[],
     ai: {
-      eyebrow: 'AI',
       heading: 'AI where it moves a number, not where it makes a demo.',
-      line: 'We measure the figure first, then build the smallest thing that moves it: drafting quotes from enquiries, checking selections, filing certificates.',
-      body: 'We start from the figure you want to move and measure it before we build anything. Then we build the smallest thing that can move it: reading enquiries and tender specifications into a draft selection and quote, checking a selection against your rules before it goes out, filing incoming certificates against the right order, or flagging orders whose margin is drifting.',
+      body: 'We measure the figure first, then build the smallest thing that moves it: drafting quotes from enquiries, checking selections against your rules, filing certificates against the right order.',
     },
     metrics: {
-      eyebrow: 'The metrics',
-      heading: 'The numbers that decide whether an HVAC manufacturer makes money.',
-      short: 'Built and judged on the numbers you run on.',
-      shortSub: 'We measure one of these before we build, and again after the pilot.',
-      detailsLabel: 'What each one measures',
-      sub: 'These are the figures we baseline before a build and measure again after it. If a system doesn’t move one of them, it isn’t worth building.',
-      cols: { metric: 'Metric', definition: 'What it measures', where: 'Where the time usually goes' },
+      heading: 'The figures we measure, before and after',
       rows: [
-        {
-          metric: 'Quote turnaround',
-          definition: 'Working days from an enquiry arriving to a priced quote going out.',
-          where: 'Re-selecting compressors, redrawing a similar pack, waiting for engineering.',
-        },
-        {
-          metric: 'Engineering hours per order',
-          definition: 'Design and drawing hours spent on each sold pack or unit.',
-          where: 'Drawing variants by hand that differ from the last one only in size.',
-        },
-        {
-          metric: 'First-time-right rate',
-          definition: 'Share of orders built without a drawing revision or a workshop query.',
-          where: 'Rules that live in one engineer’s head and get applied differently each time.',
-        },
-        {
-          metric: 'Quote-to-order rate',
-          definition: 'Share of sent quotes that turn into orders.',
-          where: 'Slow quotes, and quotes nobody follows up.',
-        },
-        {
-          metric: 'Quoted vs actual margin',
-          definition: 'The gap between the margin at quote and the margin after the build.',
-          where: 'Parts lists that change between quote, design and purchasing.',
-        },
-        {
-          metric: 'On-time delivery',
-          definition: 'Share of orders shipped on the date promised to the customer.',
-          where: 'Late design release holding up purchasing and the workshop.',
-        },
-        {
-          metric: 'First-time fix rate',
-          definition: 'Share of service calls closed on the first visit.',
-          where: 'Technicians arriving without the as-built data for the unit in front of them.',
-        },
+        { metric: 'Quote turnaround', definition: 'Working days from an enquiry arriving to a priced quote going out.' },
+        { metric: 'Engineering hours per order', definition: 'Design and drawing hours spent on each sold pack or unit.' },
+        { metric: 'First-time-right rate', definition: 'Share of orders built without a drawing revision or a workshop query.' },
+        { metric: 'Quote-to-order rate', definition: 'Share of sent quotes that turn into orders.' },
+        { metric: 'Quoted vs actual margin', definition: 'The gap between the margin at quote and the margin after the build.' },
+        { metric: 'On-time delivery', definition: 'Share of orders shipped on the date promised to the customer.' },
+        { metric: 'First-time fix rate', definition: 'Share of service calls closed on the first visit.' },
       ],
       methodHeading: 'How we measure',
       method: [
-        { k: '01', name: 'Baseline', text: 'We measure the figure on your recent orders before we touch anything.' },
-        { k: '02', name: 'Pilot', text: 'One workflow, live on real orders, in weeks.' },
-        { k: '03', name: 'Measure again', text: 'Same figure, same method, side by side. You decide what comes next.' },
+        { k: '1', name: 'Baseline', text: 'We measure the figure on your recent orders before we touch anything.' },
+        { k: '2', name: 'Pilot', text: 'One workflow, live on real orders, in weeks.' },
+        { k: '3', name: 'Measure again', text: 'Same figure, same method, side by side. You decide what comes next.' },
       ],
     },
-
     faqHeading: 'Questions manufacturers ask us',
-    faqShort: 'Good to know',
     faq: [
       {
         q: 'What software does an HVAC manufacturer need?',
-        a: 'Usually a selection tool for its own product range, CAD for design, a document system for drawings, datasheets and certificates, a way to build quotes, an ERP for parts and purchasing, and a service record for each unit. Most of the hours are lost in the gaps between them, where the same data is retyped from one system into the next.',
+        a: 'Usually a selection tool for its own range, CAD for design, a document system for drawings, datasheets and certificates, a way to build quotes, an ERP for parts and purchasing, and a service record for each unit. Most of the hours are lost in the gaps between them, where the same data is retyped from one system into the next.',
       },
       {
-        q: 'What is HVAC selection software?',
-        a: 'Software that takes a project’s duty, such as capacity, temperatures, airflow and refrigerant, and returns the units from a manufacturer’s range that meet it, with their performance, a datasheet and a price. We build it on the manufacturer’s own performance data and selection rules.',
+        q: 'Do you replace our ERP or CRM?',
+        a: 'No. Use them where they fit; we connect to them. What generic systems don’t know is how an HVAC unit is selected against a duty, which documents a unit needs at handover, or how a pack is built from a compressor selection. That HVAC-specific layer is what we build.',
       },
       {
-        q: 'Why not use a generic ERP, CRM or document management system?',
-        a: 'Use them where they fit; we connect to them rather than replace them. What generic systems do not know is how an HVAC unit is selected against a duty, which documents a unit needs at handover, or how a pack is built from a compressor selection. That HVAC-specific layer is what we build.',
+        q: 'Can we buy Pack CAD off the shelf?',
+        a: 'No. We build it for each pack manufacturer, around your own components, rules and frames. Our current speciality is CO₂ booster packs. If you build refrigeration packs, send us a past job and we’ll show you what it would produce.',
       },
       {
-        q: 'How can AI help an HVAC manufacturer?',
-        a: 'Where it moves a measurable figure: drafting selections and quotes from enquiries and tender specifications, checking selections against your rules before they go out, filing incoming certificates and test reports, and giving service technicians the as-built data for a unit. We measure the figure before and after, so the answer is a number rather than an impression.',
-      },
-      {
-        q: 'How do you measure whether a software project worked?',
+        q: 'How do you measure whether it worked?',
         a: 'We pick one figure, such as quote turnaround or engineering hours per order, measure it on your recent orders before the build, run a pilot on real orders, and measure the same figure the same way afterwards. You see both numbers side by side.',
       },
       {
         q: 'Do you work with manufacturers outside Austria?',
-        a: 'Yes. SNS Solutions is based in Vienna and works in English and German with manufacturers across Europe. Our pack design software is being built with a refrigeration manufacturer outside Austria.',
+        a: 'Yes. We’re based in Vienna and work in English and German with manufacturers across Europe.',
       },
       {
         q: 'How do we start?',
-        a: 'With a free 30-minute online call. Tell us which tool or figure is hurting and how the work runs today, and we will tell you what it would take to fix it, or tell you honestly that software would not.',
+        a: 'With a free 30-minute online call. Tell us which tool or figure is hurting and how the work runs today. We’ll tell you what it would take to fix it, or tell you honestly that software wouldn’t.',
       },
     ] as Faq[],
     closing: {
       heading: 'Which tool would you fix first?',
       sub: 'Book a free 30-minute call. Bring the spreadsheet, the folder or the figure that hurts, and the way the work runs today.',
-      cta: 'Book a free consultation',
     },
   },
 
   pack: {
-    title: 'Refrigeration pack design software',
+    title: 'Pack CAD: refrigeration pack design software',
     description:
-      'Turn a compressor selection printout into a refrigeration pack your workshop can build: schematic, 3D model and parts list, designed to your own rules. CO₂ booster packs first.',
-    eyebrow: 'Refrigeration pack design software',
-    h1: 'Describe the pack. Get one your workshop can build, designed to your rules.',
+      'Pack CAD turns the selection from your compressor manufacturer’s tool into a refrigeration pack in 3D and 2D, inside your engineering rules. Built for each pack manufacturer; CO₂ booster packs are our current speciality.',
+    h1: 'From the selection to a pack your workshop can build.',
     intro:
-      'SNS Pack Designer turns the printout from your compressor selection software into a complete refrigeration pack (also called a compressor rack): a schematic, a 3D model and a parts list. The valves, headers, receivers and oil system the printout leaves out are placed by your company’s own design rules, so the result looks like a pack your engineers drew.',
-    status:
-      'In development with a European refrigeration manufacturer, starting with CO₂ transcritical booster packs. We are taking on a small number of further manufacturers as design partners.',
-    primaryCta: 'Become a design partner',
+      'Pack CAD takes the selection from your manufacturer’s tool and produces the pack in 3D and 2D, inside your engineering rules. It flags what isn’t possible, and says why.',
+    speciality: ['Current speciality: CO₂ booster packs.', 'Built for each manufacturer, on its own rules.'],
+    loopLabel: 'A refrigeration pack drawn as a wireframe, filling in as solid metal, then the camera pulls back to the whole pack.',
 
     gap: {
-      eyebrow: 'The gap',
       heading: 'A selection printout is not a pack.',
       sub: 'The selection software sizes the compressors. Everything between those compressors and a pack on the workshop floor is still drawn by an engineer, from rules that are rarely written down.',
-      hasHeading: 'What the printout gives you',
-      has: [
-        'Compressor models and how many',
-        'Refrigerant and operating temperatures',
-        'Cooling capacity and power input at each operating point',
-        'Suction and discharge conditions',
-      ],
-      needsHeading: 'What the workshop still needs',
-      needs: [
-        'Suction and discharge headers, sized and positioned',
-        'Valves: high-pressure, flash gas, expansion and service',
-        'Receivers and vessels, and where they sit',
-        'Oil separation and oil return',
-        'The frame, the layout and the pipe runs',
-        'A parts list with your part numbers',
+      printoutLabel: 'An example compressor selection printout',
+      printout: {
+        title: 'COMPRESSOR SELECTION',
+        groups: [
+          [
+            ['Refrigerant', 'R744 (CO₂)'],
+            ['System', 'Transcritical booster'],
+            ['MT evaporating', '−8 °C'],
+            ['LT evaporating', '−32 °C'],
+            ['Gas cooler out', '35 °C'],
+          ],
+          [
+            ['MT compressors', '4 ×  semi-hermetic'],
+            ['LT compressors', '2 ×  semi-hermetic'],
+            ['MT duty', '240 kW (4 × 60 kW)'],
+          ],
+        ],
+        missing: 'Valves, headers, vessels, oil system, frame: not included',
+      },
+      addsHeading: 'What Pack CAD adds, by your rules',
+      adds: [
+        ['Suction and discharge headers', 'sized and placed'],
+        ['Valves: high-pressure, flash gas, expansion, service', 'chosen'],
+        ['Receivers and vessels', 'placed'],
+        ['Oil separation and return', 'laid out'],
+        ['The frame, the layout and the pipe runs', 'drawn'],
+        ['A parts list with your part numbers', 'listed'],
       ],
     },
 
     stepsHeading: 'How it works',
+    stepsSub: 'One job, from the printout to the files your workshop builds from.',
     steps: [
-      {
-        k: '01',
-        name: 'Upload the printout',
-        text: 'The PDF your compressor selection software already produces. The software reads the compressors, refrigerant, temperatures and duties from it.',
-      },
-      {
-        k: '02',
-        name: 'Check the pack spec',
-        text: 'What was read becomes a structured specification your engineer reviews and corrects. Nothing is assumed silently.',
-      },
-      {
-        k: '03',
-        name: 'Your rules applied',
-        text: 'Headers, valves, vessels and the oil system are chosen and placed from your catalogue and your house rules.',
-      },
-      {
-        k: '04',
-        name: 'Schematic and 3D model',
-        text: 'A schematic of the circuit and a 3D model of the pack on your own frame family.',
-      },
-      {
-        k: '05',
-        name: 'Files for quoting and the workshop',
-        text: 'A parts list for the quote, a STEP model for your engineers to finish, and workshop documents per pack family.',
-      },
+      { name: 'Upload the printout', text: 'The PDF your selection software already produces. Pack CAD reads the compressors, refrigerant, temperatures and duties from it.' },
+      { name: 'Check the spec', text: 'What was read becomes a specification your engineer reviews. Nothing is assumed silently.' },
+      { name: 'Your rules applied', text: 'Headers, valves, vessels and the oil system chosen and placed from your catalogue and your house rules.' },
+      { name: 'Design and detail', text: 'The pack in 3D on your frame family, with its schematic and 2D drawings. Edit it in plain words or directly.' },
+      { name: 'Outputs', text: 'Parts list for the quote, drawings for the workshop, STEP and DXF for exchanging files.' },
     ],
+    stepsFilm: 'The compressors on a selection printout lift off and land on the pack drawing; everything the printout leaves out draws in around them.',
 
     rules: {
-      eyebrow: 'Designed to your rules',
-      heading: 'Your catalogue and your standards, not a generic library.',
-      body: 'Every manufacturer builds packs differently: which valve brands, which header sizes, how the oil system is laid out, which frames. We write those rules down with your engineers and the software applies them to every pack. Your rules and catalogue sit in their own layer, separate from the core software.',
+      heading: 'Inside your rules, and honest about them.',
+      body: 'Every manufacturer builds packs differently: which valves, which header sizes, how the oil system runs, which frames. We write those rules down with your engineers. Pack CAD applies them to every pack, and when a change breaks one, it says which and why instead of drawing it anyway.',
       points: [
         'Your components and part numbers',
         'Your sizing rules for headers, lines and vessels',
         'Your frame families and layout conventions',
         'Your engineers sign the design off',
       ],
+      film: 'The pack in plan between the site’s depth limits: growing deeper is flagged with the rule’s name, so it grows one bay longer instead.',
     },
 
     scale: {
-      eyebrow: 'Sizing up',
       heading: 'Take a medium pack and make it larger, properly.',
-      body: 'A larger pack is not a stretched drawing. More capacity changes header diameters, valve sizes, vessel volumes and often the frame. Because the pack is generated from rules rather than copied from an earlier drawing, picking a larger size runs the rules again and every part follows.',
-    },
-
-    outputs: {
-      heading: 'What you get out, in the order we are building it',
+      body: 'A larger pack is not a stretched drawing. More capacity changes header diameters, valve sizes, vessel volumes and often the frame. Because the pack comes from your rules, picking a larger size runs them again and every part follows.',
       items: [
-        {
-          stage: 'First',
-          name: 'Quote and parts list',
-          text: 'A priced parts list from the selection, so a quote goes out before engineering has drawn anything.',
-        },
-        {
-          stage: 'Next',
-          name: 'STEP model',
-          text: 'A 3D model in STEP, which opens in SolidWorks, Inventor, Creo, Solid Edge and other CAD systems, for your engineers to finish.',
-        },
-        {
-          stage: 'Then',
-          name: 'Workshop outputs',
-          text: 'The documents your workshop builds from, defined per pack family with your team.',
-        },
+        'Header diameters, from your velocity limits',
+        'Valve sizes, from your selection tables',
+        'Vessel volumes, from the new capacity',
+        'The frame, a bay longer when it needs one',
+        'The drawings and the parts list, again',
       ],
     },
 
-    faqHeading: 'Questions about pack design',
+    outputs: {
+      heading: 'What comes out',
+      film: 'The 3D pack turns to the front; a wipe shows model and drawing in register; the drawing settles into its sheet and each part lights with its row in the parts list.',
+      items: [
+        { name: '3D model', text: 'The pack on your frame family, every part in place.' },
+        { name: '2D drawings', text: 'General arrangement and detail sheets, in your drawing frame, generated from the model.' },
+        { name: 'Parts list', text: 'Every part on the drawing with its quantity, ready for the quote and purchasing.' },
+      ],
+    },
+
+    own: {
+      heading: 'Built for your packs, and nobody else’s.',
+      body: 'There’s no generic version to install. We start from your past jobs and build the system around your components, your frames and your engineers’ rules. What we build for you stays yours.',
+      photo: 'A printed general arrangement drawing on a desk with a coffee cup and a pencil.',
+    },
+
+    faqHeading: 'Questions about Pack CAD',
     faq: [
       {
-        q: 'What is refrigeration pack design software?',
-        a: 'Software that turns a compressor selection into a complete refrigeration pack design: the schematic, the 3D model and the parts list, including the headers, valves, vessels and oil system that the selection does not cover. SNS Pack Designer does this by applying the manufacturer’s own design rules.',
+        q: 'Can we buy Pack CAD off the shelf?',
+        a: 'No. We build it for each manufacturer, around your components, sizing rules, frame families and drawing standards, and what we build for you stays yours. Our current speciality is CO₂ transcritical booster packs. Other pack types start the same way, from your past jobs and your rules.',
       },
       {
-        q: 'Which compressor selection software does it read?',
-        a: 'It reads the printout (PDF) that your selection software produces. Each format is set up with the manufacturer who uses it, so tell us which selection tool your engineers work with.',
+        q: 'Which selection software does it read?',
+        a: 'It reads the printout your selection software produces. Each format is set up with the manufacturer who uses it, so tell us which tool your engineers work with.',
       },
       {
-        q: 'Does it replace SolidWorks or our CAD system?',
-        a: 'No. It produces a STEP model, which opens in SolidWorks, Inventor, Creo, Solid Edge and other CAD systems, and your engineers finish and release the design there as they do today.',
+        q: 'Do our engineers still draw packs in another CAD system?',
+        a: 'Pack CAD is built so your engineers design, edit and detail packs in it directly. STEP and DXF are there for exchanging files with customers and other systems.',
       },
       {
-        q: 'Which pack types and refrigerants does it support?',
-        a: 'CO₂ transcritical booster packs first, because that is what we are building with our first manufacturer. Other pack types follow once their rules are written with a manufacturer who builds them.',
-      },
-      {
-        q: 'Can it scale an existing pack design to a larger size?',
-        a: 'Yes, that is one of the main reasons it exists. The pack is generated from rules, so choosing a larger size re-runs the rules and resizes headers, valves, vessels and the frame together, rather than stretching an old drawing.',
+        q: 'Can it scale an existing pack to a larger size?',
+        a: 'Yes, that’s one of the main reasons it exists. Choosing a larger size runs your rules again and resizes headers, valves, vessels and the frame together.',
       },
       {
         q: 'Who is responsible for the final design?',
-        a: 'Your engineers. The software applies the rules you give it and shows what it decided and why; the engineer checks, finishes and signs off the design, as with any pack today.',
-      },
-      {
-        q: 'Is it available now?',
-        a: 'It is in development with a European refrigeration manufacturer. We are taking on a small number of further manufacturers as design partners, who shape the rules and outputs for their own pack families.',
+        a: 'Your engineers. Pack CAD shows what it decided and why; the engineer checks and signs off the design, as with any pack today.',
       },
     ] as Faq[],
 
-    partner: {
-      heading: 'Build it with us for your packs.',
-      sub: 'We are looking for one or two more manufacturers whose engineers want to stop redrawing the same pack in a different size. Book a call and bring a selection printout.',
-      cta: 'Become a design partner',
+    closing: {
+      heading: 'Bring us one past job.',
+      sub: 'Send a selection printout and the drawing your engineers made from it. We’ll show you what Pack CAD would produce.',
     },
   },
 }
@@ -383,347 +359,302 @@ export type HvacCopy = typeof en
 const de: HvacCopy = {
   crumbHub: HVAC_LABEL.de.hub,
   crumbPack: HVAC_LABEL.de.pack,
-  contactService: 'HLK & Kältetechnik',
+  crumb: { sns: 'SNS Solutions', industries: 'Branchen', hvac: 'HLK & Kältetechnik' },
+  example: 'Beispiel',
+  bookCall: 'Kostenloses Erstgespräch buchen',
+  pastJob: 'Schicken Sie uns einen alten Auftrag',
 
   hub: {
     title: 'Software für Hersteller in HLK und Kältetechnik',
     description:
       'Auslegungssoftware, CAD-Automatisierung, Dokumentenmanagement und Angebotserstellung für Hersteller in HLK und Kältetechnik, gemessen an Angebotsdauer und Konstruktionsstunden.',
-    eyebrow: 'Hersteller in HLK und Kältetechnik',
-    h1: 'Unternehmenssoftware für Hersteller in HLK und Kältetechnik.',
+    h1: 'Software für Hersteller in HLK und Kältetechnik.',
     intro:
-      'SNS Solutions entwickelt die Software, mit der ein Hersteller in HLK und Kältetechnik arbeitet: Auslegungsprogramme, CAD und Konstruktionsautomatisierung, Dokumentenmanagement, Angebotserstellung und die Anbindung an ERP und Service. Jedes Werkzeug arbeitet mit Ihren eigenen Produktdaten und Regeln, alle teilen einen Datensatz von der Anfrage bis zum Serviceeinsatz, und jedes wird an den Kennzahlen gemessen, die über den Ertrag eines Auftrags entscheiden.',
-    heroLine:
-      'Auslegung, Konstruktion, Dokumente und Angebote, auf Ihren eigenen Produktdaten gebaut und verbunden von der Anfrage bis zum Serviceeinsatz.',
-    restHeading: 'Und der Rest der Kette',
+      'Auslegung, Konstruktion, Unterlagen und Angebote, auf Ihren eigenen Produktdaten gebaut und verbunden von der Anfrage bis zum Serviceeinsatz.',
+    seeTools: 'Zu den Werkzeugen',
+    flow: {
+      label: 'Ein Datensatz von der Anfrage bis zum Serviceeinsatz',
+      steps: ['Anfrage', 'Auslegung', 'Angebot', 'Konstruktion & CAD', 'Unterlagen', 'ERP & Werkstatt', 'Service'],
+      text: 'Ein Datensatz von der Anfrage bis zum Serviceeinsatz. Bei den meisten Herstellern wird dieselbe Anlage in ein System nach dem anderen getippt; verbunden beginnt jeder Schritt mit dem, was der vorige schon weiß.',
+    },
     toolsHeading: 'Die Werkzeuge, die wir bauen',
     toolsSub:
-      'Allgemeine Software behandelt einen Kaltwassersatz, ein Lüftungsgerät oder eine Verbundanlage wie jedes andere Produkt. Diese Werkzeuge sind darauf gebaut, wie HLK-Anlagen tatsächlich ausgelegt, konstruiert, dokumentiert und gewartet werden.',
+      'Gebaut danach, wie HLK-Anlagen tatsächlich ausgelegt, konstruiert, dokumentiert und gewartet werden. Jedes arbeitet mit Ihren eigenen Produktdaten und Regeln.',
     tools: [
       {
         id: 'selection',
         name: 'Auslegungssoftware',
-        headline: 'Leistung eingeben. Das passende Gerät erhalten.',
-        line: 'Ihre Leistungsdaten und Regeln, im Browser, für jeden Vertriebsingenieur, Vertreter und Händler.',
-        tagline: 'Leistung eingeben. Das passende Gerät aus Ihrem Programm erhalten, mit Datenblatt und Preis.',
+        headline: 'Anforderung eingeben. Das passende Gerät erhalten.',
+        film: {
+          name: 'selection-film',
+          label:
+            'Die Anfrage eines Händlers wartet über Nacht in der Warteschlange des Werks; im Browser eingegeben, liefert sie Gerät, Datenblatt und Preis.',
+        },
+        line: 'Ihre Leistungsdaten und Auslegungsregeln, im Browser, für jeden Vertriebsingenieur, Vertreter und Händler.',
         points: [
-          'Arbeitet mit Ihren Leistungsdaten und Auslegungsregeln',
-          'Im Browser, für Vertriebsingenieure, Vertreter und Händler',
+          'Arbeitet mit Ihren Leistungsdaten und Regeln',
           'Datenblatt und Angebot aus derselben Auslegung',
+          'Zugang für Ihren Vertrieb, jeweils mit eigenen Rechten',
         ],
+        cta: 'Zur Auslegungssoftware',
         href: SELECTION_PATH,
-        cta: 'Auslegungssoftware',
       },
       {
         id: 'cad',
         name: 'CAD & Konstruktionsautomatisierung',
-        headline: 'Anlage beschreiben. Eine erhalten, die Ihre Werkstatt bauen kann.',
-        line: 'Vom Auslegungsausdruck zu Schema, 3D-Modell und Stückliste, nach Ihren eigenen Konstruktionsregeln.',
-        tagline:
-          'Beschreiben Sie die Anlage. Sie erhalten eine, die Ihre Werkstatt bauen kann, nach Ihren Regeln konstruiert.',
+        headline: 'Von der Auslegung zu einer Anlage, die Ihre Werkstatt bauen kann.',
+        film: { name: 'pack-model-drawing', label: 'Die 3D-Anlage dreht sich nach vorne und wird deckungsgleich zu ihrer Zeichnung.' },
+        status: 'Derzeitiger Schwerpunkt: CO₂-Booster-Anlagen',
+        line: 'Pack CAD übernimmt die Auslegung aus dem Programm Ihres Verdichterherstellers und erstellt die Anlage in 3D und 2D, innerhalb Ihrer Konstruktionsregeln. Es zeigt, was nicht geht, und sagt, warum.',
         points: [
-          'Vom Auslegungsausdruck zu Schema, 3D-Modell und Stückliste',
-          'Ihr Katalog und Ihre Hausregeln',
-          'STEP-Export in das CAD-System, das Sie bereits nutzen',
+          '3D-Modell und 2D-Zeichnungen aus einer Auslegung',
+          'Änderungen in einfachen Worten, gegen Ihre Regeln geprüft',
+          'Für Ihre Anlagen gebaut, nach Ihren eigenen Regeln',
         ],
+        cta: 'Zu Pack CAD',
         href: PACK_PATH,
-        cta: 'Software für Verbundanlagen',
+        pastJob: 'Schicken Sie uns einen alten Auftrag',
       },
       {
         id: 'documents',
         name: 'Dokumentenmanagement',
         headline: 'Jede Unterlage, unter einer Seriennummer.',
+        film: {
+          name: 'documents-film',
+          label: 'Die Unterlagen einer Anlage sammeln sich unter ihrem Typenschild; ein fehlendes Zertifikat wird markiert und abgelegt, sobald es eintrifft.',
+        },
         line: 'Zeichnungen, Datenblätter und Zertifikate unter Revisionsverwaltung, die Übergabedokumentation wird für Sie zusammengestellt.',
-        tagline: 'Jede Zeichnung, jedes Datenblatt und jedes Zertifikat jeder Anlage, unter einer Seriennummer.',
-        points: [
-          'Revisionsverwaltung vom Entwurf bis zur Freigabe',
-          'Übergabedokumentation je Anlage, automatisch zusammengestellt',
-          'In Sekunden wiedergefunden, wenn der Service sie braucht',
-        ],
+        points: ['Revisionsverwaltung vom Entwurf bis zur Freigabe', 'Übergabedokumentation je Anlage zusammengestellt', 'Wiedergefunden, wenn der Service sie braucht'],
+        cta: 'Zum Dokumentenmanagement',
         href: DOCS_PATH,
-        cta: 'Dokumentenmanagement',
       },
       {
         id: 'quoting',
         name: 'Angebote & CPQ',
         headline: 'Angebote aus der Auslegung.',
-        line: 'Preise und Optionen nach Ihren eigenen Regeln.',
-        tagline: 'Angebote aus der Auslegung erstellt, nicht aus ihr abgetippt.',
-        points: [
-          'Preise und Optionen nach Ihren eigenen Regeln',
-          'Dieselben Daten, nach denen die Werkstatt baut',
-          'Nachfassen bei Angeboten, auf die niemand geantwortet hat',
-        ],
+        mock: {
+          title: 'Angebot Q-1182',
+          rows: [
+            { a: 'Verflüssigungssatz CX-140', em: 'Aus der Auslegung' },
+            { a: 'Optionen: Schallhaube, Fernüberwachung', em: 'Ihre Preisregeln' },
+            { a: 'Inbetriebnahme', em: 'Ihre Preisregeln' },
+            { a: 'Montag versendet. Noch keine Antwort', right: 'Nachfassen', hi: true },
+          ],
+        },
+        line: 'Angebote aus der Auslegung erstellt, nicht aus ihr abgetippt, mit Preisen und Optionen nach Ihren eigenen Regeln.',
+        points: ['Preise und Optionen nach Ihren eigenen Regeln', 'Dieselben Daten, nach denen die Werkstatt baut', 'Nachfassen bei Angeboten, auf die niemand geantwortet hat'],
         cta: 'Über Angebote sprechen',
       },
       {
         id: 'erp',
         name: 'ERP & Stücklisten',
         headline: 'Stücklisten, die vollständig ankommen.',
-        line: 'Aus CAD und PDM direkt in Ihr ERP.',
-        tagline: 'Eine Stückliste verlässt die Konstruktion einmal und kommt vollständig im Einkauf an.',
-        points: [
-          'Stücklisten aus CAD und PDM mit Ihrem ERP abgeglichen',
-          'Ihre Artikelnummern statt abgetippter Beschreibungen',
-          'Änderungen nach der Freigabe markiert, nicht verloren',
-        ],
+        mock: {
+          title: 'Stückliste, Auftrag 24-0318',
+          rows: [
+            { a: '40-1120 Verdichter', sub: 'Mit ERP abgeglichen', right: '3×' },
+            { a: '52-0410 Kugelhahn DN25', sub: 'Mit ERP abgeglichen', right: '6×' },
+            { a: '61-0087 Flüssigkeitssammler', sub: 'Nach Freigabe geändert', flag: true, right: '1×' },
+          ],
+        },
+        line: 'Eine Stückliste verlässt die Konstruktion einmal und kommt vollständig im Einkauf an, mit Ihren Artikelnummern.',
+        points: ['Stücklisten aus CAD und PDM mit Ihrem ERP abgeglichen', 'Ihre Artikelnummern statt abgetippter Beschreibungen', 'Änderungen nach der Freigabe markiert, nicht verloren'],
         cta: 'Über Ihr ERP sprechen',
       },
       {
         id: 'service',
-        name: 'Service & Kundendienst',
+        name: 'Service & After-Sales',
         headline: 'Was ausgeliefert wurde, nach Seriennummer.',
-        line: 'Servicehistorie und Ersatzteile für jede Anlage.',
-        tagline: 'Was ausgeliefert wurde, unter der Seriennummer, vor der der Techniker steht.',
-        points: [
-          'Ist-Konfiguration und Unterlagen je Anlage',
-          'Servicehistorie und Ersatzteile nach Seriennummer',
-          'Was der Service lernt, zurück an die Konstruktion',
-        ],
+        mock: {
+          title: 'Seriennummer 0318-02',
+          rows: [
+            { a: 'Ist-Ausführung', sub: 'CX-140, Schallhaube, Fernüberwachung', right: 'Unterlagen', hi: true },
+            { a: 'Jährliche Wartung', em: 'März' },
+            { a: 'Expansionsventil getauscht', em: 'Januar' },
+            { a: 'Ersatzteile für diese Anlage', em: '12 Teile' },
+          ],
+        },
+        line: 'Die Anlage in ihrer Ist-Ausführung, ihre Unterlagen, ihre Servicehistorie und ihre Ersatzteile, unter der Seriennummer, vor der der Techniker steht.',
+        points: ['Ist-Konfiguration und Unterlagen je Anlage', 'Servicehistorie und Ersatzteile nach Seriennummer', 'Was der Service lernt, zurück in die Konstruktion'],
         cta: 'Über Service sprechen',
       },
-    ],
-    flow: {
-      heading: 'Ein Datensatz von der Anfrage bis zum Serviceeinsatz',
-      sub: 'Bei den meisten Herstellern wird dasselbe Gerät in fünf Systeme getippt. Verbunden beginnt jeder Schritt mit dem, was der vorherige bereits weiß.',
-      steps: ['Anfrage', 'Auslegung', 'Angebot', 'Konstruktion & CAD', 'Dokumente', 'ERP & Werkstatt', 'Service'],
-    },
+    ] as HvacTool[],
     ai: {
-      eyebrow: 'KI',
-      heading: 'KI dort, wo sie eine Kennzahl bewegt, nicht dort, wo sie eine Demo füllt.',
-      line: 'Wir messen zuerst die Kennzahl und bauen dann das Kleinste, das sie bewegt: Angebote aus Anfragen entwerfen, Auslegungen prüfen, Zertifikate ablegen.',
-      body: 'Wir beginnen bei der Kennzahl, die Sie bewegen wollen, und messen sie, bevor wir etwas bauen. Dann bauen wir das Kleinste, das sie bewegen kann: Anfragen und Ausschreibungstexte in einen Entwurf für Auslegung und Angebot übertragen, eine Auslegung vor dem Versand gegen Ihre Regeln prüfen, eingehende Zertifikate dem richtigen Auftrag zuordnen oder Aufträge markieren, deren Marge wegläuft.',
+      heading: 'KI dort, wo sie eine Zahl bewegt, nicht dort, wo sie eine Demo macht.',
+      body: 'Wir messen zuerst die Kennzahl und bauen dann das Kleinste, das sie bewegt: Angebote aus Anfragen entwerfen, Auslegungen gegen Ihre Regeln prüfen, Zertifikate dem richtigen Auftrag zuordnen.',
     },
     metrics: {
-      eyebrow: 'Die Kennzahlen',
-      heading: 'Die Zahlen, die entscheiden, ob ein HLK-Hersteller Geld verdient.',
-      short: 'Gebaut und gemessen an den Zahlen, die für Sie zählen.',
-      shortSub: 'Wir messen eine davon vor dem Projekt und erneut nach dem Pilot.',
-      detailsLabel: 'Was jede Kennzahl misst',
-      sub: 'Diese Werte messen wir vor einem Projekt und danach erneut. Bewegt ein System keinen davon, lohnt es sich nicht.',
-      cols: { metric: 'Kennzahl', definition: 'Was sie misst', where: 'Wo die Zeit meist verloren geht' },
+      heading: 'Die Kennzahlen, die wir vorher und nachher messen',
       rows: [
-        {
-          metric: 'Angebotsdauer',
-          definition: 'Arbeitstage vom Eingang einer Anfrage bis zum Versand eines Angebots mit Preis.',
-          where: 'Verdichter neu auslegen, eine ähnliche Anlage neu zeichnen, auf die Konstruktion warten.',
-        },
-        {
-          metric: 'Konstruktionsstunden pro Auftrag',
-          definition: 'Konstruktions- und Zeichenstunden für jede verkaufte Anlage.',
-          where: 'Varianten von Hand zeichnen, die sich von der letzten nur in der Größe unterscheiden.',
-        },
-        {
-          metric: 'Fehlerfrei beim ersten Mal',
-          definition: 'Anteil der Aufträge, die ohne Zeichnungsänderung oder Rückfrage der Werkstatt gebaut werden.',
-          where: 'Regeln, die nur im Kopf eines Konstrukteurs existieren und jedes Mal anders angewendet werden.',
-        },
-        {
-          metric: 'Auftragsquote',
-          definition: 'Anteil der versendeten Angebote, aus denen ein Auftrag wird.',
-          where: 'Langsame Angebote und Angebote, bei denen niemand nachfasst.',
-        },
-        {
-          metric: 'Kalkulierte gegenüber tatsächlicher Marge',
-          definition: 'Die Differenz zwischen der Marge im Angebot und der Marge nach dem Bau.',
-          where: 'Stücklisten, die sich zwischen Angebot, Konstruktion und Einkauf ändern.',
-        },
-        {
-          metric: 'Liefertreue',
-          definition: 'Anteil der Aufträge, die zum zugesagten Termin ausgeliefert werden.',
-          where: 'Späte Konstruktionsfreigabe, die Einkauf und Werkstatt aufhält.',
-        },
-        {
-          metric: 'Erstbehebungsquote',
-          definition: 'Anteil der Serviceeinsätze, die beim ersten Besuch abgeschlossen werden.',
-          where: 'Techniker, die ohne die Ist-Daten der Anlage vor Ort ankommen.',
-        },
+        { metric: 'Angebotsdauer', definition: 'Arbeitstage vom Eingang einer Anfrage bis zum Versand eines bepreisten Angebots.' },
+        { metric: 'Konstruktionsstunden pro Auftrag', definition: 'Konstruktions- und Zeichenstunden für jede verkaufte Anlage oder jedes verkaufte Gerät.' },
+        { metric: 'Erstmalig-richtig-Quote', definition: 'Anteil der Aufträge, die ohne Zeichnungsrevision oder Rückfrage der Werkstatt gebaut werden.' },
+        { metric: 'Auftragsquote', definition: 'Anteil der versendeten Angebote, aus denen ein Auftrag wird.' },
+        { metric: 'Kalkulierte gegenüber tatsächlicher Marge', definition: 'Die Differenz zwischen der Marge im Angebot und der Marge nach dem Bau.' },
+        { metric: 'Liefertreue', definition: 'Anteil der Aufträge, die zum zugesagten Termin ausgeliefert werden.' },
+        { metric: 'Erstbehebungsquote', definition: 'Anteil der Serviceeinsätze, die beim ersten Besuch abgeschlossen werden.' },
       ],
       methodHeading: 'Wie wir messen',
       method: [
-        { k: '01', name: 'Ausgangswert', text: 'Wir messen die Kennzahl an Ihren letzten Aufträgen, bevor wir etwas verändern.' },
-        { k: '02', name: 'Pilot', text: 'Ein Ablauf, live mit echten Aufträgen, in wenigen Wochen.' },
-        { k: '03', name: 'Erneut messen', text: 'Dieselbe Kennzahl, dieselbe Methode, im direkten Vergleich. Sie entscheiden, wie es weitergeht.' },
+        { k: '1', name: 'Ausgangswert', text: 'Wir messen die Kennzahl an Ihren letzten Aufträgen, bevor wir etwas verändern.' },
+        { k: '2', name: 'Pilot', text: 'Ein Ablauf, live mit echten Aufträgen, in wenigen Wochen.' },
+        { k: '3', name: 'Erneut messen', text: 'Dieselbe Kennzahl, dieselbe Methode, im direkten Vergleich. Sie entscheiden, wie es weitergeht.' },
       ],
     },
-
     faqHeading: 'Fragen, die Hersteller uns stellen',
-    faqShort: 'Gut zu wissen',
     faq: [
       {
         q: 'Welche Software braucht ein HLK-Hersteller?',
-        a: 'Meist ein Auslegungsprogramm für das eigene Produktprogramm, CAD für die Konstruktion, ein Dokumentensystem für Zeichnungen, Datenblätter und Zertifikate, einen Weg zur Angebotserstellung, ein ERP für Teile und Einkauf und eine Serviceakte je Anlage. Die meisten Stunden gehen in den Lücken dazwischen verloren, wo dieselben Daten von einem System ins nächste getippt werden.',
+        a: 'Meist ein Auslegungsprogramm für das eigene Programm, CAD für die Konstruktion, ein Dokumentensystem für Zeichnungen, Datenblätter und Zertifikate, einen Weg zur Angebotserstellung, ein ERP für Teile und Einkauf und eine Serviceakte je Anlage. Die meisten Stunden gehen in den Lücken dazwischen verloren, wo dieselben Daten von einem System ins nächste getippt werden.',
       },
       {
-        q: 'Was ist HLK-Auslegungssoftware?',
-        a: 'Software, die die Anforderungen eines Projekts wie Leistung, Temperaturen, Luftmenge und Kältemittel aufnimmt und die passenden Geräte aus dem Programm eines Herstellers liefert, mit Leistungsdaten, Datenblatt und Preis. Wir bauen sie auf den eigenen Leistungsdaten und Auslegungsregeln des Herstellers.',
+        q: 'Ersetzen Sie unser ERP oder CRM?',
+        a: 'Nein. Nutzen Sie sie, wo sie passen; wir binden sie an. Was allgemeine Systeme nicht wissen: wie ein HLK-Gerät gegen eine Anforderung ausgelegt wird, welche Unterlagen eine Anlage bei der Übergabe braucht oder wie eine Verbundanlage aus einer Verdichterauslegung entsteht. Diese HLK-spezifische Ebene bauen wir.',
       },
       {
-        q: 'Warum nicht ein allgemeines ERP-, CRM- oder Dokumentensystem verwenden?',
-        a: 'Nutzen Sie sie, wo sie passen; wir binden sie an, statt sie zu ersetzen. Was allgemeine Systeme nicht wissen: wie ein HLK-Gerät gegen eine Anforderung ausgelegt wird, welche Unterlagen eine Anlage bei der Übergabe braucht oder wie eine Verbundanlage aus einer Verdichterauslegung entsteht. Diese HLK-spezifische Ebene bauen wir.',
+        q: 'Können wir Pack CAD fertig kaufen?',
+        a: 'Nein. Wir bauen es für jeden Anlagenhersteller, um Ihre eigenen Komponenten, Regeln und Rahmen herum. Unser derzeitiger Schwerpunkt sind CO₂-Booster-Anlagen. Wenn Sie Kälteverbundanlagen bauen, schicken Sie uns einen alten Auftrag, und wir zeigen Ihnen, was daraus entstehen würde.',
       },
       {
-        q: 'Wie kann KI einem HLK-Hersteller helfen?',
-        a: 'Dort, wo sie eine messbare Kennzahl bewegt: Auslegungen und Angebote aus Anfragen und Ausschreibungstexten entwerfen, Auslegungen vor dem Versand gegen Ihre Regeln prüfen, eingehende Zertifikate und Prüfberichte ablegen und Servicetechnikern die Ist-Daten einer Anlage geben. Wir messen die Kennzahl vorher und nachher, damit die Antwort eine Zahl ist und kein Eindruck.',
-      },
-      {
-        q: 'Wie messen Sie, ob ein Softwareprojekt funktioniert hat?',
+        q: 'Wie messen Sie, ob es funktioniert hat?',
         a: 'Wir wählen eine Kennzahl, etwa die Angebotsdauer oder die Konstruktionsstunden pro Auftrag, messen sie vor dem Projekt an Ihren letzten Aufträgen, betreiben einen Pilot mit echten Aufträgen und messen danach dieselbe Kennzahl auf dieselbe Weise. Sie sehen beide Werte nebeneinander.',
       },
       {
         q: 'Arbeiten Sie auch mit Herstellern außerhalb Österreichs?',
-        a: 'Ja. SNS Solutions sitzt in Wien und arbeitet auf Deutsch und Englisch mit Herstellern in ganz Europa. Unsere Software zur Konstruktion von Verbundanlagen entsteht gemeinsam mit einem Kältetechnik-Hersteller außerhalb Österreichs.',
+        a: 'Ja. Wir sitzen in Wien und arbeiten auf Deutsch und Englisch mit Herstellern in ganz Europa.',
       },
       {
         q: 'Wie fangen wir an?',
         a: 'Mit einem kostenlosen 30-minütigen Online-Gespräch. Sagen Sie uns, welches Werkzeug oder welche Kennzahl schmerzt und wie die Arbeit heute läuft. Wir sagen Ihnen, was eine Lösung braucht, oder ehrlich, dass Software es nicht lösen würde.',
       },
-    ],
+    ] as Faq[],
     closing: {
       heading: 'Welches Werkzeug würden Sie zuerst angehen?',
       sub: 'Buchen Sie ein kostenloses 30-minütiges Gespräch. Bringen Sie die Tabelle, den Ordner oder die Kennzahl mit, die schmerzt, und wie die Arbeit heute läuft.',
-      cta: 'Kostenlose Beratung buchen',
     },
   },
 
   pack: {
-    title: 'Software zur Konstruktion von Kälteverbundanlagen',
+    title: 'Pack CAD: Software zur Konstruktion von Kälteverbundanlagen',
     description:
-      'Aus dem Ausdruck der Verdichterauslegung eine Kälteverbundanlage, die Ihre Werkstatt bauen kann: Schema, 3D-Modell und Stückliste nach Ihren Regeln. Zuerst CO₂-Booster-Anlagen.',
-    eyebrow: 'Software zur Konstruktion von Kälteverbundanlagen',
-    h1: 'Beschreiben Sie die Anlage. Sie erhalten eine, die Ihre Werkstatt bauen kann, nach Ihren Regeln konstruiert.',
+      'Pack CAD macht aus der Auslegung im Programm Ihres Verdichterherstellers eine Kälteverbundanlage in 3D und 2D, innerhalb Ihrer Konstruktionsregeln. Für jeden Anlagenhersteller gebaut; unser derzeitiger Schwerpunkt sind CO₂-Booster-Anlagen.',
+    h1: 'Von der Auslegung zu einer Anlage, die Ihre Werkstatt bauen kann.',
     intro:
-      'SNS Pack Designer macht aus dem Ausdruck Ihrer Verdichterauslegungs-Software eine vollständige Kälteverbundanlage: ein Schema, ein 3D-Modell und eine Stückliste. Die Ventile, Sammelrohre, Sammler und das Ölsystem, die im Ausdruck fehlen, werden nach den Konstruktionsregeln Ihres Unternehmens gesetzt. Das Ergebnis sieht aus wie eine Anlage, die Ihre Konstrukteure gezeichnet haben.',
-    status:
-      'In Entwicklung gemeinsam mit einem europäischen Kältetechnik-Hersteller, beginnend mit transkritischen CO₂-Booster-Anlagen. Wir nehmen eine kleine Zahl weiterer Hersteller als Entwicklungspartner auf.',
-    primaryCta: 'Entwicklungspartner werden',
+      'Pack CAD übernimmt die Auslegung aus dem Programm Ihres Verdichterherstellers und erstellt die Anlage in 3D und 2D, innerhalb Ihrer Konstruktionsregeln. Es zeigt, was nicht geht, und sagt, warum.',
+    speciality: ['Derzeitiger Schwerpunkt: CO₂-Booster-Anlagen.', 'Für jeden Hersteller gebaut, nach seinen eigenen Regeln.'],
+    loopLabel: 'Eine Kälteverbundanlage als Drahtmodell, das sich zu massivem Metall füllt; dann zieht die Kamera auf die ganze Anlage zurück.',
 
     gap: {
-      eyebrow: 'Die Lücke',
       heading: 'Ein Auslegungsausdruck ist noch keine Anlage.',
-      sub: 'Die Auslegungssoftware dimensioniert die Verdichter. Alles zwischen diesen Verdichtern und einer fertigen Anlage in der Werkstatt zeichnet bis heute ein Konstrukteur, nach Regeln, die selten aufgeschrieben sind.',
-      hasHeading: 'Was der Ausdruck liefert',
-      has: [
-        'Verdichtermodelle und Anzahl',
-        'Kältemittel und Betriebstemperaturen',
-        'Kälteleistung und Leistungsaufnahme je Betriebspunkt',
-        'Saug- und Druckbedingungen',
-      ],
-      needsHeading: 'Was die Werkstatt noch braucht',
-      needs: [
-        'Saug- und Drucksammelrohre, dimensioniert und positioniert',
-        'Ventile: Hochdruck-, Flashgas-, Expansions- und Serviceventile',
-        'Sammler und Behälter und ihre Position',
-        'Ölabscheidung und Ölrückführung',
-        'Rahmen, Aufstellung und Rohrführung',
-        'Eine Stückliste mit Ihren Artikelnummern',
+      sub: 'Die Auslegungssoftware dimensioniert die Verdichter. Alles zwischen diesen Verdichtern und einer Anlage in der Werkstatt zeichnet noch immer ein Konstrukteur, nach Regeln, die selten aufgeschrieben sind.',
+      printoutLabel: 'Ein Beispiel für einen Ausdruck einer Verdichterauslegung',
+      printout: {
+        title: 'VERDICHTERAUSLEGUNG',
+        groups: [
+          [
+            ['Kältemittel', 'R744 (CO₂)'],
+            ['System', 'Transkritischer Booster'],
+            ['NK Verdampfung', '−8 °C'],
+            ['TK Verdampfung', '−32 °C'],
+            ['Gaskühleraustritt', '35 °C'],
+          ],
+          [
+            ['NK Verdichter', '4 ×  halbhermetisch'],
+            ['TK Verdichter', '2 ×  halbhermetisch'],
+            ['NK Leistung', '240 kW (4 × 60 kW)'],
+          ],
+        ],
+        missing: 'Ventile, Sammelrohre, Behälter, Ölsystem, Rahmen: nicht enthalten',
+      },
+      addsHeading: 'Was Pack CAD ergänzt, nach Ihren Regeln',
+      adds: [
+        ['Saug- und Drucksammelrohre', 'dimensioniert und gesetzt'],
+        ['Ventile: Hochdruck, Flashgas, Expansion, Service', 'ausgewählt'],
+        ['Sammler und Behälter', 'platziert'],
+        ['Ölabscheidung und Ölrückführung', 'ausgelegt'],
+        ['Rahmen, Aufstellung und Rohrführung', 'gezeichnet'],
+        ['Eine Stückliste mit Ihren Artikelnummern', 'aufgelistet'],
       ],
     },
 
     stepsHeading: 'So funktioniert es',
+    stepsSub: 'Ein Auftrag, vom Ausdruck bis zu den Dateien, nach denen Ihre Werkstatt baut.',
     steps: [
-      {
-        k: '01',
-        name: 'Ausdruck hochladen',
-        text: 'Das PDF, das Ihre Verdichterauslegungs-Software bereits erstellt. Die Software liest Verdichter, Kältemittel, Temperaturen und Leistungen daraus.',
-      },
-      {
-        k: '02',
-        name: 'Anlagenspezifikation prüfen',
-        text: 'Das Gelesene wird zu einer strukturierten Spezifikation, die Ihr Konstrukteur prüft und korrigiert. Nichts wird stillschweigend angenommen.',
-      },
-      {
-        k: '03',
-        name: 'Ihre Regeln angewendet',
-        text: 'Sammelrohre, Ventile, Behälter und das Ölsystem werden aus Ihrem Katalog und nach Ihren Hausregeln gewählt und gesetzt.',
-      },
-      {
-        k: '04',
-        name: 'Schema und 3D-Modell',
-        text: 'Ein Schema des Kreislaufs und ein 3D-Modell der Anlage auf Ihrer eigenen Rahmenfamilie.',
-      },
-      {
-        k: '05',
-        name: 'Dateien für Angebot und Werkstatt',
-        text: 'Eine Stückliste für das Angebot, ein STEP-Modell zur Fertigstellung durch Ihre Konstrukteure und Werkstattunterlagen je Anlagenfamilie.',
-      },
+      { name: 'Ausdruck hochladen', text: 'Das PDF, das Ihre Auslegungssoftware schon erzeugt. Pack CAD liest daraus Verdichter, Kältemittel, Temperaturen und Leistungen.' },
+      { name: 'Spezifikation prüfen', text: 'Aus dem Gelesenen wird eine Spezifikation, die Ihr Konstrukteur prüft. Nichts wird stillschweigend angenommen.' },
+      { name: 'Ihre Regeln angewandt', text: 'Sammelrohre, Ventile, Behälter und Ölsystem aus Ihrem Katalog und nach Ihren Hausregeln ausgewählt und gesetzt.' },
+      { name: 'Konstruieren und detaillieren', text: 'Die Anlage in 3D auf Ihrer Rahmenfamilie, mit Schema und 2D-Zeichnungen. Bearbeiten Sie sie in einfachen Worten oder direkt.' },
+      { name: 'Ergebnisse', text: 'Stückliste für das Angebot, Zeichnungen für die Werkstatt, STEP und DXF für den Dateiaustausch.' },
     ],
+    stepsFilm: 'Die Verdichter auf einem Auslegungsausdruck heben ab und landen auf der Anlagenzeichnung; alles, was der Ausdruck auslässt, zeichnet sich um sie herum ein.',
 
     rules: {
-      eyebrow: 'Nach Ihren Regeln',
-      heading: 'Ihr Katalog und Ihre Standards, keine allgemeine Bibliothek.',
-      body: 'Jeder Hersteller baut Verbundanlagen anders: welche Ventilmarken, welche Sammelrohrgrößen, wie das Ölsystem aufgebaut ist, welche Rahmen. Wir schreiben diese Regeln mit Ihren Konstrukteuren auf, und die Software wendet sie auf jede Anlage an. Ihre Regeln und Ihr Katalog liegen in einer eigenen Ebene, getrennt von der Kernsoftware.',
+      heading: 'Innerhalb Ihrer Regeln, und ehrlich dazu.',
+      body: 'Jeder Hersteller baut Anlagen anders: welche Ventile, welche Sammelrohrgrößen, wie das Ölsystem läuft, welche Rahmen. Wir schreiben diese Regeln mit Ihren Konstrukteuren auf. Pack CAD wendet sie auf jede Anlage an, und wenn eine Änderung eine Regel verletzt, sagt es welche und warum, statt sie trotzdem zu zeichnen.',
       points: [
         'Ihre Komponenten und Artikelnummern',
-        'Ihre Auslegungsregeln für Sammelrohre, Leitungen und Behälter',
+        'Ihre Dimensionierungsregeln für Sammelrohre, Leitungen und Behälter',
         'Ihre Rahmenfamilien und Aufstellungskonventionen',
         'Ihre Konstrukteure geben die Konstruktion frei',
       ],
+      film: 'Die Anlage im Grundriss zwischen den Tiefengrenzen des Standorts: Tiefer zu werden wird mit dem Namen der Regel markiert, also wird sie stattdessen ein Feld länger.',
     },
 
     scale: {
-      eyebrow: 'Größer auslegen',
-      heading: 'Aus einer mittleren Anlage eine größere machen, richtig.',
-      body: 'Eine größere Anlage ist keine gestreckte Zeichnung. Mehr Leistung ändert Sammelrohrdurchmesser, Ventilgrößen, Behältervolumen und oft den Rahmen. Weil die Anlage aus Regeln erzeugt und nicht von einer früheren Zeichnung kopiert wird, führt eine größere Baugröße die Regeln erneut aus, und jedes Teil folgt.',
-    },
-
-    outputs: {
-      heading: 'Was Sie erhalten, in der Reihenfolge, in der wir es bauen',
+      heading: 'Eine mittlere Anlage größer machen, und zwar richtig.',
+      body: 'Eine größere Anlage ist keine gestreckte Zeichnung. Mehr Leistung ändert Sammelrohrdurchmesser, Ventilgrößen, Behältervolumen und oft den Rahmen. Weil die Anlage aus Ihren Regeln entsteht, führt eine größere Wahl sie erneut aus, und jedes Teil folgt.',
       items: [
-        {
-          stage: 'Zuerst',
-          name: 'Angebot und Stückliste',
-          text: 'Eine bepreiste Stückliste aus der Auslegung, damit ein Angebot hinausgeht, bevor die Konstruktion etwas gezeichnet hat.',
-        },
-        {
-          stage: 'Danach',
-          name: 'STEP-Modell',
-          text: 'Ein 3D-Modell im STEP-Format, das sich in SolidWorks, Inventor, Creo, Solid Edge und anderen CAD-Systemen öffnen lässt, zur Fertigstellung durch Ihre Konstrukteure.',
-        },
-        {
-          stage: 'Dann',
-          name: 'Werkstattunterlagen',
-          text: 'Die Unterlagen, nach denen Ihre Werkstatt baut, je Anlagenfamilie gemeinsam mit Ihrem Team festgelegt.',
-        },
+        'Sammelrohrdurchmesser, aus Ihren Geschwindigkeitsgrenzen',
+        'Ventilgrößen, aus Ihren Auswahltabellen',
+        'Behältervolumen, aus der neuen Leistung',
+        'Der Rahmen, ein Feld länger, wenn nötig',
+        'Zeichnungen und Stückliste, neu',
       ],
     },
 
-    faqHeading: 'Fragen zur Konstruktion von Verbundanlagen',
+    outputs: {
+      heading: 'Was herauskommt',
+      film: 'Die 3D-Anlage dreht sich nach vorne; ein Wischübergang zeigt Modell und Zeichnung deckungsgleich; die Zeichnung setzt sich in ihr Blatt, und jedes Teil leuchtet mit seiner Zeile in der Stückliste auf.',
+      items: [
+        { name: '3D-Modell', text: 'Die Anlage auf Ihrer Rahmenfamilie, jedes Teil an seinem Platz.' },
+        { name: '2D-Zeichnungen', text: 'Aufstellungs- und Detailzeichnungen in Ihrem Zeichnungsrahmen, aus dem Modell erzeugt.' },
+        { name: 'Stückliste', text: 'Jedes Teil der Zeichnung mit seiner Menge, bereit für Angebot und Einkauf.' },
+      ],
+    },
+
+    own: {
+      heading: 'Für Ihre Anlagen gebaut, für niemanden sonst.',
+      body: 'Es gibt keine allgemeine Version zum Installieren. Wir beginnen mit Ihren früheren Aufträgen und bauen das System um Ihre Komponenten, Ihre Rahmen und die Regeln Ihrer Konstrukteure. Was wir für Sie bauen, bleibt Ihres.',
+      photo: 'Eine ausgedruckte Aufstellungszeichnung auf einem Schreibtisch mit Kaffeetasse und Bleistift.',
+    },
+
+    faqHeading: 'Fragen zu Pack CAD',
     faq: [
       {
-        q: 'Was ist Software zur Konstruktion von Kälteverbundanlagen?',
-        a: 'Software, die aus einer Verdichterauslegung eine vollständige Konstruktion einer Kälteverbundanlage macht: Schema, 3D-Modell und Stückliste, einschließlich der Sammelrohre, Ventile, Behälter und des Ölsystems, die die Auslegung nicht abdeckt. SNS Pack Designer tut das, indem er die Konstruktionsregeln des Herstellers anwendet.',
+        q: 'Können wir Pack CAD fertig kaufen?',
+        a: 'Nein. Wir bauen es für jeden Hersteller, um Ihre Komponenten, Dimensionierungsregeln, Rahmenfamilien und Zeichnungsstandards herum, und was wir für Sie bauen, bleibt Ihres. Unser derzeitiger Schwerpunkt sind transkritische CO₂-Booster-Anlagen. Andere Anlagentypen beginnen genauso, mit Ihren früheren Aufträgen und Ihren Regeln.',
       },
       {
-        q: 'Welche Verdichterauslegungs-Software kann sie lesen?',
-        a: 'Sie liest den Ausdruck (PDF), den Ihre Auslegungssoftware erstellt. Jedes Format wird mit dem Hersteller eingerichtet, der es nutzt. Sagen Sie uns also, mit welchem Auslegungsprogramm Ihre Konstrukteure arbeiten.',
+        q: 'Welche Auslegungssoftware liest es?',
+        a: 'Es liest den Ausdruck, den Ihre Auslegungssoftware erzeugt. Jedes Format wird mit dem Hersteller eingerichtet, der es nutzt; sagen Sie uns also, mit welchem Programm Ihre Konstrukteure arbeiten.',
       },
       {
-        q: 'Ersetzt sie SolidWorks oder unser CAD-System?',
-        a: 'Nein. Sie erzeugt ein STEP-Modell, das sich in SolidWorks, Inventor, Creo, Solid Edge und anderen CAD-Systemen öffnen lässt. Ihre Konstrukteure stellen die Konstruktion dort fertig und geben sie frei, so wie heute.',
+        q: 'Zeichnen unsere Konstrukteure Anlagen weiter in einem anderen CAD-System?',
+        a: 'Pack CAD ist so gebaut, dass Ihre Konstrukteure Anlagen direkt darin konstruieren, bearbeiten und detaillieren. STEP und DXF sind für den Dateiaustausch mit Kunden und anderen Systemen da.',
       },
       {
-        q: 'Welche Anlagentypen und Kältemittel werden unterstützt?',
-        a: 'Zuerst transkritische CO₂-Booster-Anlagen, weil wir diese mit unserem ersten Hersteller bauen. Weitere Anlagentypen folgen, sobald ihre Regeln mit einem Hersteller aufgeschrieben sind, der sie baut.',
-      },
-      {
-        q: 'Kann sie eine bestehende Anlage auf eine größere Baugröße auslegen?',
-        a: 'Ja, das ist einer der Hauptgründe, warum es sie gibt. Die Anlage wird aus Regeln erzeugt, also führt eine größere Baugröße die Regeln erneut aus und passt Sammelrohre, Ventile, Behälter und Rahmen gemeinsam an, statt eine alte Zeichnung zu strecken.',
+        q: 'Kann es eine bestehende Anlage auf eine größere Leistung skalieren?',
+        a: 'Ja, das ist einer der Hauptgründe, warum es das gibt. Eine größere Wahl führt Ihre Regeln erneut aus und passt Sammelrohre, Ventile, Behälter und Rahmen gemeinsam an.',
       },
       {
         q: 'Wer ist für die endgültige Konstruktion verantwortlich?',
-        a: 'Ihre Konstrukteure. Die Software wendet die Regeln an, die Sie ihr geben, und zeigt, was sie entschieden hat und warum. Der Konstrukteur prüft, stellt fertig und gibt frei, wie bei jeder Anlage heute.',
+        a: 'Ihre Konstrukteure. Pack CAD zeigt, was es entschieden hat und warum; der Konstrukteur prüft und gibt die Konstruktion frei, wie heute bei jeder Anlage.',
       },
-      {
-        q: 'Ist sie bereits verfügbar?',
-        a: 'Sie ist in Entwicklung gemeinsam mit einem europäischen Kältetechnik-Hersteller. Wir nehmen eine kleine Zahl weiterer Hersteller als Entwicklungspartner auf, die Regeln und Ergebnisse für ihre eigenen Anlagenfamilien mitgestalten.',
-      },
-    ],
+    ] as Faq[],
 
-    partner: {
-      heading: 'Bauen Sie sie mit uns für Ihre Anlagen.',
-      sub: 'Wir suchen ein bis zwei weitere Hersteller, deren Konstrukteure nicht mehr dieselbe Anlage in einer anderen Größe neu zeichnen wollen. Buchen Sie ein Gespräch und bringen Sie einen Auslegungsausdruck mit.',
-      cta: 'Entwicklungspartner werden',
+    closing: {
+      heading: 'Bringen Sie uns einen alten Auftrag.',
+      sub: 'Schicken Sie einen Auslegungsausdruck und die Zeichnung, die Ihre Konstrukteure daraus gemacht haben. Wir zeigen Ihnen, was Pack CAD daraus erstellen würde.',
     },
   },
 }

@@ -53,7 +53,7 @@ URL. German translations of every page live under ${url('/de')}.
 - Area served: Austria and the DACH market
 - Founders: ${SITE.founders.join(', ')}
 - Real-estate platform: Immvela, on its own domain at ${IMMVELA_URL}/
-- For HVAC and refrigeration manufacturers: selection software, CAD and design automation (refrigeration pack design software, in development), document management, quoting, ERP and service links, at ${url('/hvac')}`)
+- For HVAC and refrigeration manufacturers: selection software, CAD and design automation (Pack CAD, refrigeration pack design software built for each pack manufacturer), document management, quoting, ERP and service links, at ${url('/hvac')}`)
 
   // ── /services ────────────────────────────────────────────────────────────
   sections.push(`## Services: ${url('/services')}
@@ -92,19 +92,19 @@ ${t.servicesPage.consult.points.map((p) => `- ${p}`).join('\n')}`)
 
 ${hv.hub.intro}
 
+#### ${hv.hub.flow.label}
+
+${hv.hub.flow.steps.join(' → ')}. ${hv.hub.flow.text}
+
 #### ${hv.hub.toolsHeading}
 
 ${hv.hub.toolsSub}
 
 ${hv.hub.tools
   .map(
-    (p) => `- **${p.name}.** ${p.tagline} ${p.points.join('; ')}.${p.href ? ` ${url(p.href)}` : ''}`
+    (p) => `- **${p.name}.** ${p.headline} ${p.line} ${p.points.join('; ')}.${p.href ? ` ${url(p.href)}` : ''}`
   )
   .join('\n')}
-
-#### ${hv.hub.flow.heading}
-
-${hv.hub.flow.sub} ${hv.hub.flow.steps.join(' → ')}.
 
 #### ${hv.hub.ai.heading}
 
@@ -112,13 +112,9 @@ ${hv.hub.ai.body}
 
 #### ${hv.hub.metrics.heading}
 
-${hv.hub.metrics.sub}
+${hv.hub.metrics.rows.map((r) => `- **${r.metric}:** ${r.definition}`).join('\n')}
 
-| ${hv.hub.metrics.cols.metric} | ${hv.hub.metrics.cols.definition} | ${hv.hub.metrics.cols.where} |
-|---|---|---|
-${hv.hub.metrics.rows.map((r) => `| ${r.metric} | ${r.definition} | ${r.where} |`).join('\n')}
-
-${hv.hub.metrics.methodHeading}: ${hv.hub.metrics.method.map((m) => `${m.k} ${m.name}: ${m.text}`).join(' ')}
+${hv.hub.metrics.methodHeading}: ${hv.hub.metrics.method.map((m) => `${m.k}. ${m.name}: ${m.text}`).join(' ')}
 
 #### ${hv.hub.faqHeading}
 
@@ -136,13 +132,15 @@ ${t.note}
 
 #### ${t.problems.heading}
 
-${t.problems.items.map((x) => `- ${x}`).join('\n')}
+${t.problems.items.map((x) => `- ${x.text}${x.note ? ` (${x.note})` : ''}`).join('\n')}
 
 #### ${t.builds.heading}
 
 ${t.builds.items.map((b) => `- **${b.name}.** ${b.text}`).join('\n')}
 
 #### ${t.metrics.heading}
+
+${t.metrics.sub}
 
 ${t.metrics.items.map((x) => `- ${x}`).join('\n')}
 
@@ -157,21 +155,18 @@ ${faq(t.faq)}`)
 
 ${hv.pack.intro}
 
-Status: ${hv.pack.status}
+${hv.pack.speciality.join(' ')}
 
 #### ${hv.pack.gap.heading}
 
 ${hv.pack.gap.sub}
 
-${hv.pack.gap.hasHeading}:
-${hv.pack.gap.has.map((x) => `- ${x}`).join('\n')}
-
-${hv.pack.gap.needsHeading}:
-${hv.pack.gap.needs.map((x) => `- ${x}`).join('\n')}
+${hv.pack.gap.addsHeading}:
+${hv.pack.gap.adds.map(([a, b]) => `- ${a}: ${b}`).join('\n')}
 
 #### ${hv.pack.stepsHeading}
 
-${hv.pack.steps.map((s) => `${s.k}. **${s.name}.** ${s.text}`).join('\n')}
+${hv.pack.steps.map((s, i) => `${i + 1}. **${s.name}.** ${s.text}`).join('\n')}
 
 #### ${hv.pack.rules.heading}
 
@@ -183,9 +178,15 @@ ${hv.pack.rules.points.map((x) => `- ${x}`).join('\n')}
 
 ${hv.pack.scale.body}
 
+${hv.pack.scale.items.map((x) => `- ${x}`).join('\n')}
+
 #### ${hv.pack.outputs.heading}
 
-${hv.pack.outputs.items.map((o) => `- **${o.stage}: ${o.name}.** ${o.text}`).join('\n')}
+${hv.pack.outputs.items.map((o) => `- **${o.name}.** ${o.text}`).join('\n')}
+
+#### ${hv.pack.own.heading}
+
+${hv.pack.own.body}
 
 #### ${hv.pack.faqHeading}
 

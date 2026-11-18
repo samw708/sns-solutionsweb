@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import InnerShell from '@/components/inner/InnerShell'
+import SilverPage from '@/components/silver/Shell'
 import JsonLd from '@/components/JsonLd'
-import HvacHub from '@/components/hvac/HvacHub'
+import Hub from '@/components/silver/hvac/Hub'
 import { hvacGraph } from '@/lib/schema'
 import { snsPage } from '@/lib/share'
 import { HVAC_PATH, getHvac } from '@/lib/hvac'
@@ -23,9 +23,9 @@ export default function HvacHubPageDe() {
   return (
     <>
       <JsonLd data={hvacGraph('de')} />
-      <InnerShell locale="de">
-        <HvacHub locale="de" />
-      </InnerShell>
+      <SilverPage locale="de" alt={HVAC_PATH}>
+        <Hub locale="de" />
+      </SilverPage>
     </>
   )
 }

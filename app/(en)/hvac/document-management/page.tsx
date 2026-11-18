@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import InnerShell from '@/components/inner/InnerShell'
+import SilverPage from '@/components/silver/Shell'
 import JsonLd from '@/components/JsonLd'
-import ToolPage from '@/components/hvac/ToolPage'
+import ToolPage from '@/components/silver/hvac/ToolPage'
 import { toolGraph } from '@/lib/schema'
 import { snsPage } from '@/lib/share'
 import { getTool } from '@/lib/hvac-tools'
@@ -23,9 +23,9 @@ export default function DocumentManagementPage() {
   return (
     <>
       <JsonLd data={toolGraph('en', 'documents')} />
-      <InnerShell locale="en">
+      <SilverPage locale="en" alt={t.path}>
         <ToolPage locale="en" tool="documents" />
-      </InnerShell>
+      </SilverPage>
     </>
   )
 }

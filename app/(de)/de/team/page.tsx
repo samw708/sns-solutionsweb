@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import InnerShell from '@/components/inner/InnerShell'
-import Founders from '@/components/Founders'
+import Company from '@/components/silver/pages/Company'
 import JsonLd from '@/components/JsonLd'
 import { teamGraph } from '@/lib/schema'
 import { snsPage } from '@/lib/share'
@@ -18,9 +17,7 @@ export default function TeamPageDe() {
   return (
     <>
       <JsonLd data={teamGraph('de')} />
-      <InnerShell locale="de" id="team">
-        <Founders locale="de" />
-      </InnerShell>
+      <Company locale="de" />
     </>
   )
 }

@@ -166,7 +166,7 @@ export const en = {
       heading: 'Book a free online meeting.',
       sub: 'Thirty minutes, online, no cost and no obligation. Tell us how your team works today and we’ll tell you where AI and better systems would genuinely pay off, and where they wouldn’t.',
       points: [
-        '30 minutes online, on Google Meet, Teams or Zoom',
+        '30 minutes online, on Google Meet',
         'A concrete recommendation you can act on, in plain language',
         'No obligation to build anything with us',
       ],

@@ -19,7 +19,7 @@ const T = {
     consent: ['I agree that SNS uses these details to arrange the call, as described in the ', 'privacy policy', '.'],
     confirm: 'Confirm booking', sending: 'Booking…', err: 'Add your name, a work email and your agreement, so we can send the invitation.',
     taken: 'That time has just been taken. Pick another one.', failed: 'The booking didn’t go through. Try again, or email us at ',
-    loading: 'Loading free times…', none: 'No free times in the next weeks. Email us at ', down: 'Online booking is unavailable right now. Email us at ',
+    loading: 'Loading free times…', none: 'No free times in the next weeks. Email us at ', down: 'Online booking is unavailable right now. Email us at ', write: 'Email us',
     booked: 'Booked', bookedText: (w: string, e: string) => `${w}, Vienna time. The invitation and the Google Meet link go to ${e}.`, again: 'Book another time',
     to: 'to', loc: 'en-GB',
   },
@@ -31,7 +31,7 @@ const T = {
     consent: ['Ich bin einverstanden, dass SNS diese Angaben zur Terminvereinbarung nutzt, wie in der ', 'Datenschutzerklärung', ' beschrieben.'],
     confirm: 'Termin bestätigen', sending: 'Wird gebucht…', err: 'Bitte Name, geschäftliche E-Mail und Einverständnis angeben, damit wir die Einladung senden können.',
     taken: 'Diese Zeit wurde gerade vergeben. Bitte wählen Sie eine andere.', failed: 'Die Buchung hat nicht geklappt. Bitte erneut versuchen oder schreiben Sie an ',
-    loading: 'Freie Zeiten werden geladen…', none: 'In den nächsten Wochen sind keine Zeiten frei. Schreiben Sie uns an ', down: 'Die Online-Buchung ist gerade nicht verfügbar. Schreiben Sie uns an ',
+    loading: 'Freie Zeiten werden geladen…', none: 'In den nächsten Wochen sind keine Zeiten frei. Schreiben Sie uns an ', down: 'Die Online-Buchung ist gerade nicht verfügbar. Schreiben Sie uns an ', write: 'E-Mail schreiben',
     booked: 'Gebucht', bookedText: (w: string, e: string) => `${w}, Wiener Zeit. Die Einladung mit dem Google-Meet-Link geht an ${e}.`, again: 'Weiteren Termin buchen',
     to: 'bis', loc: 'de-AT',
   },
@@ -90,7 +90,13 @@ export default function BookingWidget({ locale = defaultLocale }: { locale?: Loc
     <div className={s.top}><strong>{t.title}</strong><span>{t.meta}</span></div>
   )
 
-  if (down) return <div className={s.bk} ref={root}>{head}<p className={s.note}>{t.down}{mail}.</p></div>
+  // Not configured or Google unreachable: a short card that points to email, not an empty calendar-sized box.
+  if (down)
+    return (
+      <div className={`${s.bk} ${s.short}`} ref={root}>{head}<p className={s.note}>{t.down}{mail}.</p>
+        <a className={s.btn} href={`mailto:${FALLBACK_EMAIL}`} style={{ display: 'grid', placeItems: 'center', textDecoration: 'none' }}>{t.write}</a>
+      </div>
+    )
   if (!days || !view) return <div className={s.bk} ref={root} aria-busy="true">{head}<p className={s.note}>{days && !days.length ? <>{t.none}{mail}.</> : t.loading}</p></div>
 
   if (step === 3 && day && time)

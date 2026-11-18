@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import InnerShell from '@/components/inner/InnerShell'
+import SilverPage from '@/components/silver/Shell'
 import JsonLd from '@/components/JsonLd'
-import PackDesign from '@/components/hvac/PackDesign'
+import PackCad from '@/components/silver/hvac/PackCad'
 import { packDesignGraph } from '@/lib/schema'
 import { snsPage } from '@/lib/share'
 import { PACK_PATH, getHvac } from '@/lib/hvac'
@@ -23,9 +23,9 @@ export default function PackDesignPage() {
   return (
     <>
       <JsonLd data={packDesignGraph('en')} />
-      <InnerShell locale="en">
-        <PackDesign locale="en" />
-      </InnerShell>
+      <SilverPage locale="en" alt={PACK_PATH}>
+        <PackCad locale="en" />
+      </SilverPage>
     </>
   )
 }

@@ -604,7 +604,7 @@ export function hvacGraph(locale: Locale) {
     '@id': ownPage[p.id] ?? `${url}#${p.id}`,
     name: p.name,
     serviceType: p.name,
-    description: `${p.tagline} ${p.points.join('. ')}.`,
+    description: `${p.line} ${p.points.join('. ')}.`,
     provider: { '@id': SNS_ORG_ID },
     areaServed: EUROPE,
     audience: HVAC_AUDIENCE,
@@ -627,7 +627,7 @@ export function hvacGraph(locale: Locale) {
       })),
     },
     ...services,
-    // The metrics table, as defined terms: each is a definition an answer engine can quote.
+    // The metrics list, as defined terms: each is a definition an answer engine can quote.
     {
       '@type': 'DefinedTermSet',
       '@id': `${url}#metrics`,
@@ -643,8 +643,8 @@ export function hvacGraph(locale: Locale) {
 }
 
 /**
- * /hvac/refrigeration-pack-design — the software itself. No `offers`: it is not on sale, and
- * `creativeWorkStatus` says so in the graph the same way the status line says so on the page.
+ * /hvac/refrigeration-pack-design — the software itself. No `offers`: it isn't sold off the shelf;
+ * we build it for each pack manufacturer, on its own rules (the page says so).
  */
 export function packDesignGraph(locale: Locale) {
   const c = getHvac(locale)
@@ -661,12 +661,11 @@ export function packDesignGraph(locale: Locale) {
       name: PACK_PRODUCT_NAME,
       alternateName: t.title,
       url,
-      description: `${t.intro} ${t.status}`,
+      description: `${t.intro} ${t.speciality.join(' ')}`,
       slogan: t.h1,
       applicationCategory: 'DesignApplication',
       applicationSubCategory: 'Refrigeration pack design automation',
       operatingSystem: 'Web',
-      creativeWorkStatus: 'In development',
       featureList: t.steps.map((s) => `${s.name}: ${s.text}`),
       audience: HVAC_AUDIENCE,
       areaServed: EUROPE,

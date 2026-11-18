@@ -1,4 +1,5 @@
 import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
 import {
   Archivo,
   Barlow_Semi_Condensed,
@@ -54,7 +55,7 @@ const barlow = Barlow_Semi_Condensed({
  * chrome that drift apart: the layouts differ in the <html> tag and their
  * metadata, and in nothing else.
  */
-export const bodyClassName = `${GeistMono.variable} ${newsreader.variable} ${jakarta.variable} ${inter.variable} ${barlow.variable} ${archivo.variable} relative min-h-dvh bg-sns-bg font-sans text-sns-text antialiased`
+export const bodyClassName = `${GeistSans.variable} ${GeistMono.variable} ${newsreader.variable} ${jakarta.variable} ${inter.variable} ${barlow.variable} ${archivo.variable} relative min-h-dvh bg-sns-bg font-sans text-sns-text antialiased`
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   return (
