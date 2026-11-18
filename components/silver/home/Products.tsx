@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { Locale } from '@/i18n/config'
 import { QFUTOOL_URL, contactHref, href, immvelaHref } from '@/lib/silver/links'
 import SilverPage from '../Shell'
+import DialMark from '../DialMark'
 import Video from '../Video'
 import { Closing, Lights } from '../ui'
 import '@/app/silver-products.css'
@@ -16,7 +17,6 @@ import '@/app/silver-products.css'
 type Chapter = {
   id: string
   name: string
-  dot: string
   ink: string
   pill: string
   for: string
@@ -37,18 +37,10 @@ const T = {
     },
     films: {
       packLoop: 'A refrigeration pack drawn as a wireframe, filling in as solid metal.',
-      evening: 'From Evening, our film for Immvela: the helix turning in late sun.',
       pack: 'A CO₂ booster pack rendered from the Pack CAD model, turning slowly.',
-      helix: 'Immvela’s helix in green metal, turning slowly.',
+      helix: 'From Evening, our film for Immvela: the helix turning at dusk.',
     },
     howHeading: 'How it works',
-    example: 'Example',
-    timeline: [
-      ['Mon', 'Quote sent'],
-      ['Wed', 'Follow-up 1'],
-      ['Thu', 'Follow-up 2'],
-      ['Fri', 'Reply. Follow-ups stop.'],
-    ] as [string, string][],
     pack: {
       pill: 'Current speciality: CO₂ booster packs',
       for: 'For refrigeration pack manufacturers.',
@@ -103,12 +95,6 @@ const T = {
         ['Lives at', 'qfutool.com'],
       ],
       cta: 'Visit qfutool.com ↗',
-      sent: 'Sent: Thursday 10:00',
-      step: 'Follow-up 2',
-      hello: 'Hello Mr Huber,',
-      mail: 'just checking in on the €1,250 quote we sent on Monday. Happy to call if anything is unclear.',
-      reply: 'Sounds good. Can we talk on Friday?',
-      stopped: 'Reply received, follow-ups stopped',
     },
     close: 'Need something none of them does?',
     sub: 'We also build custom software and automation around how your team works. Tell us what takes too long.',
@@ -126,18 +112,10 @@ const T = {
     },
     films: {
       packLoop: 'Eine Kälteverbundanlage als Drahtmodell, die sich zu massivem Metall füllt.',
-      evening: 'Aus „Evening“, unserem Film für Immvela: die Helix im späten Sonnenlicht.',
       pack: 'Eine CO₂-Booster-Verbundanlage aus dem Pack-CAD-Modell, langsam drehend.',
-      helix: 'Die Helix von Immvela in grünem Metall, langsam drehend.',
+      helix: 'Aus „Evening“, unserem Film für Immvela: die Helix in der Dämmerung.',
     },
     howHeading: 'So funktioniert es',
-    example: 'Beispiel',
-    timeline: [
-      ['Mo', 'Angebot verschickt'],
-      ['Mi', 'Erinnerung 1'],
-      ['Do', 'Erinnerung 2'],
-      ['Fr', 'Antwort. Nachfassen stoppt.'],
-    ] as [string, string][],
     pack: {
       pill: 'Aktueller Schwerpunkt: CO₂-Booster-Anlagen',
       for: 'Für Hersteller von Kälteverbundanlagen.',
@@ -192,12 +170,6 @@ const T = {
         ['Zu finden auf', 'qfutool.com'],
       ],
       cta: 'qfutool.com besuchen ↗',
-      sent: 'Gesendet: Donnerstag 10:00',
-      step: 'Erinnerung 2',
-      hello: 'Guten Tag Herr Huber,',
-      mail: 'ich wollte kurz wegen des Angebots über 1.250 € von Montag nachfragen. Gerne rufe ich an, falls etwas unklar ist.',
-      reply: 'Klingt gut. Können wir am Freitag sprechen?',
-      stopped: 'Antwort erhalten, Nachfassen gestoppt',
     },
     close: 'Sie brauchen etwas, das keines davon kann?',
     sub: 'Wir bauen auch individuelle Software und Automatisierung, abgestimmt darauf, wie Ihr Team arbeitet. Sagen Sie uns, was zu lange dauert.',
@@ -222,13 +194,12 @@ function ChapterSection({
   band?: boolean
 }) {
   return (
-    <section id={c.id} className={`chap${flip ? ' flip' : ''}`} style={{ background: band ? 'var(--band)' : 'var(--plain)', '--acc': c.ink, '--dot': c.dot }} aria-labelledby={`${c.id}-h`}>
+    <section id={c.id} className={`chap${flip ? ' flip' : ''}`} style={{ background: band ? 'var(--band)' : 'var(--plain)', '--acc': c.ink }} aria-labelledby={`${c.id}-h`}>
       <div className="w" style={{ paddingTop: 'min(13vh,120px)', paddingBottom: 'min(13vh,120px)' }}>
         <div className="chap-head">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             <span className="pill">{c.pill}</span>
             <h2 id={`${c.id}-h`} className="chap-name">
-              <i aria-hidden="true" />
               {c.name}
             </h2>
           </div>
@@ -272,9 +243,9 @@ function ChapterSection({
 
 export default function Products({ locale }: { locale: Locale }) {
   const t = T[locale]
-  const pack: Chapter = { id: 'pack-cad', name: 'Pack CAD', dot: '#121619', ink: '#121619', ...t.pack }
-  const immvela: Chapter = { id: 'immvela', name: 'Immvela', dot: '#2FA67A', ink: '#1F7A5A', ...t.immvela }
-  const qfu: Chapter = { id: 'qfutool', name: 'QFUtool', dot: '#E65D3F', ink: '#B5452C', ...t.qfu }
+  const pack: Chapter = { id: 'pack-cad', name: 'Pack CAD', ink: '#121619', ...t.pack }
+  const immvela: Chapter = { id: 'immvela', name: 'Immvela', ink: '#1F7A5A', ...t.immvela }
+  const qfu: Chapter = { id: 'qfutool', name: 'QFUtool', ink: '#B5452C', ...t.qfu }
 
   return (
     <SilverPage locale={locale} alt="/products">
@@ -294,33 +265,22 @@ export default function Products({ locale }: { locale: Locale }) {
             <a href="#pack-cad" style={{ background: '#000' }}>
               <Video src="/sns/site/pack-loop.mp4" poster="/sns/site/pack-loop-poster.jpg" label={t.films.packLoop} />
               <span className="pn-name">
-                <i style={{ background: '#ECEEF1' }} />
                 Pack CAD
               </span>
               <span className="pn-line">{t.panels.pack}</span>
             </a>
-            <a href="#immvela" style={{ background: '#1B1612' }}>
-              <Video src="/sns/site/evening-reel.mp4" poster="/sns/site/evening-reel-poster.jpg" label={t.films.evening} />
+            <a href="#immvela" style={{ background: '#2E3E5E' }}>
+              <Video src="/sns/site/helix-dusk.mp4" poster="/sns/site/helix-dusk-poster.jpg" label={t.films.helix} />
               <span className="pn-name">
-                <i style={{ background: '#2FA67A' }} />
                 Immvela
               </span>
               <span className="pn-line">{t.panels.immvela}</span>
             </a>
             <a href="#qfutool" className="qpanel">
               <span className="qscene" aria-hidden="true">
-                <span className="qex">{t.example}</span>
-                <span className="qline">
-                  {t.timeline.map(([d, x], i) => (
-                    <span key={d} className={i === t.timeline.length - 1 ? 'last' : undefined}>
-                      <b>{d}</b>
-                      {x}
-                    </span>
-                  ))}
-                </span>
+                <DialMark play="loop" size="58%" />
               </span>
               <span className="pn-name">
-                <i style={{ background: '#E65D3F' }} />
                 QFUtool
               </span>
               <span className="pn-line">{t.panels.qfu}</span>
@@ -355,8 +315,8 @@ export default function Products({ locale }: { locale: Locale }) {
         flip
         band
         media={
-          <div className="chap-frame">
-            <Video src="/sns/site/helix-porcelain.mp4" poster="/sns/site/helix-porcelain-poster.jpg" label={t.films.helix} className="" style={{ transform: 'scale(1.18)' }} />
+          <div className="chap-frame" style={{ background: '#2E3E5E' }}>
+            <Video src="/sns/site/helix-dusk.mp4" poster="/sns/site/helix-dusk-poster.jpg" label={t.films.helix} className="" />
           </div>
         }
         ctas={
@@ -370,29 +330,8 @@ export default function Products({ locale }: { locale: Locale }) {
         c={qfu}
         how={t.howHeading}
         media={
-          <div className="chap-frame" style={{ display: 'grid', placeItems: 'center', padding: 'clamp(18px,3vw,40px)', background: 'radial-gradient(70% 80% at 80% 10%,#FFFFFF 0%,transparent 60%),linear-gradient(160deg,#F6E9E5,#E7EAEE)' }}>
-            <div className="edge" style={{ borderRadius: 24, padding: 24, display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 440, width: '100%' }}>
-              <div className="mut" style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13 }}>
-                <span>{t.qfu.sent}</span>
-                <span style={{ display: 'inline-flex', gap: 10 }}>
-                  <span style={{ color: '#B5452C', fontWeight: 600 }}>{t.qfu.step}</span>
-                  <span className="mono" style={{ color: 'var(--mut2)' }}>
-                    {t.example}
-                  </span>
-                </span>
-              </div>
-              <div style={{ fontSize: 15, lineHeight: 1.55 }}>
-                <strong>{t.qfu.hello}</strong>
-                <br />
-                {t.qfu.mail}
-              </div>
-              <span className="bubble" style={{ alignSelf: 'flex-start', background: 'var(--qchip)' }}>
-                {t.qfu.reply}
-              </span>
-              <span className="mono" style={{ color: 'var(--mut2)' }}>
-                {t.qfu.stopped}
-              </span>
-            </div>
+          <div className="chap-frame qframe">
+            <DialMark play="inview" size="46%" />
           </div>
         }
         ctas={

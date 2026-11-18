@@ -113,8 +113,7 @@ export default function Showcase({ locale, level = 'h2' }: { locale: Locale; lev
     <div key={name} className={`stage edge s${k + 1}`} style={{ '--pc': pc }} role="tabpanel" id={`sc-p${k + 1}`} aria-labelledby={`sc${k + 1}-l`}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20, position: 'relative' }}>
         <span className="pill">{pill}</span>
-        <h3 style={{ fontSize: 'clamp(34px,3.4vw,52px)', lineHeight: 1, display: 'flex', gap: 14, alignItems: 'center' }}>
-          <i style={{ width: 14, height: 14, borderRadius: '50%', background: pc }} />
+        <h3 style={{ fontSize: 'clamp(34px,3.4vw,52px)', lineHeight: 1 }}>
           {name}
         </h3>
         <p className="mut" style={{ fontSize: 18, lineHeight: 1.55 }}>
@@ -155,9 +154,8 @@ export default function Showcase({ locale, level = 'h2' }: { locale: Locale; lev
           />
         ))}
         <div className="tabs" aria-label={t.tabs}>
-          {tabs.map(([label, dot], k) => (
+          {tabs.map(([label], k) => (
             <label key={label} htmlFor={`sc${k + 1}`} id={`sc${k + 1}-l`} onPointerDown={stop}>
-              <i style={{ background: dot }} />
               {label}
             </label>
           ))}

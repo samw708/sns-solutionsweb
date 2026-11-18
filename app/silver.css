@@ -442,3 +442,4 @@
 .sv .mpanel a.msub{padding-left:26px}
 @media (prefers-reduced-motion:reduce){.sv .indpanel.open{animation:none}}
 .sv .indpanel[hidden]{display:none}
+.sv .ticks li::before{width:12px;height:1px;border-radius:0;margin-top:.72em;background:var(--mut)}
