@@ -443,3 +443,11 @@
 @media (prefers-reduced-motion:reduce){.sv .indpanel.open{animation:none}}
 .sv .indpanel[hidden]{display:none}
 .sv .ticks li::before{width:12px;height:1px;border-radius:0;margin-top:.72em;background:var(--mut)}
+/* language switch in the nav: EN | DE, the current one raised (components/silver/Shell.tsx) */
+.sv .langsw{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line)}
+.sv .langsw a{display:inline-grid;place-items:center;min-width:36px;min-height:32px;padding:0 10px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--mut)}
+.sv .langsw a:hover{color:var(--tx)}
+.sv .langsw a[aria-current]{background:var(--card);color:var(--tx);box-shadow:0 1px 2px rgba(18,22,25,.12),0 0 0 1px var(--line)}
+.sv .langsw a:focus-visible{outline:2px solid var(--tx);outline-offset:2px}
+@media (max-width:900px){.sv nav{gap:10px!important}.sv .langsw a{min-width:34px;min-height:34px;padding:0 8px}}
+@media (max-width:420px){.sv .navcta{display:none!important}}
