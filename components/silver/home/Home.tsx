@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import BookingWidget from '@/components/booking/BookingWidget'
-import type { Locale } from '@/i18n/config'
+import { type Locale, localePath } from '@/i18n/config'
 import { getPost } from '@/lib/blog'
 import { contactHref, href, immvelaHref } from '@/lib/silver/links'
 import SilverPage from '../Shell'
@@ -76,7 +76,7 @@ function copy(locale: Locale) {
           ['Nachweisen und übergeben', 'Dieselbe Messung noch einmal. Was wir bauen, gehört Ihnen.'],
         ],
       },
-      notes: { h: 'Notizen aus unserer Arbeit', all: 'Alle Insights', cat: { immvela: 'Immobilien', qfutool: 'Vertrieb' }, read: (m: string) => `${m} Min. Lesezeit, auf Englisch` },
+      notes: { h: 'Notizen aus unserer Arbeit', all: 'Alle Insights', cat: { immvela: 'Immobilien', qfutool: 'Vertrieb' }, read: (m: string) => `${m} Min. Lesezeit` },
       close: {
         h: 'Dauert bei Ihrem Team etwas zu lange?',
         p: 'Sagen Sie uns, was es ist. Wir sagen Ihnen, ob es sich automatisieren lässt und was das braucht.',
@@ -239,22 +239,20 @@ export default function Home({ locale }: { locale: Locale }) {
           </div>
           <div className="g3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 20 }}>
             {NOTES.map(([slug, img]) => {
-              const p = getPost(slug)
+              const p = getPost(slug, locale)
               if (!p) return null
               const mins = p.readTime.match(/\d+/)?.[0] ?? ''
               return (
                 <Link
                   key={slug}
-                  href={`/blog/${slug}`}
-                  hrefLang={locale === 'de' ? 'en' : undefined}
-                  lang={locale === 'de' ? 'en' : undefined}
+                  href={localePath(locale, `/blog/${slug}`)}
                   style={{ textDecoration: 'none', color: 'var(--tx)', display: 'flex', flexDirection: 'column', gap: 12 }}
                 >
                   <div style={{ aspectRatio: '16/10', borderRadius: 22, overflow: 'hidden', background: '#E7EAED', boxShadow: '0 0 0 1px var(--line)' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={`/sns/site/${img}`} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   </div>
-                  <span className="mut" style={{ fontSize: 13.5 }} lang={locale}>
+                  <span className="mut" style={{ fontSize: 13.5 }}>
                     {t.notes.cat[p.product]}, {t.notes.read(mins)}
                   </span>
                   <strong style={{ fontSize: 19, fontWeight: 600, lineHeight: 1.3 }}>{p.title}</strong>

@@ -1,7 +1,8 @@
-import type { Locale } from '@/i18n/config'
+import { type Locale, localePath } from '@/i18n/config'
 import type { BlogPost, BlogProduct } from '@/lib/blog'
 
-/** Insights (the blog) in the silver site: category names, images and dates. Posts themselves stay in lib/blog.ts. */
+/** Insights (the blog) in the silver site: category names, images and dates. Posts themselves are in lib/blog.ts (English)
+ *  and lib/blog-de.ts (German). */
 
 export const CATEGORY: Record<Locale, Record<BlogProduct, string>> = {
   en: { immvela: 'Real estate', qfutool: 'Sales' },
@@ -37,12 +38,15 @@ export function postDate(locale: Locale, iso: string): string {
   })
 }
 
+/** German posts already carry "8 Min. Lesezeit"; this only converts an English "8 min read" shown on a German page. */
 export function readTime(locale: Locale, rt: string): string {
   return locale === 'de' ? rt.replace(/(\d+) min read/, '$1 Min. Lesezeit') : rt
 }
 
 export type Card = {
   slug: string
+  /** The post's page in the card's language: /blog/<slug> or /de/blog/<slug>. */
+  href: string
   title: string
   description: string
   cat: string
@@ -53,6 +57,7 @@ export type Card = {
 export function card(locale: Locale, p: BlogPost): Card {
   return {
     slug: p.slug,
+    href: localePath(locale, `/blog/${p.slug}`),
     title: p.title,
     description: p.description,
     cat: CATEGORY[locale][p.product],

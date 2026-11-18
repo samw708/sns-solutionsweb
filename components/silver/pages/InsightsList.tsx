@@ -40,9 +40,9 @@ function Img({ src, ratio }: { src?: string; ratio: string }) {
   )
 }
 
-export function PostCard({ p, lang, long = true }: { p: Card; lang?: string; long?: boolean }) {
+export function PostCard({ p, long = true }: { p: Card; long?: boolean }) {
   return (
-    <Link className="post" href={`/blog/${p.slug}`} lang={lang}>
+    <Link className="post" href={p.href}>
       <Img src={p.img} ratio="16/9" />
       <span className="meta">{p.meta}</span>
       <h3 className="k3">{p.title}</h3>
@@ -59,7 +59,6 @@ export default function InsightsList({
   t,
   featured,
   rest,
-  postLang,
 }: {
   t: {
     crumb: string
@@ -72,7 +71,6 @@ export default function InsightsList({
   }
   featured: Card
   rest: Card[]
-  postLang?: string
 }) {
   const cats = Array.from(new Set([featured, ...rest].map((c) => c.cat)))
   const [on, setOn] = useState<string | null>(null)
@@ -124,8 +122,7 @@ export default function InsightsList({
             >
               <Link
                 className="post g2"
-                href={`/blog/${featured.slug}`}
-                lang={postLang}
+                href={featured.href}
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'minmax(0,1.2fr) minmax(0,.8fr)',
@@ -169,7 +166,7 @@ export default function InsightsList({
               }}
             >
               {grid.map((p) => (
-                <PostCard key={p.slug} p={p} lang={postLang} />
+                <PostCard key={p.slug} p={p} />
               ))}
             </div>
           ) : (

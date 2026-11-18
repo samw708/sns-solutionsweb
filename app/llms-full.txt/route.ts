@@ -216,12 +216,12 @@ ${t.products.qfutool.tagline} ${t.products.qfutool.desc} ${t.products.qfutool.st
   sections.push(
     `## Blog: ${url('/blog')}
 
-Notes from SNS Solutions on the problems behind our products: Immvela for estate agents, and QFUtool for salespeople chasing quotes.
+Notes from SNS Solutions on the problems behind our products: Immvela for estate agents, and QFUtool for salespeople chasing quotes. Every post is also in German, at the same slug under ${url('/de/blog')}.
 
 ${sortedPosts()
   .map(
     (post) =>
-      `- [${post.title}](${url(`/blog/${post.slug}`)}), ${post.eyebrow}, ${post.date}: ${post.description}`
+      `- [${post.title}](${url(`/blog/${post.slug}`)}), ${post.eyebrow}, ${post.date}: ${post.description} [Deutsch](${url(`/de/blog/${post.slug}`)}).`
   )
   .join('\n')}`
   )

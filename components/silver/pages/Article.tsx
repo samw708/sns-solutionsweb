@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { Locale } from '@/i18n/config'
 import type { BlogPost } from '@/lib/blog'
 import { getRelatedPosts } from '@/lib/blog'
 import { CATEGORY, HERO_IMAGE, card, postDate, readTime } from '@/lib/silver/insights'
@@ -8,23 +9,37 @@ import { Crumb, FaqSection, Joined, Pic, Sec } from '../ui'
 import { PostCard } from './InsightsList'
 import '@/app/silver-pages-c.css'
 
-/** One article (/blog/<slug>). Canvas board Site-Article. Posts are English only. */
+/** One article (/blog/<slug> and /de/blog/<slug>). Canvas board Site-Article. `post` arrives already in `locale`. */
 
-export default function Article({ post }: { post: BlogPost }) {
-  const hero =
-    HERO_IMAGE[post.slug] ??
-    (card('en', post).img ? { src: card('en', post).img as string, alt: '' } : null)
-  const related = getRelatedPosts(post).map((p) => card('en', p))
+const HERO_ALT_EN: Record<string, string> = {}
+const HERO_ALT_DE: Record<string, string> = {
+  'real-estate-data-fragmentation': 'Derselbe Grundriss fünfmal gezeichnet, jedes Mal mit einer anderen Fläche eingekreist.',
+}
+
+const T = {
+  en: { short: 'The short version', faq: 'Questions this answers', next: 'Read next', heroAlt: HERO_ALT_EN },
+  de: { short: 'Kurz gesagt', faq: 'Fragen, die dieser Beitrag beantwortet', next: 'Weiterlesen', heroAlt: HERO_ALT_DE },
+}
+
+export default function Article({ post, locale = 'en' }: { post: BlogPost; locale?: Locale }) {
+  const t = T[locale]
+  const c = card(locale, post)
+  const hero = HERO_IMAGE[post.slug]
+    ? { src: HERO_IMAGE[post.slug].src, alt: t.heroAlt[post.slug] ?? HERO_IMAGE[post.slug].alt }
+    : c.img
+      ? { src: c.img, alt: '' }
+      : null
+  const related = getRelatedPosts(post, locale).map((p) => card(locale, p))
   const List = (s: BlogPost['sections'][number]) => (s.ordered ? 'ol' : 'ul')
   return (
-    <SilverPage locale="en" alt="/blog">
+    <SilverPage locale={locale} alt={`/blog/${post.slug}`}>
       <Joined>
         <Sec bg="transparent" pad={['clamp(56px,9vh,96px)', 'clamp(40px,6vh,56px)']}>
           <div className="read" style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
             <Crumb
               items={[
-                { label: 'Insights', href: href('en', 'insights') },
-                { label: CATEGORY.en[post.product] },
+                { label: 'Insights', href: href(locale, 'insights') },
+                { label: CATEGORY[locale][post.product] },
               ]}
             />
             <h1
@@ -39,8 +54,8 @@ export default function Article({ post }: { post: BlogPost }) {
             </h1>
             <p className="mut lead">{post.description}</p>
             <span className="meta mut" style={{ fontSize: 14.5 }}>
-              <time dateTime={post.date}>{postDate('en', post.date)}</time>,{' '}
-              {readTime('en', post.readTime)}
+              <time dateTime={post.date}>{postDate(locale, post.date)}</time>,{' '}
+              {readTime(locale, post.readTime)}
             </span>
           </div>
         </Sec>
@@ -76,7 +91,7 @@ export default function Article({ post }: { post: BlogPost }) {
           })}
           {post.takeaways.length > 0 && (
             <div className="take" style={{ marginTop: 48 }}>
-              <strong className="k3">The short version</strong>
+              <strong className="k3">{t.short}</strong>
               <ul style={{ marginTop: 12 }}>
                 {post.takeaways.map((x) => (
                   <li key={x}>{x}</li>
@@ -123,13 +138,13 @@ export default function Article({ post }: { post: BlogPost }) {
         </article>
       </Sec>
 
-      {post.faq.length > 0 && <FaqSection heading="Questions this answers" items={post.faq} />}
+      {post.faq.length > 0 && <FaqSection heading={t.faq} items={post.faq} />}
 
       {related.length > 0 && (
         <Sec bg="var(--band)">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
             <h2 className="k3" style={{ fontSize: 'clamp(24px,2.2vw,32px)' }}>
-              Read next
+              {t.next}
             </h2>
             <div
               className="g2"

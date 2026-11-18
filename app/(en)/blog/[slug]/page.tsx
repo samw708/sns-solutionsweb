@@ -19,7 +19,10 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: post.title,
     description: post.description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: { en: url, de: `/de${url}`, 'x-default': url },
+    },
     openGraph: {
       type: 'article',
       url: `${SITE_URL}${url}`,

@@ -451,7 +451,7 @@ function blogPostingNode(locale: Locale, post: BlogPost) {
  * this is deliberately the lighter, list-shaped version of the same nodes.
  */
 export function blogIndexGraph(locale: Locale) {
-  const posts = sortedPosts()
+  const posts = sortedPosts(locale)
   const url = pageUrl(locale, '/blog')
   const postings = posts.map((p) => blogPostingNode(locale, p))
 
@@ -462,12 +462,14 @@ export function blogIndexGraph(locale: Locale) {
       type: 'CollectionPage',
       name: 'Blog',
       description:
-        'Notes from SNS Solutions on the problems behind our products: Immvela for estate agents, and QFUtool for salespeople chasing quotes.',
+        locale === 'de'
+          ? 'Notizen von SNS Solutions zu den Problemen hinter unseren Produkten: Immvela für Immobilienmakler und QFUtool für Verkäufer, die ihren Angeboten nachgehen.'
+          : 'Notes from SNS Solutions on the problems behind our products: Immvela for estate agents, and QFUtool for salespeople chasing quotes.',
     },
     {
       '@type': 'Blog',
       '@id': `${url}#blog`,
-      name: 'SNS Solutions Blog',
+      name: locale === 'de' ? 'SNS Solutions Blog (Deutsch)' : 'SNS Solutions Blog',
       url,
       publisher: { '@id': SNS_ORG_ID },
       blogPost: postings.map((p) => ({ '@id': p['@id'] })),

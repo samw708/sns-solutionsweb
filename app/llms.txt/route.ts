@@ -32,7 +32,7 @@ export function GET() {
 
   const posts = sortedPosts()
   const blogList = posts
-    .map((p) => `  - [${p.title}](${url(`/blog/${p.slug}`)}): ${p.description}`)
+    .map((p) => `  - [${p.title}](${url(`/blog/${p.slug}`)}): ${p.description} [Deutsch](${url(`/de/blog/${p.slug}`)}).`)
     .join('\n')
 
   const body = `# ${SITE.name}
@@ -69,7 +69,7 @@ ${TOOL_KEYS.map((k) => {
 - [QFUtool](https://www.qfutool.com/): our quote follow-up product for salespeople, on its own domain.
 - [Team](${url('/team')}): the three founders and what each of them leads. [Deutsch](${url('/de/team')}).
 - [Contact](${url('/contact')}): email, phone, and the inquiry form. [Deutsch](${url('/de/contact')}).
-- [Blog](${url('/blog')}): notes on the problems behind each product, filed by product. English only. Posts:
+- [Blog](${url('/blog')}): notes on the problems behind each product, filed by product. Every post is also in German. [Deutsch](${url('/de/blog')}). Posts:
 ${blogList}
 
 ## Optional

@@ -7,10 +7,7 @@ import { Closing, Sec } from '../ui'
 import InsightsList from './InsightsList'
 import '@/app/silver-pages-c.css'
 
-/**
- * Insights (/blog). Canvas board Site-Insights. The posts are English only (lib/blog.ts); the German page keeps the
- * German frame and marks each post as English.
- */
+/** Insights (/blog and /de/blog). Canvas board Site-Insights. Posts: lib/blog.ts (English), lib/blog-de.ts (German). */
 
 // No picture was made for this one; like the canvas, it is left out of the index (it stays linked from related posts).
 const HIDDEN = ['qfutool-automated-quote-follow-up']
@@ -41,10 +38,10 @@ const T = {
     list: {
       crumb: 'Insights',
       h1: 'Notizen aus der Praxis.',
-      lead: 'Was wir lernen, während wir Software für Immobilienmakler, HLK-Hersteller und Vertriebsteams bauen. Geschrieben von den Menschen, die die Arbeit machen. Die Artikel sind derzeit auf Englisch.',
+      lead: 'Was wir lernen, während wir Software für Immobilienmakler, HLK-Hersteller und Vertriebsteams bauen. Geschrieben von den Menschen, die die Arbeit machen.',
       all: 'Alle',
       filters: 'Nach Thema filtern',
-      read: 'Artikel lesen (Englisch)',
+      read: 'Artikel lesen',
       none: 'Hier gibt es noch nichts.',
     },
     nextH: 'In Arbeit',
@@ -62,7 +59,7 @@ const T = {
 
 export default function Insights({ locale }: { locale: Locale }) {
   const t = T[locale]
-  const posts = sortedPosts().filter((p) => !HIDDEN.includes(p.slug))
+  const posts = sortedPosts(locale).filter((p) => !HIDDEN.includes(p.slug))
   const featured = posts.find((p) => p.slug === FEATURED) ?? posts[0]
   const rest = posts.filter((p) => p !== featured).map((p) => card(locale, p))
   return (
@@ -71,7 +68,6 @@ export default function Insights({ locale }: { locale: Locale }) {
         t={t.list}
         featured={card(locale, featured)}
         rest={rest}
-        postLang={locale === 'de' ? 'en' : undefined}
       />
       <Sec bg="var(--band)">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>

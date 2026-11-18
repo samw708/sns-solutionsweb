@@ -35,23 +35,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   )
 
-  // English only, no `de` alternate — the blog doesn't have a German
-  // translation yet (see lib/blog.ts), so there's no second language to point
-  // at. `lastModified` uses each post's own date rather than `now`, the same
-  // way a real blog's sitemap would.
+  // The blog in both languages: each post's English and German pages name each other as alternates
+  // (lib/blog.ts + lib/blog-de.ts). `lastModified` uses the post's own date rather than `now`, the way a
+  // real blog's sitemap would.
+  const pair = (path: string) => ({ en: `${SITE_URL}${path}`, de: `${SITE_URL}/de${path}` })
+  const index = pair('/blog')
   const blog: MetadataRoute.Sitemap = [
-    {
-      url: `${SITE_URL}/blog`,
+    ...(['en', 'de'] as const).map((l) => ({
+      url: index[l],
       lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
-    },
-    ...BLOG_POSTS.map((post) => ({
-      url: `${SITE_URL}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
+      alternates: { languages: index },
     })),
+    ...BLOG_POSTS.flatMap((post) => {
+      const p = pair(`/blog/${post.slug}`)
+      return (['en', 'de'] as const).map((l) => ({
+        url: p[l],
+        lastModified: new Date(post.date),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+        alternates: { languages: p },
+      }))
+    }),
   ]
 
   const legal: MetadataRoute.Sitemap = ['/legal/imprint', '/legal/privacy', '/legal/terms'].flatMap(
