@@ -46,3 +46,8 @@
   .sv .facts{grid-template-columns:1fr}
   .sv .facts>div{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:14px}
 }
+/* phones: the triptych panels are shorter, and the label sits on a stronger shade so white text stays readable over bright metal */
+@media (max-width:900px){
+  .sv .prod-pano a{aspect-ratio:16/10}
+  .sv .prod-pano a::after{background:linear-gradient(180deg,transparent 30%,#0B0D0FD9)}
+}

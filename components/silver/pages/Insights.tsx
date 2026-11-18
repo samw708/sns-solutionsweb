@@ -53,7 +53,7 @@ const T = {
     closeH: 'Dauert in Ihrem Team etwas zu lange?',
     closeSub:
       'Sagen Sie uns, was es ist. Wir sagen Ihnen, ob es sich automatisieren lässt und was das brauchen würde.',
-    book: 'Kostenloses 30-Minuten-Gespräch buchen',
+    book: 'Kostenloses Erstgespräch buchen',
   },
 }
 

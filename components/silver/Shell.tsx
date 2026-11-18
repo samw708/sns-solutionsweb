@@ -13,6 +13,8 @@ const T = {
   en: {
     main: 'Main',
     menu: 'Menu',
+    home: 'Home',
+    language: 'Language',
     industries: {
       label: 'Industries',
       hvac: ['HVAC & Refrigeration', 'Pack CAD and software for manufacturers'],
@@ -25,7 +27,6 @@ const T = {
       ['Company', 'company'],
     ] as const,
     cta: 'Talk to us',
-    other: { short: 'DE', long: 'Deutsch', lang: 'de' },
     foot: {
       industries: 'Industries',
       realEstate: 'Real estate',
@@ -47,6 +48,8 @@ const T = {
   de: {
     main: 'Hauptmenü',
     menu: 'Menü',
+    home: 'Startseite',
+    language: 'Sprache',
     industries: {
       label: 'Branchen',
       hvac: ['HLK & Kältetechnik', 'Pack CAD und Software für Hersteller'],
@@ -59,7 +62,6 @@ const T = {
       ['Unternehmen', 'company'],
     ] as const,
     cta: 'Kontakt',
-    other: { short: 'EN', long: 'English', lang: 'en' },
     foot: {
       industries: 'Branchen',
       realEstate: 'Immobilien',
@@ -80,13 +82,21 @@ const T = {
   },
 }
 
-function otherPath(locale: Locale, alt: string) {
-  return localePath(locale === 'en' ? 'de' : 'en', alt)
+/** English | Deutsch, always visible (desktop nav and next to the burger on phones); the current one is marked. */
+function LangSwitch({ locale, alt, label }: { locale: Locale; alt: string; label: string }) {
+  return (
+    <div className="langsw" role="group" aria-label={label}>
+      {(['en', 'de'] as const).map((l) => (
+        <Link key={l} href={localePath(l, alt)} lang={l} hrefLang={l} aria-current={l === locale ? 'true' : undefined} aria-label={l === 'en' ? 'English' : 'Deutsch'}>
+          {l.toUpperCase()}
+        </Link>
+      ))}
+    </div>
+  )
 }
 
 export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
   const t = T[locale]
-  const other = otherPath(locale, alt)
   const ind = [
     { label: t.industries.hvac[0], line: t.industries.hvac[1], href: href(locale, 'hvac') },
     { label: t.industries.realEstate[0], line: t.industries.realEstate[1], href: immvelaHref(locale), external: true },
@@ -107,6 +117,9 @@ export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
         </Link>
         <span style={{ flexGrow: 1 }} />
         <span className="navlinks" style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+          <Link className="navl" href={href(locale, 'home')}>
+            {t.home}
+          </Link>
           <IndustriesMenu label={t.industries.label} items={ind} />
           {t.links.map(([label, key]) => (
             <Link key={key} className="navl" href={href(locale, key)}>
@@ -114,9 +127,7 @@ export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
             </Link>
           ))}
         </span>
-        <Link className="navl navde" href={other} lang={t.other.lang} hrefLang={t.other.lang} aria-label={t.other.long}>
-          {t.other.short}
-        </Link>
+        <LangSwitch locale={locale} alt={alt} label={t.language} />
         <Link className="btn dark navcta" href={href(locale, 'contact')} style={{ minHeight: 40, padding: '0 18px' }}>
           {t.cta}
         </Link>
@@ -126,6 +137,7 @@ export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
             <span />
           </summary>
           <div className="mpanel">
+            <Link href={href(locale, 'home')}>{t.home}</Link>
             <span className="mgroup">{t.industries.label}</span>
             {ind.map((it) =>
               it.external ? (
@@ -143,9 +155,7 @@ export function SilverNav({ locale, alt }: { locale: Locale; alt: string }) {
                 {label}
               </Link>
             ))}
-            <Link href={other} lang={t.other.lang} hrefLang={t.other.lang}>
-              {t.other.long}
-            </Link>
+            <Link href={href(locale, 'contact')}>{t.cta}</Link>
           </div>
         </details>
       </nav>

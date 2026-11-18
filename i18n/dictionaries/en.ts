@@ -249,7 +249,7 @@ export const en = {
     // Bios are ordered to match the founders list in components/Founders.tsx
     // (Samuel Winch, Nicholas Pellechi, Samson Belachew).
     bios: [
-      'Samuel leads SNS’s technical architecture and full-stack delivery. Originally from England and a self-taught engineer with a background in business, he focuses on turning complex requirements into clean, reliable systems. ',
+      'Samuel leads SNS’s technical architecture and full-stack delivery. Originally from England and a self-taught engineer with a background in business, he focuses on turning complex requirements into clean, reliable systems. He is pursuing a master’s in computer science.',
       'Nicholas leads SNS’s finances as CFO. From Switzerland and holding a degree in economics, he focuses on keeping SNS financially sound as it grows. ',
       'Samson leads SNS as CEO. From Austria and holding a degree in psychology, he sets the company’s direction and shapes how SNS’s products meet real market needs, with an eye for the human side of what technology solves. ',
     ],

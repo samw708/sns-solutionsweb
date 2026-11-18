@@ -186,7 +186,7 @@ export default function Home({ locale }: { locale: Locale }) {
 
       <section style={{ background: 'var(--plain)' }}>
         <div className="w g2" style={{ ...pad, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(32px,6vw,96px)', alignItems: 'center' }}>
-          <div className="swap">
+          <div className="swap bookcol">
             <div id="book" style={{ margin: '0 auto', maxWidth: 460, width: '100%', scrollMarginTop: 96 }}>
               <BookingWidget locale={locale} />
             </div>
@@ -215,7 +215,7 @@ export default function Home({ locale }: { locale: Locale }) {
           </p>
           <ol className="g4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 14, width: '100%', textAlign: 'left', listStyle: 'none', margin: 0, padding: 0 }}>
             {t.steps.items.map(([name, text], k) => (
-              <li key={name} style={glassCard}>
+              <li key={name} className="stepcard" style={glassCard}>
                 <span className="mono mut" aria-hidden="true">
                   {k + 1}
                 </span>

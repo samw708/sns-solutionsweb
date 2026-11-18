@@ -226,7 +226,7 @@ export const de: Dictionary = {
     // Reihenfolge wie die Gründerliste in components/Founders.tsx
     // (Samuel Winch, Nicholas Pellechi, Samson Belachew).
     bios: [
-      'Samuel verantwortet die technische Architektur und die Full-Stack-Umsetzung bei SNS. Ursprünglich aus England und als autodidaktischer Entwickler mit betriebswirtschaftlichem Hintergrund konzentriert er sich darauf, komplexe Anforderungen in saubere, zuverlässige Systeme zu übersetzen.',
+      'Samuel verantwortet die technische Architektur und die Full-Stack-Umsetzung bei SNS. Ursprünglich aus England und als autodidaktischer Entwickler mit betriebswirtschaftlichem Hintergrund konzentriert er sich darauf, komplexe Anforderungen in saubere, zuverlässige Systeme zu übersetzen. Derzeit absolviert er ein Masterstudium in Informatik.',
       'Nicholas verantwortet als CFO die Finanzen von SNS. Er kommt aus der Schweiz und hat einen Abschluss in Volkswirtschaftslehre; sein Fokus liegt darauf, SNS auch im Wachstum finanziell solide aufzustellen.',
       'Samson leitet SNS als CEO. Er stammt aus Österreich und hat einen Abschluss in Psychologie; er gibt die Richtung des Unternehmens vor und gestaltet, wie die Produkte von SNS auf reale Marktbedürfnisse treffen, mit einem Blick für die menschliche Seite dessen, was Technologie löst.',
     ],
