@@ -3,8 +3,7 @@ import type { Locale } from '@/i18n/config'
 import { getHvac } from '@/lib/hvac'
 import { contactHref, href } from '@/lib/silver/links'
 import { localePath } from '@/i18n/config'
-import Video from '../Video'
-import { Btns, Crumb, Lights } from '../ui'
+import { Btns, Crumb, FilmPair, Lights } from '../ui'
 import Mock from './Mock'
 
 /**
@@ -79,8 +78,9 @@ export default function Hub({ locale }: { locale: Locale }) {
               {t.tools.map((tool, i) => (
                 <div key={tool.id} className={`tp p${i + 1}`}>
                   {tool.film ? (
-                    <div className="vis" style={{ aspectRatio: '16/9', padding: 0, background: tool.id === 'cad' ? '#F9F9FA' : '#F3F4F6' }}>
-                      <Video src={`/sns/site/${tool.film.name}.mp4`} poster={`/sns/site/${tool.film.name}-poster.jpg`} label={tool.film.label} />
+                    <div className="vis" style={{ aspectRatio: 'auto', display: 'block', padding: 0, background: tool.id === 'cad' ? '#F9F9FA' : '#F3F4F6' }}>
+                      {/* 16:9 on desktop, the 4:5 cut on phones; German pages get the German renders (captions are in the film) */}
+                      <FilmPair name={tool.film.name} label={tool.film.label} de={locale === 'de'} />
                     </div>
                   ) : (
                     tool.mock && (

@@ -14,7 +14,7 @@ const HERO_PAD: [string, string] = ['clamp(56px,9vh,96px)', 'clamp(64px,10vh,104
 const H1 = { lineHeight: 0.98, letterSpacing: '-0.05em', margin: 0 } as const
 const BIG = { fontSize: 'clamp(18px,1.6vw,22px)', letterSpacing: '-0.02em' } as const
 
-function Stage({ t }: { t: ToolCopy }) {
+function Stage({ t, de = false }: { t: ToolCopy; de?: boolean }) {
   return (
     <div
       className="tvis"
@@ -28,7 +28,7 @@ function Stage({ t }: { t: ToolCopy }) {
         boxShadow: '0 0 0 1px var(--line),0 60px 100px -70px var(--shadow)',
       }}
     >
-      <FilmPair name={t.film.name} label={t.film.label} />
+      <FilmPair name={t.film.name} label={t.film.label} de={de} />
     </div>
   )
 }
@@ -150,7 +150,7 @@ export default function ToolPage({ locale, tool }: { locale: Locale; tool: ToolK
             </p>
           </div>
         </div>
-        <Stage t={t} />
+        <Stage t={t} de={locale === 'de'} />
       </div>
     </Sec>
   ) : (
@@ -164,7 +164,7 @@ export default function ToolPage({ locale, tool }: { locale: Locale; tool: ToolK
         <Btns items={[book, all]} center />
       </div>
       <div style={{ margin: 'clamp(40px,6vh,64px) auto 0', maxWidth: 980 }}>
-        <Stage t={t} />
+        <Stage t={t} de={locale === 'de'} />
       </div>
       <p className="mut" style={{ margin: '18px auto 0', fontSize: 14.5, maxWidth: '40em', textAlign: 'center' }}>
         {t.note}

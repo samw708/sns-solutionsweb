@@ -143,7 +143,8 @@ export function Closing({ heading, sub, ctas }: { heading: string; sub: string; 
 const MEDIA = '/sns/site/'
 
 /** One film in a rounded frame (canvas `film`). `name` is the file in public/sns/site without extension. */
-export function Film({ name, label, ratio = '16/9', dark = true }: { name: string; label: string; ratio?: string; dark?: boolean }) {
+export function Film({ name, label, ratio = '16/9', dark = true, de = false }: { name: string; label: string; ratio?: string; dark?: boolean; de?: boolean }) {
+  const n = name + (de ? '-de' : '')
   return (
     <div
       style={{
@@ -155,7 +156,7 @@ export function Film({ name, label, ratio = '16/9', dark = true }: { name: strin
         boxShadow: '0 0 0 1px var(--line),0 60px 100px -70px var(--shadow)',
       }}
     >
-      <Video src={`${MEDIA}${name}.mp4`} poster={`${MEDIA}${name}-poster.jpg`} label={label} />
+      <Video src={`${MEDIA}${n}.mp4`} poster={`${MEDIA}${n}-poster.jpg`} label={label} />
     </div>
   )
 }
@@ -164,21 +165,23 @@ export function Film({ name, label, ratio = '16/9', dark = true }: { name: strin
  * A film with a phone cut: 16:9 (or `ratio`) above 700 px, the `-m` 4:5 cut below. Both are in the page; CSS shows one
  * and the hidden one never plays.
  */
-export function FilmPair({ name, label, ratio = '16/9' }: { name: string; label: string; ratio?: string }) {
+export function FilmPair({ name, label, ratio = '16/9', de = false }: { name: string; label: string; ratio?: string; de?: boolean }) {
+  // German pages use the German renders (<name>-de, <name>-m-de): the films have captions burned in.
+  const d = de ? '-de' : ''
   return (
     <>
       <Video
         className="vid vd"
         style={{ position: 'relative', display: 'block', width: '100%', height: 'auto', aspectRatio: ratio }}
-        src={`${MEDIA}${name}.mp4`}
-        poster={`${MEDIA}${name}-poster.jpg`}
+        src={`${MEDIA}${name}${d}.mp4`}
+        poster={`${MEDIA}${name}${d}-poster.jpg`}
         label={label}
       />
       <Video
         className="vid vm"
         style={{ position: 'relative', display: 'none', width: '100%', height: 'auto', aspectRatio: '4/5' }}
-        src={`${MEDIA}${name}-m.mp4`}
-        poster={`${MEDIA}${name}-m-poster.jpg`}
+        src={`${MEDIA}${name}-m${d}.mp4`}
+        poster={`${MEDIA}${name}-m${d}-poster.jpg`}
         label={label}
       />
     </>
@@ -186,7 +189,7 @@ export function FilmPair({ name, label, ratio = '16/9' }: { name: string; label:
 }
 
 /** A film in the light frame, with its phone cut (canvas `lfilm`). */
-export function LightFilm({ name, label }: { name: string; label: string }) {
+export function LightFilm({ name, label, de = false }: { name: string; label: string; de?: boolean }) {
   return (
     <div
       style={{
@@ -197,7 +200,7 @@ export function LightFilm({ name, label }: { name: string; label: string }) {
         boxShadow: '0 0 0 1px var(--line),0 60px 100px -70px var(--shadow)',
       }}
     >
-      <FilmPair name={name} label={label} />
+      <FilmPair name={name} label={label} de={de} />
     </div>
   )
 }

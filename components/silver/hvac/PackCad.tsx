@@ -111,7 +111,7 @@ export default function PackCad({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
-          <LightFilm name="pack-printout" label={t.stepsFilm} />
+          <LightFilm de={locale === 'de'} name="pack-printout" label={t.stepsFilm} />
         </div>
       </Sec>
 
@@ -131,7 +131,7 @@ export default function PackCad({ locale }: { locale: Locale }) {
               </ul>
             </div>
           </div>
-          <LightFilm name="pack-limit" label={t.rules.film} />
+          <LightFilm de={locale === 'de'} name="pack-limit" label={t.rules.film} />
         </div>
       </Sec>
 
@@ -156,7 +156,7 @@ export default function PackCad({ locale }: { locale: Locale }) {
       <Sec bg="var(--band)">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
           <h2 className="k2">{t.outputs.heading}</h2>
-          <LightFilm name="pack-model-drawing" label={t.outputs.film} />
+          <LightFilm de={locale === 'de'} name="pack-model-drawing" label={t.outputs.film} />
           <div className="cols3">
             {t.outputs.items.map((o) => (
               <div key={o.name} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
