@@ -64,15 +64,15 @@ const T = {
       pill: 'Closed beta',
       for: 'For estate agents in Austria, Germany and Switzerland.',
       statement:
-        'Your personal real estate assistant. Give it the Energieausweis, the floor plan and the photos: Immvela drafts the Exposé, the brochure and the social posts, traces every figure back to the document it came from, and publishes nothing until you approve it.',
+        'Turn a folder of documents into a finished listing. Immvela writes the Exposé, designs the brochure, stages the empty rooms and prepares the posts, so the evenings of retyping and writing go back to your clients. You check it, you press publish.',
       steps: [
-        ['Bring the property in', 'Upload the Energieausweis, floor plan and photos, or import listings from your CRM by OpenImmo export. Immvela reads the values and shows you each one to confirm. When two documents disagree, it asks.'],
-        ['Exposé, brochure and posts', 'Written from your confirmed values, in the German of the listing’s country, with your office’s branding. A required value that is missing is flagged, never made up. Empty rooms can be staged, and every staged photo is labelled as virtually staged.'],
-        ['Published when you approve', 'One click posts to five social channels. Nothing goes out before you say so.'],
+        ['Never retype a value', 'Drop in the Energieausweis, floor plan and photos, or bring listings over from your CRM. Immvela reads the values, you confirm them once, and they are right everywhere. Every figure traces back to its document; a missing required value is flagged, never invented.'],
+        ['Every listing looks like your best one', 'The Exposé and a designed brochure in your office’s branding, in the German of the listing’s country. Empty rooms staged so buyers can picture living there, with every staged photo labelled as virtually staged.'],
+        ['Everywhere with one approval', 'Posts for your social channels, written and ready. You approve, Immvela publishes.'],
       ],
       facts: [
-        ['You give it', 'Energieausweis, floor plan, photos, or an OpenImmo export'],
-        ['You get', 'Exposé, brochure, staged photos, social posts'],
+        ['Takes off your desk', 'Retyping values, writing the Exposé, posting channel by channel'],
+        ['You get', 'Exposé, brochure, staged photos, ready posts'],
         ['Status', 'Closed beta, German first, English available'],
         ['Lives at', 'immvela.com'],
       ],
@@ -139,15 +139,15 @@ const T = {
       pill: 'Geschlossene Beta',
       for: 'Für Immobilienmakler in Österreich, Deutschland und der Schweiz.',
       statement:
-        'Ihr persönlicher Immobilien-Assistent. Geben Sie ihm Energieausweis, Grundriss und Fotos: Immvela entwirft Exposé, Broschüre und Social-Media-Beiträge, führt jede Zahl auf das Dokument zurück, aus dem sie stammt, und veröffentlicht nichts ohne Ihre Freigabe.',
+        'Aus einem Ordner voller Unterlagen wird ein fertiges Inserat. Immvela schreibt das Exposé, gestaltet die Broschüre, möbliert leere Räume virtuell und bereitet die Beiträge vor. Die Abende mit Abtippen und Texten gehören wieder Ihren Kunden. Sie prüfen, Sie veröffentlichen.',
       steps: [
-        ['Die Immobilie anlegen', 'Energieausweis, Grundriss und Fotos hochladen oder Objekte per OpenImmo-Export aus Ihrem CRM übernehmen. Immvela liest die Werte und legt Ihnen jeden zur Bestätigung vor. Widersprechen sich zwei Unterlagen, fragt es nach.'],
-        ['Exposé, Broschüre und Beiträge', 'Geschrieben aus Ihren bestätigten Werten, im Deutsch des Landes, in dem die Immobilie liegt, im Auftritt Ihres Büros. Fehlt ein Pflichtwert, wird er markiert, nie erfunden. Leere Räume lassen sich virtuell möblieren, jedes solche Foto ist als virtuell möbliert gekennzeichnet.'],
-        ['Veröffentlicht, wenn Sie freigeben', 'Ein Klick postet auf fünf Social-Media-Kanäle. Nichts geht hinaus, bevor Sie es sagen.'],
+        ['Nie wieder abtippen', 'Energieausweis, Grundriss und Fotos hineinziehen oder Objekte aus Ihrem CRM übernehmen. Immvela liest die Werte, Sie bestätigen sie einmal, und sie stimmen überall. Jede Zahl führt zurück zu ihrem Dokument; fehlt ein Pflichtwert, wird er markiert, nie erfunden.'],
+        ['Jedes Inserat wie Ihr bestes', 'Exposé und gestaltete Broschüre im Auftritt Ihres Büros, im Deutsch des Landes, in dem die Immobilie liegt. Leere Räume virtuell möbliert, damit Käufer sich das Wohnen vorstellen können; jedes solche Foto ist als virtuell möbliert gekennzeichnet.'],
+        ['Überall draußen, mit einer Freigabe', 'Die Beiträge für Ihre Social-Media-Kanäle, geschrieben und bereit. Sie geben frei, Immvela veröffentlicht.'],
       ],
       facts: [
-        ['Sie geben', 'Energieausweis, Grundriss, Fotos oder einen OpenImmo-Export'],
-        ['Sie bekommen', 'Exposé, Broschüre, virtuell möblierte Fotos, Beiträge'],
+        ['Nimmt Ihnen ab', 'Werte abtippen, Exposé schreiben, Kanal für Kanal posten'],
+        ['Sie bekommen', 'Exposé, Broschüre, virtuell möblierte Fotos, fertige Beiträge'],
         ['Status', 'Geschlossene Beta, Deutsch zuerst, Englisch verfügbar'],
         ['Zu finden auf', 'immvela.com'],
       ],
