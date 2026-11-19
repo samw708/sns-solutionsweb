@@ -31,3 +31,23 @@
   .sv .mh .grow,.sv .mh .grow .stack{transform:none}
   .sv .mh .sheen{display:none}
 }
+
+/*
+ * Phones: the reel stops laying its captions over the film (white text over bright frames was unreadable, and the
+ * consulting chat ran into the caption). The film sits on top at 4:3 and fades into the dark box, the caption follows
+ * on solid dark (all captions share one grid cell, so the box height doesn't jump between chapters), then the tabs.
+ */
+@media (max-width:700px){
+  .sv .bx .scr{aspect-ratio:auto!important;display:flex;flex-direction:column;padding-bottom:14px}
+  .sv .bx .scr .stack{position:relative;inset:auto;flex:none;aspect-ratio:4/3}
+  .sv .bx .scr .stack::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:38%;background:linear-gradient(180deg,transparent,#07080A);pointer-events:none;z-index:3}
+  .sv .bx .scrim,.sv .bx .scrim2{display:none}
+  .sv .bx .caps{position:relative;left:auto;right:auto;bottom:auto;width:auto;display:grid;padding:2px 22px 0;opacity:1;transform:none;z-index:4}
+  .sv .bx .caps [data-cap]{position:relative;left:auto;bottom:auto;grid-area:1 / 1}
+  .sv .bx .caps h2{font-size:34px}
+  .sv .bx .caps p{font-size:16px}
+  .sv .bx .cbar{position:relative;left:auto;right:auto;bottom:auto;padding:20px 14px 0 18px;z-index:4}
+  .sv .bx .cn strong{font-size:13.5px;line-height:1.25}
+  .sv .bx .thread{top:7%;left:6%!important;width:88%;gap:7px}
+  .sv .bx .bub{font-size:13.5px;padding:8px 12px;max-width:86%}
+}
