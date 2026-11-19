@@ -83,7 +83,7 @@ export const en = {
   productsPage: {
     title: 'Our products',
     description:
-      'Pack CAD for refrigeration pack manufacturers, Immvela, which drafts the Exposé, brochure and posts for estate agents from confirmed values, and QFUtool, automated quote follow-up. Three products built in-house by SNS Solutions in Vienna.',
+      'Pack CAD for refrigeration pack manufacturers, Immvela, an AI assistant that prepares listings for estate agents, from the documents to the posts, and QFUtool, automated quote follow-up. Three products built in-house by SNS Solutions in Vienna.',
     heading: 'Our products',
     line: 'Two tools, each built for one job.',
     immvelaTagline: 'Your personal real estate AI assistant.',
