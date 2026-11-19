@@ -73,7 +73,7 @@ export const de: Dictionary = {
   productsPage: {
     title: 'Unsere Produkte',
     description:
-      'Pack CAD für Hersteller von Kälteverbundanlagen, Immvela, der persönliche KI-Assistent für Immobilien, und QFUtool, automatisches Nachfassen von Angeboten. Drei Produkte, selbst entwickelt von SNS Solutions in Wien.',
+      'Pack CAD für Hersteller von Kälteverbundanlagen, Immvela, das für Makler Exposé, Broschüre und Beiträge aus bestätigten Werten entwirft, und QFUtool, automatisches Nachfassen von Angeboten. Drei Produkte, selbst entwickelt von SNS Solutions in Wien.',
     heading: 'Unsere Produkte',
     line: 'Zwei Werkzeuge, jedes für eine Aufgabe.',
     immvelaTagline: 'Ihr persönlicher KI-Assistent für Immobilien.',
