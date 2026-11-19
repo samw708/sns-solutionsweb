@@ -75,10 +75,10 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'real-estate-data-fragmentation',
     product: 'immvela',
-    title: "The Real Data Problem in Real Estate (And Why Buying More Software Doesn't Fix It)",
+    title: "The real data problem in real estate (and why buying more software doesn't fix it)",
     eyebrow: 'Real Estate',
     description:
-      "A listing lives in five places and agrees with itself in none of them. Here's where real-estate data fragmentation actually comes from, and why another app usually makes it worse.",
+      "A listing lives in five places and agrees with itself in none of them. Here's where real-estate data fragmentation comes from, and why another app usually makes it worse.",
     date: '2026-08-25',
     readTime: '8 min read',
     accent: 'blue',
@@ -160,10 +160,10 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'immvela-one-record-real-estate-operating-system',
     product: 'immvela',
-    title: 'Immvela: One Verified Record Instead of Seven Logins',
+    title: 'Immvela: one verified record instead of seven logins',
     eyebrow: 'Immvela · Product',
     description:
-      "What Immvela actually is: the idea behind SNS's product for estate agents, what it does today, and the limits built into it rather than left to policy.",
+      "What Immvela is: the idea behind SNS's product for estate agents, what it does today, and the limits built into it rather than left to policy.",
     date: '2026-08-27',
     readTime: '8 min read',
     accent: 'cyan',
@@ -254,7 +254,7 @@ export const BLOG_POSTS: BlogPost[] = [
     // here (next.config.mjs).
     slug: 'why-quotes-go-unanswered',
     product: 'qfutool',
-    title: 'Why Sales Teams Lose Deals After the Quote Goes Out',
+    title: 'Why sales teams lose deals after the quote goes out',
     eyebrow: 'Sales & Follow-up',
     description:
       'A quote goes out, then silence. Why the follow-up gap is a data problem rather than a discipline problem, and what fixes it without a CRM migration.',
@@ -331,7 +331,7 @@ export const BLOG_POSTS: BlogPost[] = [
     // truth, and this post says so rather than pretending to be it.
     slug: 'qfutool-automated-quote-follow-up',
     product: 'qfutool',
-    title: 'QFUtool: Automated Follow-Up for the Quotes Nobody Chases',
+    title: 'QFUtool: automated follow-up for the quotes nobody chases',
     eyebrow: 'QFUtool · Product',
     description:
       'What QFUtool does, how it works from the export you already have, the rules it keeps, and what it costs.',
@@ -432,7 +432,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'ai-outbound-for-service-businesses',
     product: 'qfutool',
-    title: 'From Follow-Up to Outbound: Where AI-Driven Sales Automation Is Headed',
+    title: 'From follow-up to outbound: where AI sales automation is headed',
     eyebrow: 'AI Outbound',
     description:
       'Follow-up and outbound sound similar but fail differently. What separates them, why outbound has a higher bar, and the direction QFUtool is moving toward.',
@@ -497,7 +497,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'ai-infrastructure-for-real-estate-agencies',
     product: 'immvela',
-    title: "What 'AI Infrastructure' Actually Means for a Real Estate Agency",
+    title: "What 'AI infrastructure' means for a real estate agency",
     eyebrow: 'AI Infrastructure',
     description:
       "Most 'AI for real estate' is a chatbot bolted onto the same fragmented tools. Real AI infrastructure is the data layer underneath it. Here's what that means in practice.",

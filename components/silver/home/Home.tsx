@@ -16,14 +16,14 @@ function copy(locale: Locale) {
   if (locale === 'de')
     return {
       reel: {
-        sub: 'Software und KI für Immobilien, für HLK und Kältetechnik und für jedes Team, das KI echte Arbeit erledigen lassen will.',
+        sub: 'Software und KI, die Maklern, Herstellern in HLK und Kältetechnik und jedem Team in Routinearbeit die Wiederholungen abnehmen.',
         book: { label: 'Kostenloses Erstgespräch buchen', href: BOOK },
         see: 'Was wir bauen',
         chapters: [
           {
             tag: 'Immobilien',
             title: 'Immvela',
-            text: 'Ihre persönliche KI-Assistenz für Immobilien, für Makler in Österreich, Deutschland und der Schweiz. In der geschlossenen Beta.',
+            text: 'Ein Immobilien-Assistent, dem Sie die Arbeit übergeben: im Chat beauftragt, bereitet er Exposé, Broschüre und Beiträge zur Freigabe vor. Für Makler in Österreich, Deutschland und der Schweiz, in der geschlossenen Beta.',
             links: [{ label: 'immvela.com besuchen ↗', href: immvelaHref(locale), external: true }],
             chip: ['Immobilien', 'Immvela'],
           },
@@ -40,7 +40,7 @@ function copy(locale: Locale) {
           {
             tag: 'Beratung',
             title: 'Wo lohnt sich KI für Sie?',
-            text: 'Wir sehen uns an, wie Ihr Team arbeitet, und sagen Ihnen offen, wo sich KI rechnet. Wenn ja, bauen wir es.',
+            text: 'Sagen Sie uns, was die Woche Ihres Teams frisst. Wir finden die Teile, die Software übernehmen kann, und bauen sie.',
             links: [{ label: 'Kostenloses Erstgespräch buchen', href: BOOK }],
             chip: ['Beratung', 'Ein kostenloses 30-Minuten-Gespräch'],
           },
@@ -54,7 +54,7 @@ function copy(locale: Locale) {
           { who: 'them', text: 'Wir verschicken die ganze Woche Angebote und kommen nie dazu nachzufassen.' },
           { who: 'us', text: 'Dann würden wir genau dort anfangen.' },
           { who: 'them', text: 'Wie finden wir heraus, ob es sich lohnt?' },
-          { who: 'us', text: 'Dreißig Minuten, online, kostenlos. Wir schauen uns an, wie Sie arbeiten, und sagen es Ihnen offen.' },
+          { who: 'us', text: 'Dreißig Minuten, online, kostenlos. Danach wissen Sie es.' },
         ],
         nav: 'Was wir machen',
         pause: 'Film anhalten',
@@ -62,38 +62,38 @@ function copy(locale: Locale) {
       } satisfies ReelCopy,
       consult: {
         label: 'Beratung',
-        h: 'Wo lohnt sich KI in Ihrem Unternehmen?',
-        p: 'Dreißig Minuten, online, kostenlos und unverbindlich. Wir sehen uns an, wie Ihr Team arbeitet, sagen Ihnen offen, wo sich KI rechnet, und bauen es, wenn es sich lohnt.',
+        h: 'Dreißig Minuten, um es herauszufinden.',
+        p: 'Per Videoanruf, kostenlos und unverbindlich. Danach wissen Sie, welche Aufgaben sich automatisieren lassen, welche nicht, und was ein Projekt bräuchte.',
         cta: 'Kostenloses Erstgespräch buchen',
       },
       steps: {
-        h: 'Wir messen, bevor wir etwas anfassen.',
-        p: 'Jedes individuelle Projekt folgt denselben vier Schritten. Und wenn die ehrliche Antwort „Das müssen Sie nicht bauen lassen“ lautet, dann bekommen Sie genau diese Antwort.',
+        h: 'Jedes Projekt beginnt und endet mit einer Zahl.',
+        p: 'Und wenn die ehrliche Antwort „Das müssen Sie nicht bauen lassen“ lautet, dann bekommen Sie genau diese Antwort.',
         items: [
           ['Durchsprechen', 'Sie beschreiben es. Wir stellen die unbequemeren Fragen.'],
-          ['Ausgangswert', 'Wir messen, bevor wir etwas anfassen.'],
+          ['Ausgangswert', 'Die heutige Zahl, gemessen an Ihrer echten Arbeit.'],
           ['Pilot', 'Ein Ablauf, live, in wenigen Wochen.'],
           ['Nachweisen und übergeben', 'Dieselbe Messung noch einmal. Was wir bauen, gehört Ihnen.'],
         ],
       },
       notes: { h: 'Notizen aus unserer Arbeit', all: 'Alle Insights', cat: { immvela: 'Immobilien', qfutool: 'Vertrieb' }, read: (m: string) => `${m} Min. Lesezeit` },
       close: {
-        h: 'Dauert bei Ihrem Team etwas zu lange?',
-        p: 'Sagen Sie uns, was es ist. Wir sagen Ihnen, ob es sich automatisieren lässt und was das braucht.',
+        h: 'Bringen Sie die Aufgabe, die Ihre Woche frisst.',
+        p: 'In dreißig Minuten sagen wir Ihnen, ob sie sich automatisieren lässt und was das bräuchte.',
         book: 'Kostenloses Erstgespräch buchen',
-        past: 'Früheres Projekt schicken (HLK)',
+        past: 'Schreiben Sie uns',
       },
     }
   return {
     reel: {
-      sub: 'Software and AI for real estate, for HVAC and refrigeration, and for any team that wants AI to do real work.',
+      sub: 'Software and AI that take the repetitive work off estate agents, HVAC and refrigeration manufacturers, and any team buried in routine.',
       book: { label: 'Book a free 30-minute call', href: BOOK },
       see: 'See what we build',
       chapters: [
         {
           tag: 'Real estate',
           title: 'Immvela',
-          text: 'Your personal real estate AI assistant, for agents in Austria, Germany and Switzerland. In closed beta.',
+          text: 'A real estate assistant you hand the work to: ask in the chat and it prepares the Exposé, brochure and posts for your approval. For agents in Austria, Germany and Switzerland, in closed beta.',
           links: [{ label: 'Visit immvela.com ↗', href: immvelaHref(locale), external: true }],
           chip: ['Real estate', 'Immvela'],
         },
@@ -110,7 +110,7 @@ function copy(locale: Locale) {
         {
           tag: 'Consulting',
           title: 'Where is AI worth it for you?',
-          text: 'We look at how your team works and tell you straight where AI pays off. If it does, we build it.',
+          text: 'Tell us what eats your team’s week. We find the parts software can take over, and build them.',
           links: [{ label: 'Book a free 30-minute call', href: BOOK }],
           chip: ['Consulting', 'A free 30-minute call'],
         },
@@ -124,7 +124,7 @@ function copy(locale: Locale) {
         { who: 'them', text: 'We send quotes all week and never get round to chasing them.' },
         { who: 'us', text: 'Then that’s where we’d start.' },
         { who: 'them', text: 'How do we find out if it’s worth it?' },
-        { who: 'us', text: 'Thirty minutes, online, free. We look at how you work and tell you straight.' },
+        { who: 'us', text: 'Thirty minutes, online, free. You’ll know by the end.' },
       ],
       nav: 'What we do',
       pause: 'Pause the film',
@@ -132,26 +132,26 @@ function copy(locale: Locale) {
     } satisfies ReelCopy,
     consult: {
       label: 'Consulting',
-      h: 'Where is AI worth it in your company?',
-      p: 'Thirty minutes, online, no cost and no obligation. We look at how your team works, tell you straight where AI pays off, and build it if it does.',
+      h: 'Thirty minutes to find out.',
+      p: 'On a video call, free and with no obligation. You leave knowing which of your tasks are worth automating, which aren’t, and what a build would take.',
       cta: 'Book a free 30-minute call',
     },
     steps: {
-      h: 'We measure it before we touch it.',
-      p: 'Every custom build follows the same four steps. And if the honest answer is “you don’t need this built”, that’s the answer you get.',
+      h: 'Every build starts and ends with a number.',
+      p: 'And if the honest answer is “you don’t need this built”, that’s the answer you get.',
       items: [
         ['Talk it through', 'You describe it. We ask the harder questions.'],
-        ['Baseline', 'We measure it before we touch it.'],
+        ['Baseline', 'Today’s figure, taken on your real work.'],
         ['Pilot', 'One workflow, live, in weeks.'],
         ['Prove and hand over', 'The same measurement, run again. You own what we build.'],
       ],
     },
     notes: { h: 'Notes from building it', all: 'All insights', cat: { immvela: 'Real estate', qfutool: 'Sales' }, read: (m: string) => `${m} min read` },
     close: {
-      h: 'Is something taking your team too long?',
-      p: 'Tell us what it is. We’ll tell you whether it can be automated, and what that would take.',
+      h: 'Bring the task that eats your week.',
+      p: 'In thirty minutes we’ll tell you whether it can be automated, and what that would take.',
       book: 'Book a free 30-minute call',
-      past: 'Send us a past job (HVAC)',
+      past: 'Write to us',
     },
   }
 }
@@ -277,7 +277,7 @@ export default function Home({ locale }: { locale: Locale }) {
             <a className="btn dark" href={BOOK}>
               {t.close.book}
             </a>
-            <Link className="btn glass" href={contactHref(locale, 'pastjob')}>
+            <Link className="btn glass" href={href(locale, 'contact')}>
               {t.close.past}
             </Link>
           </div>

@@ -490,3 +490,6 @@
    the sticky column beside the metrics only sticks on wide screens */
 .sv .tools>label{scroll-margin-top:84px}
 @media (max-width:900px){.sv .stick{position:static!important}}
+
+/* The open tool's headline is the panel's heading; in its row it would say the same thing twice. */
+.sv #t1:checked~.tools [for=t1] span,.sv #t2:checked~.tools [for=t2] span,.sv #t3:checked~.tools [for=t3] span,.sv #t4:checked~.tools [for=t4] span,.sv #t5:checked~.tools [for=t5] span,.sv #t6:checked~.tools [for=t6] span,.sv #t7:checked~.tools [for=t7] span{display:none}

@@ -52,10 +52,10 @@ const T = {
         ['Design and detail', 'The pack in 3D on your frame family, with its 2D drawings and parts list. STEP and DXF for exchanging files.'],
       ],
       facts: [
-        ['For', 'Refrigeration pack manufacturers'],
+        ['Reads', 'The selection printout your software already produces'],
         ['Built', 'For each manufacturer, on its own rules. It stays yours.'],
         ['Out', '3D model, 2D drawings, parts list, STEP and DXF'],
-        ['Speciality now', 'CO₂ transcritical booster packs'],
+        ['Signed off by', 'Your engineers, on every design'],
       ],
       cta: 'See Pack CAD',
       past: 'Send us a past job',
@@ -84,12 +84,12 @@ const T = {
       statement:
         'You sent the quote. Now somebody has to chase it. QFUtool follows up with each customer in your name, during business hours, and hands you the ones who reply.',
       steps: [
-        ['Upload your quotes', 'The spreadsheet of quotes that went out. There is no CRM to set up.'],
-        ['Follow-ups in your name', 'Sent to each customer during business hours.'],
+        ['Upload your quotes', 'The spreadsheet of quotes that went out. That’s the whole setup.'],
+        ['Follow-ups in your name', 'Written for each customer and sent during business hours. You don’t write a single chase email.'],
         ['Replies come to you', 'The moment a customer replies, the follow-ups stop and the conversation is yours.'],
       ],
       facts: [
-        ['For', 'Sales teams in any industry'],
+        ['Replaces', 'Chasing quotes by hand'],
         ['Price', '14 days free, then from €19 a month'],
         ['Setup', 'A spreadsheet of your quotes, no CRM'],
         ['Lives at', 'qfutool.com'],
@@ -127,10 +127,10 @@ const T = {
         ['Konstruieren und detaillieren', 'Die Anlage in 3D auf Ihrer Rahmenfamilie, mit 2D-Zeichnungen und Stückliste. STEP und DXF für den Datenaustausch.'],
       ],
       facts: [
-        ['Für', 'Hersteller von Kälteverbundanlagen'],
+        ['Liest', 'Den Auslegungsausdruck, den Ihre Software ohnehin erzeugt'],
         ['Gebaut', 'Für jeden Hersteller, nach seinen Regeln. Es bleibt Ihres.'],
         ['Ergebnis', '3D-Modell, 2D-Zeichnungen, Stückliste, STEP und DXF'],
-        ['Schwerpunkt', 'Transkritische CO₂-Booster-Anlagen'],
+        ['Freigegeben von', 'Ihren Ingenieuren, bei jeder Konstruktion'],
       ],
       cta: 'Pack CAD ansehen',
       past: 'Früheres Projekt schicken',
@@ -159,12 +159,12 @@ const T = {
       statement:
         'Das Angebot ist verschickt. Jetzt muss jemand nachfassen. QFUtool schreibt jedem Kunden in Ihrem Namen, während der Geschäftszeiten, und übergibt Ihnen die, die antworten.',
       steps: [
-        ['Angebote hochladen', 'Die Tabelle der verschickten Angebote. Kein CRM einzurichten.'],
-        ['Nachfassen in Ihrem Namen', 'An jeden Kunden, während der Geschäftszeiten.'],
+        ['Angebote hochladen', 'Die Tabelle der verschickten Angebote. Das ist die ganze Einrichtung.'],
+        ['Nachfassen in Ihrem Namen', 'Für jeden Kunden geschrieben und während der Geschäftszeiten verschickt. Sie schreiben keine einzige Erinnerungsmail.'],
         ['Antworten gehen an Sie', 'Sobald ein Kunde antwortet, stoppt das Nachfassen und das Gespräch gehört Ihnen.'],
       ],
       facts: [
-        ['Für', 'Vertriebsteams jeder Branche'],
+        ['Ersetzt', 'Das Nachfassen von Hand'],
         ['Preis', '14 Tage kostenlos, danach ab 19 € im Monat'],
         ['Einrichtung', 'Eine Tabelle Ihrer Angebote, kein CRM'],
         ['Zu finden auf', 'qfutool.com'],

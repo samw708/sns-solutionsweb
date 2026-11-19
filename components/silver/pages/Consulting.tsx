@@ -11,14 +11,14 @@ const T = {
   en: {
     crumb: 'Consulting',
     h1: 'Where is AI worth it for you?',
-    lead: 'Not every task is worth automating. We look at how your team works, tell you which parts are worth it and which aren’t, and only build when it pays off.',
+    lead: 'Not every task is worth automating. We find the ones that are, and build only those.',
     book: 'Book a free 30-minute call',
     how: 'How a build works',
     chat: [
       ['them', 'We send quotes all week and never get round to chasing them.'],
       ['us', 'Then that’s where we’d start.'],
       ['them', 'How do we find out if it’s worth it?'],
-      ['us', 'Thirty minutes, online, free. We look at how you work and tell you straight.'],
+      ['us', 'Thirty minutes, online, free. You’ll know by the end.'],
     ],
     chatLabel: 'An example conversation',
     week: {
@@ -39,12 +39,12 @@ const T = {
     offers: [
       {
         name: 'Custom software',
-        line: 'Software built around your business, not the other way round.',
-        text: 'Web apps, internal tools, dashboards and customer-facing products, designed around your exact workflow.',
+        line: 'For when the spreadsheet has outgrown itself.',
+        text: 'Web apps, internal tools, dashboards and customer-facing products, built around the way your team already works.',
         points: [
-          'A tool built for your process',
-          'Software your team wants to use',
-          'A system that grows with you',
+          'Replaces the spreadsheet or the workaround',
+          'Built on your process, not a template',
+          'Yours: the code, the documentation, the system',
         ],
       },
       {
@@ -52,15 +52,15 @@ const T = {
         line: 'Repetitive work, done in the background by your own systems.',
         text: 'Incoming documents read and filed, data kept in sync between your tools, and scheduled jobs nobody has to watch.',
         points: [
-          'The repetitive work runs on its own',
+          'No more copying data from one system to the next',
           'Fewer errors, because the process is consistent',
           'Your team’s time back for work that needs a person',
         ],
       },
       {
         name: 'AI & IT consulting',
-        line: 'Straight answers on where AI pays off.',
-        text: 'We look at how your team works, tell you which parts are worth automating and which aren’t, and write down a plan. If you want, we build it too.',
+        line: 'A plan before any code.',
+        text: 'We map how your team works, mark what is worth automating and what isn’t, and write it down as a plan. If you want, we build it too.',
         points: [
           'A written plan you can act on',
           'Advice from people who build this',
@@ -73,14 +73,14 @@ const T = {
       'Four steps, and the second is the one most people skip: we measure the work before we touch it, so at the end you can see what changed.',
     steps: [
       ['Talk it through', 'You describe it. We ask the harder questions.'],
-      ['Baseline', 'We measure the work before we touch it.'],
+      ['Baseline', 'Today’s figure, taken on your real work.'],
       ['Pilot', 'One workflow, live on real work, in weeks.'],
       ['Prove and hand over', 'The same measurement, run again. You own what we build.'],
     ],
     honest: 'And if the honest answer is “you don’t need this built”, that’s the answer you get.',
     bookH: 'Book a free online meeting.',
     bookSub:
-      'Thirty minutes, no cost and no obligation. Tell us how your team works today and we’ll tell you where AI and better systems would pay off, and where they wouldn’t.',
+      'Thirty minutes, free and with no obligation. Bring one task that eats your team’s week.',
     bookPoints: [
       'On Google Meet, the link comes with the invitation',
       'A concrete recommendation, in plain language',
@@ -90,7 +90,7 @@ const T = {
     faq: [
       {
         q: 'What does the free call cover?',
-        a: 'How your team works today, where the time goes, and whether software or AI would genuinely help. You leave with a recommendation, whether or not you work with us.',
+        a: 'How your team works today, where the time goes, and whether software or AI would help. You leave with a recommendation, whether or not you work with us.',
       },
       {
         q: 'Do you only work with HVAC and real estate?',
@@ -102,15 +102,15 @@ const T = {
       },
       { q: 'Do you work in German?', a: 'Yes, in German and English.' },
     ],
-    closeH: 'Is something taking your team too long?',
+    closeH: 'Start with one task.',
     closeSub:
-      'Tell us what it is. We’ll tell you whether it can be automated, and what that would take.',
+      'Tell us which one. We’ll tell you whether it can be automated, and what that would take.',
     write: 'Write to us',
   },
   de: {
     crumb: 'Beratung',
     h1: 'Wo lohnt sich KI für Sie?',
-    lead: 'Nicht jede Aufgabe lohnt sich zu automatisieren. Wir sehen uns an, wie Ihr Team arbeitet, sagen Ihnen, welche Teile sich lohnen und welche nicht, und bauen nur, wenn es sich rechnet.',
+    lead: 'Nicht jede Aufgabe lohnt sich zu automatisieren. Wir finden die, bei denen es sich lohnt, und bauen nur diese.',
     book: 'Kostenloses Erstgespräch buchen',
     how: 'So läuft ein Projekt ab',
     chat: [
@@ -119,7 +119,7 @@ const T = {
       ['them', 'Wie finden wir heraus, ob es sich lohnt?'],
       [
         'us',
-        'Dreißig Minuten, online, kostenlos. Wir sehen uns an, wie Sie arbeiten, und sagen es Ihnen offen.',
+        'Dreißig Minuten, online, kostenlos. Danach wissen Sie es.',
       ],
     ],
     chatLabel: 'Ein Beispielgespräch',
@@ -145,12 +145,12 @@ const T = {
     offers: [
       {
         name: 'Individuelle Software',
-        line: 'Software, die sich nach Ihrem Unternehmen richtet, nicht umgekehrt.',
-        text: 'Web-Apps, interne Tools, Dashboards und Produkte für Ihre Kunden, genau auf Ihre Arbeitsabläufe zugeschnitten.',
+        line: 'Wenn die Tabelle an ihre Grenzen kommt.',
+        text: 'Web-Apps, interne Tools, Dashboards und Produkte für Ihre Kunden, gebaut um die Art, wie Ihr Team schon arbeitet.',
         points: [
-          'Ein Tool, gebaut für Ihren Prozess',
-          'Software, die Ihr Team gern nutzt',
-          'Ein System, das mit Ihnen wächst',
+          'Ersetzt die Tabelle oder den Umweg',
+          'Gebaut auf Ihrem Ablauf, nicht auf einer Vorlage',
+          'Ihres: Code, Dokumentation, System',
         ],
       },
       {
@@ -158,15 +158,15 @@ const T = {
         line: 'Wiederkehrende Arbeit, im Hintergrund von Ihren eigenen Systemen erledigt.',
         text: 'Eingehende Dokumente gelesen und abgelegt, Daten zwischen Ihren Tools synchron gehalten und geplante Abläufe, die niemand überwachen muss.',
         points: [
-          'Die wiederkehrende Arbeit läuft von selbst',
+          'Kein Abtippen mehr von einem System ins nächste',
           'Weniger Fehler, weil der Ablauf immer gleich ist',
           'Zeit für Ihr Team, für Arbeit, die einen Menschen braucht',
         ],
       },
       {
         name: 'KI- & IT-Beratung',
-        line: 'Klare Antworten, wo sich KI lohnt.',
-        text: 'Wir sehen uns an, wie Ihr Team arbeitet, sagen Ihnen, welche Teile sich zu automatisieren lohnen und welche nicht, und halten einen Plan schriftlich fest. Wenn Sie möchten, bauen wir ihn auch.',
+        line: 'Ein Plan, bevor Code entsteht.',
+        text: 'Wir erfassen, wie Ihr Team arbeitet, markieren, was sich zu automatisieren lohnt und was nicht, und halten es als Plan fest. Wenn Sie möchten, bauen wir ihn auch.',
         points: [
           'Ein schriftlicher Plan, mit dem Sie arbeiten können',
           'Rat von Menschen, die so etwas bauen',
@@ -179,7 +179,7 @@ const T = {
       'Vier Schritte, und den zweiten lassen die meisten aus: Wir messen die Arbeit, bevor wir sie anfassen, damit Sie am Ende sehen, was sich verändert hat.',
     steps: [
       ['Durchsprechen', 'Sie beschreiben es. Wir stellen die schwierigeren Fragen.'],
-      ['Ausgangswert', 'Wir messen die Arbeit, bevor wir sie anfassen.'],
+      ['Ausgangswert', 'Die heutige Zahl, gemessen an Ihrer echten Arbeit.'],
       ['Pilot', 'Ein Arbeitsablauf, live mit echter Arbeit, in wenigen Wochen.'],
       ['Nachweisen und übergeben', 'Dieselbe Messung, noch einmal. Was wir bauen, gehört Ihnen.'],
     ],
@@ -187,7 +187,7 @@ const T = {
       'Und wenn die ehrliche Antwort „Das müssen Sie nicht bauen lassen“ lautet, bekommen Sie genau diese Antwort.',
     bookH: 'Buchen Sie ein kostenloses Online-Gespräch.',
     bookSub:
-      'Dreißig Minuten, kostenlos und unverbindlich. Erzählen Sie uns, wie Ihr Team heute arbeitet, und wir sagen Ihnen, wo sich KI und bessere Systeme lohnen würden und wo nicht.',
+      'Dreißig Minuten, kostenlos und unverbindlich. Bringen Sie eine Aufgabe mit, die die Woche Ihres Teams frisst.',
     bookPoints: [
       'Über Google Meet, der Link kommt mit der Einladung',
       'Eine konkrete Empfehlung, in klarer Sprache',
@@ -197,7 +197,7 @@ const T = {
     faq: [
       {
         q: 'Worum geht es im kostenlosen Gespräch?',
-        a: 'Wie Ihr Team heute arbeitet, wohin die Zeit geht und ob Software oder KI wirklich helfen würde. Sie gehen mit einer Empfehlung, ob Sie mit uns arbeiten oder nicht.',
+        a: 'Wie Ihr Team heute arbeitet, wohin die Zeit geht und ob Software oder KI helfen würde. Sie gehen mit einer Empfehlung, ob Sie mit uns arbeiten oder nicht.',
       },
       {
         q: 'Arbeiten Sie nur mit HLK und Immobilien?',
@@ -209,9 +209,9 @@ const T = {
       },
       { q: 'Arbeiten Sie auf Deutsch?', a: 'Ja, auf Deutsch und Englisch.' },
     ],
-    closeH: 'Dauert in Ihrem Team etwas zu lange?',
+    closeH: 'Fangen Sie mit einer Aufgabe an.',
     closeSub:
-      'Sagen Sie uns, was es ist. Wir sagen Ihnen, ob es sich automatisieren lässt und was das brauchen würde.',
+      'Sagen Sie uns, welche. Wir sagen Ihnen, ob sie sich automatisieren lässt und was das bräuchte.',
     write: 'Schreiben Sie uns',
   },
 }
