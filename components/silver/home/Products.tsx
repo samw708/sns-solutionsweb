@@ -37,7 +37,7 @@ const T = {
     },
     films: {
       packLoop: 'A refrigeration pack drawn as a wireframe, filling in as solid metal.',
-      pack: 'A CO₂ booster pack rendered from the Pack CAD model, turning slowly.',
+      pack: 'A CO₂ booster pack from the Pack CAD model coming apart into its frame, compressors, vessels and pipework, then fitting back together.',
       helix: 'From Evening, our film for Immvela: the helix turning at dusk.',
     },
     howHeading: 'How it works',
@@ -112,7 +112,7 @@ const T = {
     },
     films: {
       packLoop: 'Eine Kälteverbundanlage als Drahtmodell, die sich zu massivem Metall füllt.',
-      pack: 'Eine CO₂-Booster-Verbundanlage aus dem Pack-CAD-Modell, langsam drehend.',
+      pack: 'Eine CO₂-Booster-Verbundanlage aus dem Pack-CAD-Modell zerfällt in Rahmen, Verdichter, Behälter und Rohrleitungen und fügt sich wieder zusammen.',
       helix: 'Aus „Evening“, unserem Film für Immvela: die Helix in der Dämmerung.',
     },
     howHeading: 'So funktioniert es',
@@ -294,7 +294,7 @@ export default function Products({ locale }: { locale: Locale }) {
         how={t.howHeading}
         media={
           <div className="chap-frame">
-            <Video src="/sns/site/pack-porcelain.mp4" poster="/sns/site/pack-porcelain-poster.jpg" label={t.films.pack} className="" />
+            <Video src="/sns/site/pack-apart.mp4" poster="/sns/site/pack-apart-poster.jpg" label={t.films.pack} className="" />
           </div>
         }
         ctas={
