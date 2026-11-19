@@ -64,7 +64,7 @@ const T = {
       pill: 'Closed beta',
       for: 'For estate agents in Austria, Germany and Switzerland.',
       statement:
-        'A real estate assistant that does the listing work for you. Tell it “get it ready” in the chat and Immvela prepares the property: it reads and cross-checks the documents, looks up what’s nearby, writes the Exposé, designs the brochure, stages the empty rooms and drafts the posts. You check the result and press publish.',
+        'Leave the digital work to Immvela and keep the human side for yourself: the owners, the viewings, the negotiation. Ask in the chat and it prepares the property, from the documents to the posts. You check the result and press publish.',
       steps: [
         ['Ask in the chat', 'Say “get it ready”, or ask for just the Exposé. Immvela makes the plan, does each step and shows you every result in the thread. In Auto it remembers how you like your listings and gets on with it; anything that goes out still waits for you.'],
         ['Paperwork and location, handled', 'Upload the Energieausweis, floor plan and photos, or bring listings over from your CRM. Immvela reads the values out and you confirm each one once. Where two records disagree it shows both side by side; a missing required value is flagged, never invented. For Vienna properties it adds the nearby schools and U-Bahn and tram stops from the city’s open data, with walking times.'],
@@ -72,7 +72,7 @@ const T = {
       ],
       facts: [
         ['How you work with it', 'Ask in the chat. It plans, does the work and waits for your approval'],
-        ['Handles', 'Documents, location research, Exposé, brochure, virtual staging, posts'],
+        ['Takes on', 'The digital work on every listing, from the documents to the posts'],
         ['In development', 'Walkthrough videos filmed on a phone, and a real estate knowledge assistant that cites its sources'],
         ['Status', 'Closed beta, German first, English available'],
       ],
@@ -139,7 +139,7 @@ const T = {
       pill: 'Geschlossene Beta',
       for: 'Für Immobilienmakler in Österreich, Deutschland und der Schweiz.',
       statement:
-        'Ein Immobilien-Assistent, der die Arbeit am Inserat für Sie erledigt. Sagen Sie im Chat „Fertig machen“, und Immvela bereitet die Immobilie vor: Es liest und prüft die Unterlagen, recherchiert die Umgebung, schreibt das Exposé, gestaltet die Broschüre, möbliert leere Räume virtuell und entwirft die Beiträge. Sie prüfen das Ergebnis und veröffentlichen.',
+        'Überlassen Sie die digitale Arbeit Immvela und kümmern Sie sich um die menschliche Seite: Eigentümer, Besichtigungen, Verhandlungen. Im Chat beauftragt, bereitet Immvela die Immobilie vor, von den Unterlagen bis zu den Beiträgen. Sie prüfen das Ergebnis und veröffentlichen.',
       steps: [
         ['Im Chat beauftragen', 'Sagen Sie „Fertig machen“ oder bitten Sie nur um das Exposé. Immvela erstellt den Plan, erledigt jeden Schritt und zeigt Ihnen jedes Ergebnis im Verlauf. Im Auto-Modus merkt es sich, wie Sie Ihre Inserate mögen, und legt los; was hinausgeht, wartet trotzdem auf Sie.'],
         ['Unterlagen und Lage, erledigt', 'Laden Sie Energieausweis, Grundriss und Fotos hoch oder übernehmen Sie Objekte aus Ihrem CRM. Immvela liest die Werte aus, Sie bestätigen jeden einmal. Widersprechen sich zwei Unterlagen, zeigt es beide nebeneinander; fehlt ein Pflichtwert, wird er markiert, nie erfunden. Für Wiener Objekte ergänzt es Schulen sowie U-Bahn- und Straßenbahnhaltestellen in der Nähe aus den offenen Daten der Stadt, mit Gehzeiten.'],
@@ -147,7 +147,7 @@ const T = {
       ],
       facts: [
         ['So arbeiten Sie damit', 'Im Chat beauftragen. Es plant, erledigt die Arbeit und wartet auf Ihre Freigabe'],
-        ['Übernimmt', 'Unterlagen, Lagerecherche, Exposé, Broschüre, virtuelle Möblierung, Beiträge'],
+        ['Übernimmt', 'Die digitale Arbeit an jedem Inserat, von den Unterlagen bis zu den Beiträgen'],
         ['In Entwicklung', 'Rundgang-Videos, mit dem Handy gefilmt, und ein Immobilien-Wissensassistent, der seine Quellen nennt'],
         ['Status', 'Geschlossene Beta, Deutsch zuerst, Englisch verfügbar'],
       ],

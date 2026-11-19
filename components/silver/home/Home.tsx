@@ -23,7 +23,7 @@ function copy(locale: Locale) {
           {
             tag: 'Immobilien',
             title: 'Immvela',
-            text: 'Ein Immobilien-Assistent, dem Sie die Arbeit übergeben: im Chat beauftragt, prüft er die Unterlagen, recherchiert die Lage und bereitet Exposé, Broschüre und Beiträge zur Freigabe vor. Für Makler in Österreich, Deutschland und der Schweiz, in der geschlossenen Beta.',
+            text: 'Überlassen Sie die digitale Arbeit Immvela und kümmern Sie sich um die menschliche Seite. Im Chat beauftragt, bereitet Immvela jedes Inserat zur Freigabe vor, von den Unterlagen bis zu den Beiträgen. Für Makler in Österreich, Deutschland und der Schweiz, in der geschlossenen Beta.',
             links: [{ label: 'immvela.com besuchen ↗', href: immvelaHref(locale), external: true }],
             chip: ['Immobilien', 'Immvela'],
           },
@@ -93,7 +93,7 @@ function copy(locale: Locale) {
         {
           tag: 'Real estate',
           title: 'Immvela',
-          text: 'A real estate assistant you hand the work to: ask in the chat and it checks the documents, researches the location and prepares the Exposé, brochure and posts for your approval. For agents in Austria, Germany and Switzerland, in closed beta.',
+          text: 'Leave the digital work to Immvela and keep the human side for yourself. Ask in the chat and it prepares each listing, from the documents to the posts, for your approval. For agents in Austria, Germany and Switzerland, in closed beta.',
           links: [{ label: 'Visit immvela.com ↗', href: immvelaHref(locale), external: true }],
           chip: ['Real estate', 'Immvela'],
         },
