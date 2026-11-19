@@ -36,9 +36,10 @@ const T = {
       qfu: 'For teams that send quotes',
     },
     films: {
-      packLoop: 'A refrigeration pack drawn as a wireframe, filling in as solid metal.',
-      pack: 'A CO₂ booster pack rendered from the Pack CAD model, turning slowly.',
+      packLoop: 'A refrigeration pack in dark steel and copper, the camera swaying slowly around it.',
+      pack: 'A CO₂ booster pack from the Pack CAD model coming apart into its frame, compressors, vessels and pipework, then fitting back together.',
       helix: 'From Evening, our film for Immvela: the helix turning at dusk.',
+      wall: 'From Evening, our film for Immvela: the helix’s shadow lines sliding across a warm wall.',
     },
     howHeading: 'How it works',
     pack: {
@@ -111,9 +112,10 @@ const T = {
       qfu: 'Für Teams, die Angebote verschicken',
     },
     films: {
-      packLoop: 'Eine Kälteverbundanlage als Drahtmodell, die sich zu massivem Metall füllt.',
-      pack: 'Eine CO₂-Booster-Verbundanlage aus dem Pack-CAD-Modell, langsam drehend.',
+      packLoop: 'Eine Kälteverbundanlage in dunklem Stahl und Kupfer, die Kamera schwenkt langsam um sie herum.',
+      pack: 'Eine CO₂-Booster-Verbundanlage aus dem Pack-CAD-Modell zerfällt in Rahmen, Verdichter, Behälter und Rohrleitungen und fügt sich wieder zusammen.',
       helix: 'Aus „Evening“, unserem Film für Immvela: die Helix in der Dämmerung.',
+      wall: 'Aus „Evening“, unserem Film für Immvela: die Schattenlinien der Helix gleiten über eine warme Wand.',
     },
     howHeading: 'So funktioniert es',
     pack: {
@@ -263,14 +265,14 @@ export default function Products({ locale }: { locale: Locale }) {
           </div>
           <nav className="pano prod-pano" aria-label={t.index}>
             <a href="#pack-cad" style={{ background: '#000' }}>
-              <Video src="/sns/site/pack-loop.mp4" poster="/sns/site/pack-loop-poster.jpg" label={t.films.packLoop} />
+              <Video src="/sns/site/pack-carbon.mp4" poster="/sns/site/pack-carbon-poster.jpg" label={t.films.packLoop} />
               <span className="pn-name">
                 Pack CAD
               </span>
               <span className="pn-line">{t.panels.pack}</span>
             </a>
-            <a href="#immvela" style={{ background: '#2E3E5E' }}>
-              <Video src="/sns/site/helix-dusk.mp4" poster="/sns/site/helix-dusk-poster.jpg" label={t.films.helix} />
+            <a href="#immvela" style={{ background: '#B39C84' }}>
+              <Video src="/sns/site/helix-wall.mp4" poster="/sns/site/helix-wall-poster.jpg" label={t.films.wall} />
               <span className="pn-name">
                 Immvela
               </span>
@@ -294,7 +296,7 @@ export default function Products({ locale }: { locale: Locale }) {
         how={t.howHeading}
         media={
           <div className="chap-frame">
-            <Video src="/sns/site/pack-porcelain.mp4" poster="/sns/site/pack-porcelain-poster.jpg" label={t.films.pack} className="" />
+            <Video src="/sns/site/pack-apart.mp4" poster="/sns/site/pack-apart-poster.jpg" label={t.films.pack} className="" />
           </div>
         }
         ctas={
