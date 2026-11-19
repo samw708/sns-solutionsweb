@@ -96,7 +96,7 @@ export const BLOG_DE: Record<string, BlogTranslation> = {
     title: 'Immvela: Ein geprüfter Datensatz statt sieben Logins',
     eyebrow: 'Immvela · Produkt',
     description:
-      'Was Immvela tatsächlich ist: die Idee hinter dem Produkt von SNS für Immobilienmakler, was es heute kann und welche Grenzen fest eingebaut sind, statt nur in Richtlinien zu stehen.',
+      'Was Immvela ist: die Idee hinter dem Produkt von SNS für Immobilienmakler, was es heute kann und welche Grenzen fest eingebaut sind, statt nur in Richtlinien zu stehen.',
     readTime: '8 Min. Lesezeit',
     intro: [
       'Immvela ist das eigene Produkt von SNS für Immobilienmakler in Österreich, Deutschland und der Schweiz. Alles, was es tut, liest aus einem Datensatz pro Immobilie und schreibt dorthin zurück: die Dokumente, die daraus bestätigten Werte und die Texte, die aus diesen Werten entworfen werden. Es befindet sich in einer geschlossenen Beta, Deutsch zuerst, Englisch verfügbar.',
@@ -405,7 +405,7 @@ export const BLOG_DE: Record<string, BlogTranslation> = {
   },
 
   'ai-infrastructure-for-real-estate-agencies': {
-    title: 'Was „KI-Infrastruktur“ für ein Maklerbüro tatsächlich bedeutet',
+    title: 'Was „KI-Infrastruktur“ für ein Maklerbüro bedeutet',
     eyebrow: 'KI-Infrastruktur',
     description:
       'Die meiste „KI für Immobilien“ ist ein Chatbot, der an dieselben zersplitterten Werkzeuge angeschraubt wird. Echte KI-Infrastruktur ist die Datenebene darunter. Was das in der Praxis heißt.',

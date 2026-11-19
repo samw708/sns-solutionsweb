@@ -296,7 +296,7 @@ const en = {
 
     own: {
       heading: 'Built for your packs, and nobody else’s.',
-      body: 'There’s no generic version to install. We start from your past jobs and build the system around your components, your frames and your engineers’ rules. What we build for you stays yours.',
+      body: 'There’s no generic version to install. We start from your past jobs and build from there.',
       photo: 'A printed general arrangement drawing on a desk with a coffee cup and a pencil.',
     },
 
@@ -578,7 +578,7 @@ const de: HvacCopy = {
 
     own: {
       heading: 'Für Ihre Anlagen gebaut, für niemanden sonst.',
-      body: 'Es gibt keine allgemeine Version zum Installieren. Wir beginnen mit Ihren früheren Aufträgen und bauen das System um Ihre Komponenten, Ihre Rahmen und die Regeln Ihrer Konstrukteure. Was wir für Sie bauen, bleibt Ihres.',
+      body: 'Es gibt keine allgemeine Version zum Installieren. Wir beginnen mit Ihren früheren Aufträgen und bauen von dort aus weiter.',
       photo: 'Eine ausgedruckte Aufstellungszeichnung auf einem Schreibtisch mit Kaffeetasse und Bleistift.',
     },
 

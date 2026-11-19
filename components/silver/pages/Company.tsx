@@ -19,29 +19,29 @@ const T = {
   en: {
     crumb: 'Company',
     h1: 'If it’s complicated to use, it’s not finished.',
-    lead: 'SNS Solutions is a software company in Vienna. We build for real estate, for HVAC and refrigeration manufacturers, and for any team that wants AI to do real work.',
+    lead: 'SNS Solutions is a software company in Vienna. We build for estate agents, for HVAC and refrigeration manufacturers, and for any team buried in routine.',
     film: 'A white architectural model of a Viennese district in morning light, the camera gliding slowly over the roofs.',
     teamH: 'The people who build it.',
-    teamSub: 'Three founders. We read every message and reply ourselves.',
+    teamSub: 'Three founders. The people you talk to are the people who build it.',
     people: [
       [
         'CEO',
-        'Sets the company’s direction and shapes how our products meet real market needs, with an eye for the human side of what technology solves. From Austria, with a degree in psychology.',
+        'Runs the company and works with customers on what our products should do. From Austria, with a degree in psychology.',
       ],
       [
         'CTO',
-        'Leads the technical architecture and full-stack delivery, turning complex requirements into clean, reliable systems. From England, a self-taught engineer with a background in business, now pursuing a master’s in computer science.',
+        'Leads the engineering and builds the products end to end. From England, a self-taught engineer with a background in business, now pursuing a master’s in computer science.',
       ],
       [
         'CFO',
-        'Leads the finances and keeps SNS financially sound as it grows. From Switzerland, with a degree in economics.',
+        'Runs the finances. From Switzerland, with a degree in economics.',
       ],
     ],
     facts: [
       ['Based in', 'Vienna, Austria'],
       ['Founded', '2026'],
       ['We work in', 'English and German'],
-      ['We build', 'Immvela, software for HVAC and refrigeration manufacturers, and custom builds'],
+      ['We build', 'Immvela, Pack CAD, QFUtool and custom software'],
     ],
     principles: [
       [
@@ -49,8 +49,8 @@ const T = {
         'A number from before is the only way to show what changed after.',
       ],
       [
-        'Simple to use, or not finished.',
-        'Serious engineering underneath, and an interface the people using it every day find obvious.',
+        'Engineering you don’t see.',
+        'Serious work underneath, and an interface the people using it every day find obvious.',
       ],
       ['Straight answers.', 'If software won’t help, we say so on the first call.'],
     ],
@@ -62,22 +62,22 @@ const T = {
   de: {
     crumb: 'Unternehmen',
     h1: 'Wenn es kompliziert zu bedienen ist, ist es nicht fertig.',
-    lead: 'SNS Solutions ist ein Softwareunternehmen in Wien. Wir bauen für die Immobilienbranche, für Hersteller in HLK und Kältetechnik und für jedes Team, das KI echte Arbeit erledigen lassen will.',
+    lead: 'SNS Solutions ist ein Softwareunternehmen in Wien. Wir bauen für Makler, für Hersteller in HLK und Kältetechnik und für jedes Team in Routinearbeit.',
     film: 'Ein weißes Architekturmodell eines Wiener Viertels im Morgenlicht, die Kamera gleitet langsam über die Dächer.',
     teamH: 'Die Menschen, die es bauen.',
-    teamSub: 'Drei Gründer. Wir lesen jede Nachricht und antworten selbst.',
+    teamSub: 'Drei Gründer. Mit wem Sie sprechen, der baut es auch.',
     people: [
       [
         'CEO',
-        'Gibt die Richtung des Unternehmens vor und gestaltet, wie unsere Produkte auf reale Marktbedürfnisse treffen, mit einem Blick für die menschliche Seite dessen, was Technologie löst. Aus Österreich, mit einem Abschluss in Psychologie.',
+        'Führt das Unternehmen und erarbeitet mit Kunden, was unsere Produkte können sollen. Aus Österreich, mit einem Abschluss in Psychologie.',
       ],
       [
         'CTO',
-        'Verantwortet die technische Architektur und die Full-Stack-Umsetzung und übersetzt komplexe Anforderungen in saubere, zuverlässige Systeme. Aus England, autodidaktischer Entwickler mit betriebswirtschaftlichem Hintergrund, derzeit im Masterstudium Informatik.',
+        'Leitet die Entwicklung und baut die Produkte von Anfang bis Ende. Aus England, autodidaktischer Entwickler mit betriebswirtschaftlichem Hintergrund, derzeit im Masterstudium Informatik.',
       ],
       [
         'CFO',
-        'Verantwortet die Finanzen und stellt SNS auch im Wachstum finanziell solide auf. Aus der Schweiz, mit einem Abschluss in Volkswirtschaftslehre.',
+        'Verantwortet die Finanzen. Aus der Schweiz, mit einem Abschluss in Volkswirtschaftslehre.',
       ],
     ],
     facts: [
@@ -86,7 +86,7 @@ const T = {
       ['Wir arbeiten auf', 'Deutsch und Englisch'],
       [
         'Wir bauen',
-        'Immvela, Software für Hersteller in HLK und Kältetechnik und individuelle Lösungen',
+        'Immvela, Pack CAD, QFUtool und individuelle Software',
       ],
     ],
     principles: [
@@ -95,8 +95,8 @@ const T = {
         'Nur ein Wert von vorher zeigt, was sich danach verändert hat.',
       ],
       [
-        'Einfach zu bedienen, oder nicht fertig.',
-        'Solide Technik darunter und eine Oberfläche, die den Menschen, die sie täglich nutzen, selbstverständlich vorkommt.',
+        'Technik, die man nicht sieht.',
+        'Solide Arbeit darunter und eine Oberfläche, die den Menschen, die sie täglich nutzen, selbstverständlich vorkommt.',
       ],
       ['Klare Antworten.', 'Wenn Software nicht hilft, sagen wir das im ersten Gespräch.'],
     ],
